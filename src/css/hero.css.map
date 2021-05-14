@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AACA,AAAA,IAAI,CAAA;EACA,OAAO,EAAC,IAAI;EACZ,UAAU,EAAC,KAAK;EAChB,eAAe,EAAE,MAAM;EACvB,WAAW,EAAE,MAAM;CACtB",
+    "sources": [
+        "hero.scss",
+        "App.scss"
+    ],
+    "names": [],
+    "file": "hero.css"
+}
