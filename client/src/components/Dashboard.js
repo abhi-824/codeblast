@@ -1,9 +1,85 @@
 import React from "react";
-const Hero = () => {
+import { useEffect, useState } from "react";
+
+import "../css/hero.css";
+import M from "materialize-css";
+
+const Dashboard = () => {
   return (
     <div>
+      <div>
+        <nav>
+          <div className="nav-wrapper">
+            <a href="/" className="brand-logo">
+              <img src="resources/logo_light.png" alt />
+            </a>
+          </div>
+        </nav>
+        <div className="fullscreen">
+          <video autoPlay muted loop id="myVideo">
+            <source src="resources/hero-video.mp4" type="video/mp4" />
+          </video>
+
+          <div className="content">
+            <h1>BUTTONS WOULD BE ADDDED HERE</h1>
+            {/* //Join room buttons */}
+
+          </div>
+        </div>
+      </div>
+      <div className="instructions">
+        <div className="content">
+          <h1>Instructions</h1>
+          <p>Here are the instructions to start a blast:</p>
+          <ol>
+            <li>Create a blast after logging in.</li>
+            <li>Grab a coffee from your kitchen.</li>
+            <li>
+              Share the room id with your friends(See top right corner after
+              joining).
+            </li>
+            <li>
+              Let your friends join the room. Meanwhile, check out Fast and
+              furious 9 songs and trailer🔥😁.
+            </li>
+            <li>
+              When all your friends have joined, just click on the Ready button
+              and ask all others to do the same.
+            </li>
+            <li>
+              Questions would be visible to all of you, so All the best👍🤞
+            </li>
+          </ol>
+        </div>
+        <div className="image">
+          <div className="request-loader">
+            <img src="resources/girl-dream.gif" alt="" />
+          </div>
+        </div>
+      </div>
+      <footer>
+        <img src="resources/logo_light.png" alt />
+        <div className="about_us">
+          <h1>About Us</h1>
+          <p>We are students of Delhi Technological University, India.<br></br> And obviously do web development for fun because CP gave us chills.</p>
+          <br></br>
+          <br></br>
+          <ul>
+            <li>Abhinandan Sharma(<a href="https://github.com/abhi-824" target="_blank">Github</a>, <a href="https://www.linkedin.com/in/abhinandan-sharma-0a2633175/" target="_blank">LinkedIn</a>, <a href="https://codeforces.com/profile/abdude824" target="_blank">Codeforces</a>);</li>
+            <li>Shubhang Jyotirmey(<a href="https://github.com/shubhangjyotirmay" target="_blank">Github</a>, <a href="https://www.linkedin.com/in/shubhang-jyotirmay-383997196/" target="_blank">LinkedIn</a>, <a href="https://codeforces.com/profile/Lord_Invincible" target="_blank">Codeforces</a>);</li>
+            <li>Naman Gogia(<a href="https://github.com/naman114" target="_blank">Github</a>, <a href="https://www.linkedin.com/in/namangogia/" target="_blank">LinkedIn</a>, <a href="https://codeforces.com/profile/naman114" target="_blank">Codeforces</a>);</li>
+          </ul>
+        </div>
+        <div className="contact_us">
+          <h1>Contact Us</h1>
+          <ul>
+            <li>Codeforces Blog</li>
+            <li>Mail to codeblasts@gmail.com</li>
+          </ul>
+        </div>
+      </footer>
     </div>
   );
 };
 
-export default Hero;
+export default Dashboard;

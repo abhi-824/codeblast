@@ -12,12 +12,7 @@ export default function App() {
     <div className="App">
       <BrowserRouter>
         <Switch>
-          <Route path="/">
-            <Navbar />
-            <Hero />
-            <Footer />
-          </Route>
-          <Route path="/dashboard/:handle">
+          <Route path="/dashboard">
             <Navbar />
             <Dashboard />
             <Footer />
@@ -29,6 +24,11 @@ export default function App() {
           <Route path="/contest/:contest_id/:handle">
             <Contest />
             <Winner />
+          </Route>
+          <Route path="/">
+            <Navbar />
+            <Hero />
+            <Footer />
           </Route>
         </Switch>
       </BrowserRouter>

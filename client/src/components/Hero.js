@@ -24,9 +24,11 @@ const Hero = () => {
             <h1>Interactive Practice on </h1>
             <h1 className="heading">CODEBLAST</h1>
             <p>BLAST YOUR CODE</p>
-            <a href="/dashboard">
-              Get Started <i class="material-icons">arrow_forward</i>
-            </a>
+            <form action="/dashboard">
+              <input type="text" name="handle" id placeholder="Codeforces Handle" required/>
+              <button type="submit" >Get Started<i class="material-icons">arrow_forward</i></button>
+            </form>
+
           </div>
         </div>
       </div>

@@ -55,10 +55,12 @@ nav img {
   font-weight: 500;
 }
 
-.fullscreen .content a {
+.fullscreen .content button {
   display: inline-block;
   text-decoration: none !important;
   font-size: 1em;
+  border: none;
+  cursor: pointer;
   font-weight: 400;
   background-color: #03c9a9;
   color: #fff;
@@ -84,7 +86,7 @@ nav img {
           align-items: center;
 }
 
-.fullscreen .content a:hover {
+.fullscreen .content button:hover {
   background: #03b094;
 }
 
