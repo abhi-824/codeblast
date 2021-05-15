@@ -113,6 +113,26 @@ nav {
     padding: 2rem;
   }
 }
+footer{
+  background:$primary-color;
+  font-family: "Dosis", sans-serif;
+  color:$tertiary-color;
+  display:flex;
+  padding:2rem;
+  justify-content: space-between;
+  align-items:flex-start;
+  height:25rem;
+  img{
+    max-width:110%;
+    max-height:110%;
+  }
+  h1{
+    font-size:3.5rem;
+  }
+  div{
+    margin-right:3rem;
+  }
+}
 
 @mixin rings($duration, $delay) {
   opacity: 0;

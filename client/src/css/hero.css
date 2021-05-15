@@ -119,6 +119,36 @@ nav img {
   padding: 2rem;
 }
 
+footer {
+  background: #000000;
+  font-family: "Dosis", sans-serif;
+  color: #ffffff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 2rem;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  height: 25rem;
+}
+
+footer img {
+  max-width: 110%;
+  max-height: 110%;
+}
+
+footer h1 {
+  font-size: 3.5rem;
+}
+
+footer div {
+  margin-right: 3rem;
+}
+
 .request-loader {
   position: relative;
   display: -webkit-box;
