@@ -1,6 +1,5 @@
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import Informations from "./components/Informations";
 import Chatbox from "./components/Chatbox";
 import Footer from "./components/Footer";
 import Contest from "./components/Contest";
@@ -16,13 +15,11 @@ export default function App() {
           <Route path="/">
             <Navbar />
             <Hero />
-            <Informations />
             <Footer />
           </Route>
           <Route path="/dashboard/:handle">
             <Navbar />
             <Dashboard />
-            <Informations />
             <Footer />
           </Route>
           <Route path="/readyroom/:contest_id/:handle">
