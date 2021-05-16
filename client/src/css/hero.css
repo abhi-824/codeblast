@@ -40,18 +40,18 @@ nav img {
 }
 
 .fullscreen .content h1 {
-  font-size: 2.5rem;
+  font-size: 3.5vw;
   margin: 0;
 }
 
 .fullscreen .content p {
   float: right;
-  font-size: 1.5rem;
+  font-size: 1.5vw;
 }
 
 .fullscreen .content .heading {
   color: #03c9a9;
-  font-size: 7.4rem;
+  font-size: 8vw;
   font-weight: 500;
 }
 
@@ -96,6 +96,74 @@ nav img {
   right: 0;
   width: 80vw;
   z-index: 0;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.roomID input {
+  width: 160px !important;
+}
+
+.roomID label {
+  padding: 0;
+  margin-left: 1rem;
+}
+
+#joinOrCreateRoom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  padding-left: 1rem;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+#joinOrCreateRoom label {
+  font-size: 1rem;
+  padding-left: 0;
+}
+
+#joinOrCreateRoom .num {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+#joinOrCreateRoom .buttonsBlast {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+#joinOrCreateRoom input {
+  font-family: "Dosis", sans-serif;
+  font-weight: 500;
+  width: 30%;
+  margin-left: 1rem;
 }
 
 .instructions {

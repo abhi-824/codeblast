@@ -1,11 +1,50 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import logo_light from "../resources/logo_light.png"
-import heroVideo from "../resources/hero-video.mp4"
-import girlDream from "../resources/girl-dream.gif"
+import logo_light from "../resources/logo_light.png";
+import heroVideo from "../resources/hero-video.mp4";
+import girlDream from "../resources/girl-dream.gif";
+import {useHistory} from "react-router-dom"
 import "../css/hero.css";
 import M from "materialize-css";
 const Dashboard = () => {
+  const history=useHistory();
+  const {handle}=useParams();
+  const [loader,setLoader]=useState("Create a Blast!")
+  const [numberOfQuestions,setNum]=useState(4);
+  const [err,setError]=useState("Some Error Occured!");
+  const [min,setMin]=useState(1000);
+  const [max,setMax]=useState(1900);
+  function getRoomId() {
+    setLoader("Loading...");
+    fetch("/api/getRoom").then((res) => {
+      return res.json();
+    }).then((data)=>{
+      if(data.status==200) {
+        let id=data.id;
+        const options={
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({num:numberOfQuestions,min:min,max:max,handles:[handle],isCompleted:true,questions:[],id:data.id})
+        }
+        fetch("/api/createRoom",options).then((res) => {
+          return res.json();
+        }).then((data2)=>{
+          if(data2.status==200) 
+          {
+            setLoader("Create a Blast!");
+            history.push("/readyroom/"+id+"/"+handle)
+          }
+          else{
+            setError("Error adding to database!");
+          }
+        })
+      }
+      else{
+        setError("Error retreiving Room ID!");
+      }
+    })
+  }
   return (
     <div>
       <div>
@@ -22,7 +61,50 @@ const Dashboard = () => {
           </video>
 
           <div className="content">
-            <h1>BUTTONS WOULD BE ADDDED HERE</h1>
+            <h1 className="heading">CODEBLAST</h1>
+            <form
+              action="/dashboard"
+              id="joinOrCreateRoom"
+              onSubmit={(e) => {
+                e.preventDefault();
+                getRoomId();
+              }}
+            >
+              <div>
+                <div className="num">
+                  <label for="numberOfQuestions">Number of questions: </label>
+                  <p class="range-field">
+                    <input
+                      type="range"
+                      name="numberOfQuestions"
+                      min="3"
+                      max="10"
+                    />
+                  </p>
+                </div>
+                <div className="minMaxRange">
+                  <label for="min">Difficulty: </label>
+                  <input type="number" name="min" value="1200" /> to
+                  <input type="number" name="max" value="1900" />
+                </div>
+              </div>
+              <div className="buttonsBlast">
+                <button
+                  type="submit"
+                  onClick={(e) => {
+                    // e.preventDefault();
+                  }}
+                >
+                  {loader}<i class="material-icons">arrow_forward</i>
+                </button>
+                <form action="/">
+                  <div class="input-field roomID">
+                    <input id="last_name" type="text" class="validate" />
+                    <label for="last_name">Room ID</label>
+                  </div>
+                </form>
+              </div>
+            </form>
             {/* //Join room buttons */}
           </div>
         </div>
@@ -58,7 +140,7 @@ const Dashboard = () => {
         </div>
       </div>
       <footer>
-        <img src="resources/logo_light.png" alt />
+        <img src={logo_light} alt />
         <div className="about_us">
           <h1>About Us</h1>
           <p>

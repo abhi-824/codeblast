@@ -29,24 +29,24 @@ nav {
     z-index: 100;
     margin-top: 5rem;
     h1 {
-      font-size: 2.5rem;
+      font-size: 3.5vw;
       margin: 0;
     }
     p {
       float: right;
-      font-size: 1.5rem;
+      font-size: 1.5vw;
     }
     .heading {
       color: $secondary-color;
-      font-size: 7.4rem;
+      font-size: 8vw;
       font-weight: 500;
     }
     button {
       display: inline-block;
       text-decoration: none !important;
       font-size: 1em;
-      border:none;
-      cursor:pointer;
+      border: none;
+      cursor: pointer;
       font-weight: 400;
       background-color: #03c9a9;
       color: #fff;
@@ -76,6 +76,49 @@ nav {
     // height: 100%;
     z-index: 0;
   }
+}
+.hidden{
+  display: none !important;
+}
+.roomID{
+  input{
+    width: 160px !important;
+  }
+  label{
+    padding:0;
+    margin-left:1rem;
+  }
+}
+#joinOrCreateRoom {
+  display: flex;
+  flex-direction: column;
+  transition: 0.5s;
+  padding-left:1rem;
+  label{
+    font-size:1rem;
+    padding-left:0;
+  }
+  .num{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .buttonsBlast {
+    display: flex;
+
+    justify-content: flex-start;
+    align-items: flex-end;
+  }
+  input {
+    font-family: "Dosis", sans-serif;
+    font-weight: 500;
+    width: 30%;
+
+    margin-left: 1rem;
+  }
+
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 @mixin rings($duration, $delay) {
@@ -109,30 +152,30 @@ nav {
   align-items: center;
   .content {
     padding: 2rem;
-    font-size:1.4rem;
+    font-size: 1.4rem;
   }
   .image {
     padding: 2rem;
   }
 }
-footer{
-  background:$primary-color;
+footer {
+  background: $primary-color;
   font-family: "Dosis", sans-serif;
-  color:$tertiary-color;
-  display:flex;
-  padding:2rem;
+  color: $tertiary-color;
+  display: flex;
+  padding: 2rem;
   justify-content: space-between;
-  align-items:flex-start;
-  height:25rem;
-  img{
-    max-width:110%;
-    max-height:110%;
+  align-items: flex-start;
+  height: 25rem;
+  img {
+    max-width: 110%;
+    max-height: 110%;
   }
-  h1{
-    font-size:3.5rem;
+  h1 {
+    font-size: 3.5rem;
   }
-  div{
-    margin-right:3rem;
+  div {
+    margin-right: 3rem;
   }
 }
 

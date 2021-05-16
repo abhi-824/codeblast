@@ -14,7 +14,7 @@ export default function App() {
     <div className="App">
       <BrowserRouter>
         <Switch>
-          <Route path="/dashboard">
+          <Route path="/dashboard/:handle">
             <Navbar />
             <Dashboard />
             <Footer />
