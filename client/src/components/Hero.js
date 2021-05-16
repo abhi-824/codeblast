@@ -33,13 +33,13 @@ const Hero = () => {
   return (
     <div>
       <div>
-        <nav>
+        {/* <nav>
           <div className="nav-wrapper">
             <a href="/" className="brand-logo">
               <img src={logo_light} alt />
             </a>
           </div>
-        </nav>
+        </nav> */}
         <div className="fullscreen">
           <video autoPlay muted loop id="myVideo">
             <source src={heroVideo} type="video/mp4" />
