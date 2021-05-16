@@ -1,9 +1,10 @@
 import React from "react";
 import { useEffect, useState } from "react";
-
+import logo_light from "../resources/logo_light.png"
+import heroVideo from "../resources/hero-video.mp4"
+import girlDream from "../resources/girl-dream.gif"
 import "../css/hero.css";
 import M from "materialize-css";
-
 const Dashboard = () => {
   return (
     <div>
@@ -11,19 +12,18 @@ const Dashboard = () => {
         <nav>
           <div className="nav-wrapper">
             <a href="/" className="brand-logo">
-              <img src="resources/logo_light.png" alt />
+              <img src={logo_light} alt />
             </a>
           </div>
         </nav>
         <div className="fullscreen">
           <video autoPlay muted loop id="myVideo">
-            <source src="resources/hero-video.mp4" type="video/mp4" />
+            <source src={heroVideo} type="video/mp4" />
           </video>
 
           <div className="content">
             <h1>BUTTONS WOULD BE ADDDED HERE</h1>
             {/* //Join room buttons */}
-
           </div>
         </div>
       </div>
@@ -53,7 +53,7 @@ const Dashboard = () => {
         </div>
         <div className="image">
           <div className="request-loader">
-            <img src="resources/girl-dream.gif" alt="" />
+            <img src={girlDream} alt="" />
           </div>
         </div>
       </div>
@@ -61,13 +61,70 @@ const Dashboard = () => {
         <img src="resources/logo_light.png" alt />
         <div className="about_us">
           <h1>About Us</h1>
-          <p>We are students of Delhi Technological University, India.<br></br> And obviously do web development for fun because CP gave us chills.</p>
+          <p>
+            We are students of Delhi Technological University, India.<br></br>{" "}
+            And obviously do web development for fun because CP gave us chills.
+          </p>
           <br></br>
           <br></br>
           <ul>
-            <li>Abhinandan Sharma(<a href="https://github.com/abhi-824" target="_blank">Github</a>, <a href="https://www.linkedin.com/in/abhinandan-sharma-0a2633175/" target="_blank">LinkedIn</a>, <a href="https://codeforces.com/profile/abdude824" target="_blank">Codeforces</a>);</li>
-            <li>Shubhang Jyotirmey(<a href="https://github.com/shubhangjyotirmay" target="_blank">Github</a>, <a href="https://www.linkedin.com/in/shubhang-jyotirmay-383997196/" target="_blank">LinkedIn</a>, <a href="https://codeforces.com/profile/Lord_Invincible" target="_blank">Codeforces</a>);</li>
-            <li>Naman Gogia(<a href="https://github.com/naman114" target="_blank">Github</a>, <a href="https://www.linkedin.com/in/namangogia/" target="_blank">LinkedIn</a>, <a href="https://codeforces.com/profile/naman114" target="_blank">Codeforces</a>);</li>
+            <li>
+              Abhinandan Sharma(
+              <a href="https://github.com/abhi-824" target="_blank">
+                Github
+              </a>
+              ,{" "}
+              <a
+                href="https://www.linkedin.com/in/abhinandan-sharma-0a2633175/"
+                target="_blank"
+              >
+                LinkedIn
+              </a>
+              ,{" "}
+              <a
+                href="https://codeforces.com/profile/abdude824"
+                target="_blank"
+              >
+                Codeforces
+              </a>
+              );
+            </li>
+            <li>
+              Shubhang Jyotirmey(
+              <a href="https://github.com/shubhangjyotirmay" target="_blank">
+                Github
+              </a>
+              ,{" "}
+              <a
+                href="https://www.linkedin.com/in/shubhang-jyotirmay-383997196/"
+                target="_blank"
+              >
+                LinkedIn
+              </a>
+              ,{" "}
+              <a
+                href="https://codeforces.com/profile/Lord_Invincible"
+                target="_blank"
+              >
+                Codeforces
+              </a>
+              );
+            </li>
+            <li>
+              Naman Gogia(
+              <a href="https://github.com/naman114" target="_blank">
+                Github
+              </a>
+              ,{" "}
+              <a href="https://www.linkedin.com/in/namangogia/" target="_blank">
+                LinkedIn
+              </a>
+              ,{" "}
+              <a href="https://codeforces.com/profile/naman114" target="_blank">
+                Codeforces
+              </a>
+              );
+            </li>
           </ul>
         </div>
         <div className="contact_us">
