@@ -11,11 +11,15 @@ import girlDream from "../resources/girl-dream.gif"
 const fetchURL = "https://codeforces.com/api/user.info?handles=";
 const Hero = () => {
   const [handle, setHandle] = useState("");
+  const [loader,setLoader]=useState("Get Started!")
   const history=useHistory();
   function getData(e) {
     e.preventDefault();
+    setLoader("Loading...");
     fetch(`${fetchURL}${handle}`).then((res) => {
       res.json();
+      setLoader("Get Started!");
+
       if(res.status==400)
       {
         alert("Invalid Handle")
@@ -55,7 +59,7 @@ const Hero = () => {
                 onChange={(e)=>{setHandle(e.target.value)}}
               />
               <button type="submit" onClick={getData}>
-                Get Started<i class="material-icons">arrow_forward</i>
+                {loader}<i class="material-icons">arrow_forward</i>
               </button>
             </form>
           </div>
