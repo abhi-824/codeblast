@@ -1,71 +1,79 @@
 * {
-    margin: 0;
-    padding: 0;
-    font-family: "Dosis", sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: "Dosis", sans-serif;
 }
-button{
-    font-family: "Dosis", sans-serif;
-    font-weight:600;
-    background: #03c9a9 !important;
+button {
+  font-family: "Dosis", sans-serif;
+  font-weight: 600;
+  background: #03c9a9 !important;
 }
 .contest-page {
-    width: 95%;
-    display: flex;
-    flex-direction: row;
-    margin: 50px auto;
-    justify-content: space-between;
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+  margin: 50px auto;
+  justify-content: space-between;
 }
 
 .problem-standing {
-    width: 70%;
-    display: flex;
-    flex-direction: column;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
 }
 
 .winner {
-    width: 25%;
-    background-color: blueviolet;
-    height: 600px;
+  width: 25%;
+  background-color: rgb(0, 0, 0);
+  color: #fff;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.winner img {
+  width: 100%;
 }
 
 .prob-stand-nav {
-    width: 100%;
+  width: 100%;
 }
 
 .standings {
-    margin-top: 20px;
-    width: 100%;
+  margin-top: 20px;
+  width: 100%;
 }
 
 label {
-    padding-left: 0;
-    font-size: 1.5rem;
-    display: inline-block;
-    margin: 0 0 -1px;
-    padding: 15px 25px;
-    font-weight: 600;
-    text-align: left;
-    color: #bbb;
-    border: 1px solid transparent;
+  padding-left: 0;
+  font-size: 1.5rem;
+  display: inline-block;
+  margin: 0 0 -1px;
+  padding: 15px 25px;
+  font-weight: 600;
+  text-align: left;
+  color: #bbb;
+  border: 1px solid transparent;
 }
 
 label:before {
-    font-family: fontawesome;
-    font-weight: normal;
-    margin-right: 10px;
+  font-family: fontawesome;
+  font-weight: normal;
+  margin-right: 10px;
 }
 
 label:hover {
-    color: rgb(37, 135, 180);
-    cursor: pointer;
+  color: rgb(37, 135, 180);
+  cursor: pointer;
 }
 
-input:checked+label {
-    color: #555;
-    border-bottom: 2px solid orange;
+input:checked + label {
+  color: #555;
+  border-bottom: 2px solid orange;
 }
 
 .update-table {
-    font-size: 1.5rem;
-    float: right;
+  font-size: 1.5rem;
+  float: right;
 }
