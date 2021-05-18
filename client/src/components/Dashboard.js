@@ -21,6 +21,7 @@ const Dashboard = () => {
       return res.json();
     }).then((data)=>{
       if(data.status==200) {
+        console.log("hey");
         let id=data.id;
         const options={
             method: 'POST',

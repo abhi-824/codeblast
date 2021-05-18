@@ -1,10 +1,29 @@
 'use strict';
-
+const { nanoid } = require("nanoid");
 const firebase = require('../db');
 const Student = require('../models/student');
 const firestore = firebase.firestore();
 
+const getRoom=async(req,res,next) => {
+    try{
+        const id=nanoid(4);
+        res.json({id:id,status:200});
+    } 
+    catch(err){
+        res.status(400).send(err.message);
+    }
+}
 
+const createRoom=async(req,res,next) => {
+    try{
+        const data = (req.body);
+        await firestore.collection('rooms').doc().set(data);
+        res.json({message:"Stored Successfully!",status:200});
+    } 
+    catch(err){
+        res.status(400).send(err.message);
+    }
+}
 const addStudent = async (req, res, next) => {
     try {
         const data = req.body;
@@ -88,5 +107,7 @@ module.exports = {
     getAllStudents,
     getStudent,
     updateStudent,
+    createRoom,
+    getRoom,
     deleteStudent
 }
