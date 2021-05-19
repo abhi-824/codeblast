@@ -4,8 +4,17 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const config = require('./config');
 const studentRoutes = require('./routes/student-routes');
-
-const app = express();
+const socketio = require("socket.io");
+const http = require("http");
+const app = express(); 
+const server = http.createServer(app);
+const io = socketio(server);
+io.on("connection", (socket) => {
+    console.log("hey")
+    socket.on("joinRoom", ({ username, room }) => {
+        console.log(username, room)
+      });
+})
 
 app.use(express.json());
 app.use(cors());
@@ -22,4 +31,4 @@ if(process.env.NODE_ENV == 'production')
     })
 }
 
-app.listen(config.port, () => console.log('App is listening on url http://localhost:' + config.port));
+server.listen(config.port, () => console.log('App is listening on url http://localhost:' + config.port));

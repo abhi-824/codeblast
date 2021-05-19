@@ -4,9 +4,11 @@ import { useEffect, useState } from "react";
 import logo_light from "../resources/logo_light.png";
 import heroVideo from "../resources/hero-video.mp4";
 import girlDream from "../resources/girl-dream.gif";
+import socketIOClient from "socket.io-client";
 import {useHistory} from "react-router-dom"
 import "../css/hero.css";
 import M from "materialize-css";
+const ENDPOINT = "http://127.0.0.1:4001";
 const Dashboard = () => {
   const history=useHistory();
   const {handle}=useParams();
@@ -34,6 +36,8 @@ const Dashboard = () => {
           if(data2.status==200) 
           {
             setLoader("Create a Blast!");
+            const socket = socketIOClient(ENDPOINT);
+            socket.emit("joinRoom", { handle, id });
             history.push("/readyroom/"+id+"/"+handle)
           }
           else{
