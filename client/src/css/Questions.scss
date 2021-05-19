@@ -1,0 +1,93 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.container{
+    margin: 0!important;
+    width: 100% !important;
+}
+.questions{
+    body{
+        background-color: #ffffff;
+        height: 100vh;
+        display: grid;
+        place-items: center center;
+        font-family: 'Poppins', sans-serif;
+    }
+    .cards{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        padding: 20px;
+        gap: 40px;
+    }
+    .card{
+        background-color: #1c1b29;
+        border-radius: 20px;
+        box-shadow: 0 0 30px rgba(0,0,0,0.18);
+    }
+    .container{
+        position: relative;
+        clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        /* height: 100px;
+        width: 100px; */
+    }
+    img{
+        width: 100%;
+        display: block;
+        border-radius: 20px 20px 0 0;
+    }
+    .container:after{
+        content: "";
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 20px 20px 0 0;
+        opacity: 0.7;
+    }
+    .card1>.container:after{
+        background-image: linear-gradient(135deg, #0100ec, #fb36f4);
+    }
+    .card2>.container:after{
+        background-image: linear-gradient(135deg, #2bdce3, #42ffdb);
+    }
+    .card3>.container:after{
+        background-image: linear-gradient(135deg, #ffab1d, #f8501c);
+    }
+    .card4>.container:after{
+        background-image: linear-gradient(135deg, #0100ec, #fb36f4);
+    }
+    .details{
+        padding: 20px 10px;
+        position: relative;
+    }
+    .details>h3{
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 48px;
+        margin: 10px 0 55px 0;
+    }
+    .details>p{
+        color: #a0a0a0;
+        font-size: 15px;
+        line-height: 30px;
+        font-weight: 400;
+    }
+    .button-do-it{
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+    }
+}
+
+/* Vectorstock blue and purple letter d */

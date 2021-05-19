@@ -1,28 +1,11 @@
 import React from "react";
-// import { useEffect, useState } from "react";
-// import logo_light from "../resources/logo_light.png"
-// import heroVideo from "../resources/hero-video.mp4"
-// import girlDream from "../resources/girl-dream.gif"
 import "../css/contest.css";
 import "../css/hero.css";
 import M from "materialize-css";
 
 const Hero = () => {
   return (
-    <div className="problem-standing">
-      <div className="prob-stand-nav">
-        <input id="tab1" type="radio" name="tabs" defaultChecked />
-        <label htmlFor="tab1" style={{ paddingLeft: 0 }}>
-          Problems
-        </label>
-        <input id="tab2" type="radio" name="tabs" />
-        <label htmlFor="tab2" style={{ paddingLeft: 0 }}>
-          Standings
-        </label>
-        <button className="waves-effect waves-light btn update-table">
-          Update
-        </button>
-      </div>
+    // <div className="problem-standing">
       <div className="standings">
         <table className="striped responsive-table">
           <thead>
@@ -75,7 +58,7 @@ const Hero = () => {
           </tbody>
         </table>
       </div>
-    </div>
+    // </div>
   );
 };
 

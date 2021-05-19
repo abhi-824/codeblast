@@ -6,12 +6,14 @@ import React from "react";
 import "../css/Chatbox.css";
 import "../css/hero.css";
 import M from "materialize-css";
-
+import { Link } from "react-router-dom";
 const Hero = () => {
   return (
     <div className="people-sidebar">
   <div className="ready-button">
-    <button className="waves-effect waves-light btn ready-start">Ready!</button>
+    <Link to="/contest/abd/abd/problems">
+     <button className="waves-effect waves-light btn ready-start">Ready!</button>
+    </Link>
   </div>
   <div className="people-list">
     <h3 className="list-heading">Contestants</h3>
