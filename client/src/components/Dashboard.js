@@ -8,7 +8,9 @@ import socketIOClient from "socket.io-client";
 import { useHistory } from "react-router-dom";
 import "../css/hero.css";
 import M from "materialize-css";
-const ENDPOINT = "http://127.0.0.1:4001";
+
+const ENDPOINT = "http://localhost:3000";
+const socket = socketIOClient(ENDPOINT);
 const Dashboard = () => {
   const history = useHistory();
   const { handle } = useParams();
@@ -49,7 +51,6 @@ const Dashboard = () => {
             .then((data2) => {
               if (data2.status == 200) {
                 setLoader("Create a Blast!");
-                const socket = socketIOClient(ENDPOINT);
                 socket.emit("joinRoom", { handle, id });
                 history.push("/readyroom/" + id + "/" + handle);
               } else {
@@ -60,27 +61,6 @@ const Dashboard = () => {
           setError("Error retreiving Room ID!");
         }
       });
-  }
-  function checkRoomIdAndJoin() {
-    if (room == "") {
-      alert("Please enter a valid Room ID!");
-    } else {
-      fetch("/api/checkRoom/" + room)
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          console.log(data);
-          if (data.status == 400) {
-            alert(
-              "Room ID Invalid or some Internal Error!\nIf you are seeing this again and again, please create a new room"
-            );
-          } else {
-            history.push("/readyroom/" + data.id + "/" + handle);
-            console.log(room);
-          }
-        });
-    }
   }
   useEffect(() => {
     setIsLoading(true);
@@ -165,7 +145,7 @@ const Dashboard = () => {
                   action="/"
                   onSubmit={(e) => {
                     e.preventDefault();
-                    checkRoomIdAndJoin();
+                    history.push("/readyroom/" + room + "/" + handle);
                   }}
                 >
                   <div class="input-field roomID">

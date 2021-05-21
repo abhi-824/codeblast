@@ -7,9 +7,19 @@ import Sidebar from "./components/Sidebar";
 import Winner from "./components/Winner";
 import Dashboard from "./components/Dashboard";
 import ChoosingBar from "./components/ChoosingBar";
+import { useEffect, useState } from "react";
+import socketIOClient from "socket.io-client";
 import Questions from "./components/Questions";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+const handles = ["lord"];
+const ENDPOINT = "http://localhost:3000";
 export default function App() {
+  useEffect(() => {
+    const socket = socketIOClient(ENDPOINT);
+    socket.on("FromAPI", data => {
+      // setResponse(data);
+    });
+  }, []);
   return (
     <div className="App">
       <BrowserRouter>
@@ -23,20 +33,20 @@ export default function App() {
             <Navbar />
             <div className="ready-page">
               <Chatbox />
-              <Sidebar />
+              <Sidebar handles={handles} />
             </div>
           </Route>
           <Route path="/contest/:contest_id/:handle">
             <Navbar />
             <div className="contest-page">
-            <div className="problem-standing">
-              <ChoosingBar />
-              <Route path="/contest/:contest_id/:handle/standings">
-                <Contest />
-              </Route>
-              <Route path="/contest/:contest_id/:handle/problems">
-                <Questions />
-              </Route>
+              <div className="problem-standing">
+                <ChoosingBar />
+                <Route path="/contest/:contest_id/:handle/standings">
+                  <Contest />
+                </Route>
+                <Route path="/contest/:contest_id/:handle/problems">
+                  <Questions />
+                </Route>
               </div>
               <Winner />
             </div>
