@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import heroVideo from "../resources/hero-video.mp4";
 import girlDream from "../resources/girl-dream.gif";
-import loaderImage from "../resources/logo_animation.mp4"
+import loaderImage from "../resources/logo_animation.mp4";
 import socketIOClient from "socket.io-client";
 import { useHistory } from "react-router-dom";
 import "../css/hero.css";
@@ -13,6 +13,7 @@ const Dashboard = () => {
   const history = useHistory();
   const { handle } = useParams();
   const [isLoading, setIsLoading] = useState(true);
+  const [room, setRoom] = useState("");
   const [loader, setLoader] = useState("Create a Blast!");
   const [numberOfQuestions, setNum] = useState(4);
   const [err, setError] = useState("Some Error Occured!");
@@ -60,110 +61,174 @@ const Dashboard = () => {
         }
       });
   }
-  useEffect(()=>{
+  function checkRoomIdAndJoin() {
+    if (room == "") {
+      alert("Please enter a valid Room ID!");
+    } else {
+      fetch("/api/checkRoom/" + room)
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          console.log(data);
+          if (data.status == 400) {
+            alert(
+              "Room ID Invalid or some Internal Error!\nIf you are seeing this again and again, please create a new room"
+            );
+          } else {
+            history.push("/readyroom/" + data.id + "/" + handle);
+            console.log(room);
+          }
+        });
+    }
+  }
+  useEffect(() => {
     setIsLoading(true);
-    setTimeout(()=>{
+    setTimeout(() => {
       setIsLoading(false);
-    },1500)
-  },[])
+    }, 1500);
+  }, []);
   return (
     <div>
-      {isLoading?"":(    
+      {isLoading ? (
+        ""
+      ) : (
+        <div>
           <div>
-            <div>
-              <div className="fullscreen">
-                <video autoPlay muted loop id="myVideo">
-                  <source src={heroVideo} type="video/mp4" />
-                </video>
-    
-                <div className="content">
-                  <h1 className="heading">CODEBLAST</h1>
-                  <form
-                    action="/dashboard"
-                    id="joinOrCreateRoom"
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      getRoomId();
-                    }}
-                  >
-                    <div>
-                      <div className="num">
-                        <label for="numberOfQuestions">Number of questions: </label>
-                        <p class="range-field">
-                          <input
-                            type="range"
-                            name="numberOfQuestions"
-                            min="3"
-                            max="10"
-                          />
-                        </p>
-                      </div>
-                      <div className="minMaxRange">
-                        <label for="min">Difficulty: </label>
-                        <input type="number" name="min" value="1200" /> to
-                        <input type="number" name="max" value="1900" />
-                      </div>
-                    </div>
-                    <div className="buttonsBlast">
-                      <button
-                        type="submit"
-                        onClick={(e) => {
-                          // e.preventDefault();
-                        }}
-                      >
-                        {loader}
-                        <i class="material-icons">arrow_forward</i>
-                      </button>
-                      <form action="/">
-                        <div class="input-field roomID">
-                          <input id="last_name" type="text" class="validate" />
-                          <label for="last_name">Room ID</label>
-                        </div>
-                      </form>
-                    </div>
-                  </form>
-                  {/* //Join room buttons */}
-                </div>
-              </div>
-            </div>
-            <div className="instructions">
+            <div className="fullscreen">
+              <video autoPlay muted loop id="myVideo">
+                <source src={heroVideo} type="video/mp4" />
+              </video>
+
               <div className="content">
-                <h1>Instructions</h1>
-                <p>Here are the instructions to start a blast:</p>
-                <ol>
-                  <li>Create a blast after logging in.</li>
-                  <li>Grab a coffee from your kitchen.</li>
-                  <li>
-                    Share the room id with your friends(See top right corner after
-                    joining).
-                  </li>
-                  <li>
-                    Let your friends join the room. Meanwhile, check out Fast and
-                    furious 9 songs and trailer🔥😁.
-                  </li>
-                  <li>
-                    When all your friends have joined, just click on the Ready
-                    button and ask all others to do the same.
-                  </li>
-                  <li>
-                    Questions would be visible to all of you, so All the best👍🤞
-                  </li>
-                </ol>
-              </div>
-              <div className="image">
-                <div className="request-loader">
-                  <img src={girlDream} alt="" />
-                </div>
+                <h1 className="heading">CODEBLAST</h1>
+                <form
+                  action="/dashboard"
+                  id="joinOrCreateRoom"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    getRoomId();
+                  }}
+                >
+                  <div>
+                    <div className="num">
+                      <label for="numberOfQuestions">
+                        Number of questions:{" "}
+                      </label>
+                      <p class="range-field">
+                        <input
+                          type="range"
+                          name="numberOfQuestions"
+                          min="3"
+                          max="10"
+                          onChange={(e) => {
+                            console.log(e.target.value);
+                            setNum(e.target.value);
+                          }}
+                        />
+                      </p>
+                    </div>
+                    <div className="minMaxRange">
+                      <label for="min">Difficulty: </label>
+                      <input
+                        type="number"
+                        name="min"
+                        onChange={(e) => {
+                          console.log(e.target.value);
+                          setMin(e.target.value);
+                        }}
+                      />{" "}
+                      to
+                      <input
+                        type="number"
+                        name="max"
+                        onChange={(e) => {
+                          console.log(e.target.value);
+                          setMax(e.target.value);
+                        }}
+                      />
+                    </div>
+                  </div>
+                  <div className="buttonsBlast">
+                    <button
+                      type="submit"
+                      onClick={(e) => {
+                        // e.preventDefault();
+                      }}
+                    >
+                      {loader}
+                      <i class="material-icons">arrow_forward</i>
+                    </button>
+                  </div>
+                </form>
+                <form
+                  action="/"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    checkRoomIdAndJoin();
+                  }}
+                >
+                  <div class="input-field roomID">
+                    <input
+                      id="last_name"
+                      type="text"
+                      class="validate"
+                      onChange={(e) => {
+                        setRoom(e.target.value);
+                      }}
+                    />
+                    <label for="last_name">Room ID</label>
+                  </div>
+                </form>
+                {/* //Join room buttons */}
               </div>
             </div>
           </div>
-      )}
-      {isLoading?(
-      <div className="logo_container">
-      <video className="logo_animation" src={loaderImage} autoPlay loop></video>
+          <div className="instructions">
+            <div className="content">
+              <h1>Instructions</h1>
+              <p>Here are the instructions to start a blast:</p>
+              <ol>
+                <li>Create a blast after logging in.</li>
+                <li>Grab a coffee from your kitchen.</li>
+                <li>
+                  Share the room id with your friends(See top right corner after
+                  joining).
+                </li>
+                <li>
+                  Let your friends join the room. Meanwhile, check out Fast and
+                  furious 9 songs and trailer🔥😁.
+                </li>
+                <li>
+                  When all your friends have joined, just click on the Ready
+                  button and ask all others to do the same.
+                </li>
+                <li>
+                  Questions would be visible to all of you, so All the best👍🤞
+                </li>
+              </ol>
+            </div>
+            <div className="image">
+              <div className="request-loader">
+                <img src={girlDream} alt="" />
+              </div>
+            </div>
+          </div>
         </div>
-      ):""}
-    </div>  
+      )}
+      {isLoading ? (
+        <div className="logo_container">
+          <video
+            className="logo_animation"
+            src={loaderImage}
+            autoPlay
+            loop
+          ></video>
+        </div>
+      ) : (
+        ""
+      )}
+    </div>
   );
 };
 
