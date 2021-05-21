@@ -64,7 +64,7 @@ const Dashboard = () => {
     setIsLoading(true);
     setTimeout(()=>{
       setIsLoading(false);
-    },2500)
+    },1500)
   },[])
   return (
     <div>

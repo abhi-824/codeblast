@@ -12,9 +12,11 @@ import girlDream from "../resources/girl-dream.gif"
 const fetchURL = "https://codeforces.com/api/user.info?handles=";
 const Hero = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [handle, setHandle] = useState("");
+  const [handle, setHandle] = useState(localStorage.getItem('handle') || '');
   const [loader,setLoader]=useState("Get Started!")
   const history=useHistory();
+  
+
   function getData(e) {
     e.preventDefault();
     setLoader("Loading...");
@@ -27,11 +29,15 @@ const Hero = () => {
         alert("Invalid Handle")
       }
       else{
+        localStorage.setItem('handle', handle);
         history.push("dashboard/"+handle)
       }
     });
   }
   useEffect(()=>{
+    if(handle!=''){
+      history.push("dashboard/"+handle)
+    }
     setIsLoading(true);
     setTimeout(()=>{
       setIsLoading(false);
