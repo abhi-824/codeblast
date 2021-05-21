@@ -120,7 +120,16 @@ nav {
   justify-content: flex-start;
   align-items: flex-start;
 }
-
+.logo_container{
+  min-height:100vh;
+  max-width:100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .logo_animation{
+    width:20%;
+  }
+}
 @mixin rings($duration, $delay) {
   opacity: 0;
   display: flex;

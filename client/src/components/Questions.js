@@ -1,6 +1,9 @@
 import React from "react";
 import "../css/Questions.css";
-
+import wrA from "../resources/a.jpg"
+import wrB from "../resources/b.jpg"
+import wrC from "../resources/c.jpg"
+import wrD from "../resources/d.jpg"
 const Questions = () => {
   
   return (
@@ -9,7 +12,7 @@ const Questions = () => {
         <div className="cards">
           <div className="card card1">
             <div className="container">
-              <img src="../../resources/a.jpg" alt />
+              <img src={wrA} alt />
             </div>
             <div className="details">
               <h3>1525A</h3>
@@ -18,18 +21,16 @@ const Questions = () => {
           </div>
           <div className="card card2">
             <div className="container">
-              <img src="../../resources/b.jpg" alt />
+              <img src={wrB} alt />
             </div>
             <div className="details">
               <h3>1525B</h3>
               <div className="button-do-it">Do It</div>
             </div>
           </div>
-        </div>
-        <div className="cards">
           <div className="card card3">
             <div className="container">
-              <img src="../../resources/c.jpg" alt />
+              <img src={wrC} alt />
             </div>
             <div className="details">
               <h3>1525C</h3>
@@ -38,13 +39,23 @@ const Questions = () => {
           </div>
           <div className="card card4">
             <div className="container">
-              <img src="../../resources/d.jpg" alt />
+              <img src={wrD} alt />
             </div>
             <div className="details">
               <h3>1525D</h3>
               <div className="button-do-it">Do It</div>
             </div>
           </div>
+          <div className="card card4">
+            <div className="container">
+              <img src={wrA} alt />
+            </div>
+            <div className="details">
+              <h3>1525D</h3>
+              <div className="button-do-it">Do It</div>
+            </div>
+          </div>
+        
         </div>
       </div>
    
