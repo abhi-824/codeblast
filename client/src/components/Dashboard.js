@@ -29,7 +29,6 @@ const Dashboard = () => {
       })
       .then((data) => {
         if (data.status == 200) {
-          console.log("hey");
           let id = data.id;
           const options = {
             method: "POST",
@@ -51,7 +50,8 @@ const Dashboard = () => {
             .then((data2) => {
               if (data2.status == 200) {
                 setLoader("Create a Blast!");
-                socket.emit("joinRoom", { handle, id });
+                console.log(handle,id)
+                socket.emit("joinRoom", { username:handle, room:id });
                 history.push("/readyroom/" + id + "/" + handle);
               } else {
                 setError("Error adding to database!");
@@ -102,7 +102,6 @@ const Dashboard = () => {
                           min="3"
                           max="10"
                           onChange={(e) => {
-                            console.log(e.target.value);
                             setNum(e.target.value);
                           }}
                         />
@@ -114,7 +113,6 @@ const Dashboard = () => {
                         type="number"
                         name="min"
                         onChange={(e) => {
-                          console.log(e.target.value);
                           setMin(e.target.value);
                         }}
                       />{" "}
@@ -123,7 +121,6 @@ const Dashboard = () => {
                         type="number"
                         name="max"
                         onChange={(e) => {
-                          console.log(e.target.value);
                           setMax(e.target.value);
                         }}
                       />

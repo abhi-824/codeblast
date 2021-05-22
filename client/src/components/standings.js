@@ -29,8 +29,6 @@ window.onload = function () {
             table();
         }
     });
-    console.log(arr);
-    console.log(sortedCars);
 }
 
 function sort() {
@@ -69,7 +67,6 @@ function table() {
         let row = document.createElement("tr");
         for (let j in arr[i]) {
             let cell = document.createElement("td");
-            console.log(arr[i][j]);
             let cellText = document.createTextNode(arr[i][j]);
             cell.appendChild(cellText);
             row.appendChild(cell);

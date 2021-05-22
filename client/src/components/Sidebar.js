@@ -23,14 +23,12 @@ const Hero = (props) => {
           return res.json();
         })
         .then((data) => {
-          console.log(data);
           if (data.status == 400) {
             alert(
               "Room ID Invalid or some Internal Error!\nIf you are seeing this again and again, please create a new room"
             );
             history.push("/dashboard/"+handle)
           } else {
-            console.log(data)
             sethandles(data.handles)
           }
         });

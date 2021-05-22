@@ -20,7 +20,6 @@ const checkRoom = async (req, res, next) => {
       .where("id", "==", id)
       .get()
       .then((data) => {
-        console.log(data.docs.length);
         if (data.docs.length > 0) {
           res.json(data.docs[0].data());
         } else {
