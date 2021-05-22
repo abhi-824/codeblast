@@ -41,15 +41,15 @@ const Hero = (props) => {
       }
     }
     checkRoomIdAndJoin();
+    socket.on("roomUsers", ({room, users}) => {
+      console.log(room, users);
+      let arr = [];
+      for (let i = 0; i < users.length; i++) {
+        arr.push(users[i].username);
+      }
+      sethandles(arr);
+    });
   }, []);
-  socket.on("roomUsers", ({room, users}) => {
-    console.log(room, users);
-    let arr = [];
-    for (let i = 0; i < users.length; i++) {
-      arr.push(users[i].username);
-    }
-    sethandles(arr);
-  });
   return (
     <div className="people-sidebar">
       <div className="ready-button">
