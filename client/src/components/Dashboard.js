@@ -4,13 +4,9 @@ import { useEffect, useState } from "react";
 import heroVideo from "../resources/hero-video.mp4";
 import girlDream from "../resources/girl-dream.gif";
 import loaderImage from "../resources/logo_animation.mp4";
-import socketIOClient from "socket.io-client";
 import { useHistory } from "react-router-dom";
 import "../css/hero.css";
 import M from "materialize-css";
-
-const ENDPOINT = "http://localhost:3000";
-const socket = socketIOClient(ENDPOINT);
 const Dashboard = () => {
   const history = useHistory();
   const { handle } = useParams();
@@ -51,7 +47,6 @@ const Dashboard = () => {
               if (data2.status == 200) {
                 setLoader("Create a Blast!");
                 console.log(handle,id)
-                socket.emit("joinRoom", { username:handle, room:id });
                 history.push("/readyroom/" + id + "/" + handle);
               } else {
                 setError("Error adding to database!");

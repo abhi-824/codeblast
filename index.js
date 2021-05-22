@@ -15,7 +15,7 @@ const {
   userLeave,
   getRoomUsers,
   make_ready,
-  allready
+  allready,
 } = require("./utils/users");
 const app = express();
 const server = http.createServer(app);
@@ -36,19 +36,18 @@ if (process.env.NODE_ENV == "production") {
 }
 
 io.on("connection", (socket) => {
-
   socket.on("disconnect", () => {
-    userLeave(socket.id).then((user)=>{
-        if (user!=undefined) {
-          io.to(user.room).emit(
-            "message",
-            formatMessage("BOSS", `${user.username} has left the chat`)
-          );
-          io.to(user.room).emit("roomUsers", {
-            room: user.room,
-            users: getRoomUsers(user.room),
-          });
-        }
+    userLeave(socket.id).then((user) => {
+      if (user != undefined) {
+        io.to(user.room).emit(
+          "message",
+          formatMessage("BOSS", `${user.username} has left the chat`)
+        );
+        io.to(user.room).emit("roomUsers", {
+          room: user.room,
+          users: getRoomUsers(user.room),
+        });
+      }
     });
   });
 
@@ -253,26 +252,33 @@ io.on("connection", (socket) => {
   });
 
   socket.on("joinRoom", ({ username, room }) => {
-      console.log(username,room)
-    userJoin(socket.id, username, room).then((user)=>{
-        
-    
-        socket.emit(
+    console.log(username, room);
+    userJoin(socket.id, username, room).then((user) => {
+      socket.join(room);
+      socket.emit(
+        "message",
+        formatMessage(
+          "Codeblast Admin",
+          "Welcome to CodeBlast, ready to blast your code?"
+        )
+      );
+
+      socket.broadcast
+        .to(user.room)
+        .emit(
           "message",
-          formatMessage("Codeblast Admin", "Welcome to CodeBlast, ready to blast your code?")
+          formatMessage(
+            "Codeblast Admin",
+            `${user.username} has joined the room`
+          )
         );
-    
-        socket.broadcast
-          .to(user.room)
-          .emit(
-            "message",
-            formatMessage("Codeblast Admin", `${user.username} has joined the room`)
-          );
-    
+      getRoomUsers(user.room).then((res) => {
+        console.log(res);
         io.to(user.room).emit("roomUsers", {
           room: user.room,
-          users: getRoomUsers(user.room),
+          users: res,
         });
+      });
     });
   });
   socket.on("chatMessage", (msg) => {

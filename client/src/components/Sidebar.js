@@ -9,32 +9,47 @@ import "../css/Chatbox.css";
 import "../css/hero.css";
 import M from "materialize-css";
 import { Link } from "react-router-dom";
+
+import socketIOClient from "socket.io-client";
+
+const ENDPOINT = "http://localhost:3000";
+const socket = socketIOClient(ENDPOINT);
 const Hero = (props) => {
   const history = useHistory();
-  const { contest_id,handle } = useParams();
-  const [handles,sethandles]=useState([]);
-  
-  function checkRoomIdAndJoin() {
-    if (contest_id == "") {
-      alert("Please enter a valid Room ID!");
-    } else {
-      fetch("/api/checkRoom/" + contest_id)
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          if (data.status == 400) {
-            alert(
-              "Room ID Invalid or some Internal Error!\nIf you are seeing this again and again, please create a new room"
-            );
-            history.push("/dashboard/"+handle)
-          } else {
-            sethandles(data.handles)
-          }
-        });
+  const { contest_id, handle } = useParams();
+  const [handles, sethandles] = useState([]);
+  useEffect(() => {
+    function checkRoomIdAndJoin() {
+      if (contest_id == "") {
+        alert("Please enter a valid Room ID!");
+      } else {
+        fetch("/api/checkRoom/" + contest_id)
+          .then((res) => {
+            return res.json();
+          })
+          .then((data) => {
+            if (data.status == 400) {
+              alert(
+                "Room ID Invalid or some Internal Error!\nIf you are seeing this again and again, please create a new room"
+              );
+              history.push("/dashboard/" + handle);
+            } else {
+              socket.emit("joinRoom", { username: handle, room: contest_id });
+              sethandles(data.handles);
+            }
+          });
+      }
     }
-  }
-  checkRoomIdAndJoin();
+    checkRoomIdAndJoin();
+  }, []);
+  socket.on("roomUsers", ({room, users}) => {
+    console.log(room, users);
+    let arr = [];
+    for (let i = 0; i < users.length; i++) {
+      arr.push(users[i].username);
+    }
+    sethandles(arr);
+  });
   return (
     <div className="people-sidebar">
       <div className="ready-button">
@@ -47,15 +62,9 @@ const Hero = (props) => {
       <div className="people-list">
         <h3 className="list-heading">Contestants</h3>
         <div className="contestant-list">
-          {
-            handles.map((el) =>{
-              return(
-                <h4>
-                    {el}
-                </h4>
-              )
-            })
-          }
+          {handles.map((el) => {
+            return <h4>{el}</h4>;
+          })}
         </div>
       </div>
     </div>

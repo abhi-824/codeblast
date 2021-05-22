@@ -52,16 +52,21 @@ async function userLeave(id) {
     });
 }
 async function deleteUser(id) {
-  await firestore.collection("users").where("id", "==", id).delete();
+  await firestore.collection("users").where("id", "==", id).get().delete();
 }
 
 async function getRoomUsers(room) {
-  await firestore
+  return promise=await firestore
     .collection("users")
     .where("room", "==", room)
     .get()
     .then((data) => {
-      return data.docs;
+      let res=[];
+      for(let i=0;i<data.docs.length;i++){
+        res.push(data.docs[i].data());
+      }
+      console.log(res);
+      return res;
     });
 }
 
