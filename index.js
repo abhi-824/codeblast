@@ -73,7 +73,6 @@ io.on("connection", (socket) => {
                 diff[i]=min+((max-min)/(num-1))*i;
               }
               diff.push(20000);
-              g(diff);
               io.to(user.room).emit("start_loader", problems);
               async function getFinal() {
                 let contests_given = new Set();

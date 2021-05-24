@@ -2,7 +2,6 @@ import React from "react";
 import "../css/contest.css";
 import "../css/hero.css";
 import M from "materialize-css";
-
 const Hero = () => {
   return (
     // <div className="problem-standing">

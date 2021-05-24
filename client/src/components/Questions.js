@@ -4,8 +4,15 @@ import wrA from "../resources/a.jpg"
 import wrB from "../resources/b.jpg"
 import wrC from "../resources/c.jpg"
 import wrD from "../resources/d.jpg"
+
+import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 const Questions = () => {
   
+  const location = useLocation();
+  useEffect(() => {
+    console.log(location.state.detail); // result: 'some_value'
+ }, [location]);
   return (
     <div>
       <div class="questions">
