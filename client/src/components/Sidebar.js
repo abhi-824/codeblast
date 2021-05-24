@@ -18,6 +18,11 @@ const Hero = (props) => {
   const history = useHistory();
   const { contest_id, handle } = useParams();
   const [handles, sethandles] = useState([]);
+  const[isDisabled,setDisable]=useState(false);
+  function makeReady(e){
+    socket.emit("ready",{username:handle,room:contest_id});
+    setDisable(true)
+  }
   useEffect(() => {
     function checkRoomIdAndJoin() {
       if (contest_id == "") {
@@ -53,11 +58,11 @@ const Hero = (props) => {
   return (
     <div className="people-sidebar">
       <div className="ready-button">
-        <Link to="/contest/abd/abd/problems">
-          <button className="waves-effect waves-light btn ready-start">
+        {/* <Link to="/contest/abd/abd/problems"> */}
+          <button disabled={isDisabled} className="waves-effect waves-light btn ready-start" onClick={(e)=>{e.preventDefault();makeReady(e);}}>
             Ready!
           </button>
-        </Link>
+        {/* </Link> */}
       </div>
       <div className="people-list">
         <h3 className="list-heading">Contestants</h3>
