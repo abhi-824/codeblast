@@ -7,7 +7,7 @@ const studentRoutes = require("./routes/student-routes");
 const socketio = require("socket.io");
 const http = require("http");
 const host = "0.0.0.0";
-
+const fetch = require("node-fetch");
 const formatMessage = require("./utils/messages");
 const {
   userJoin,
@@ -58,11 +58,12 @@ io.on("connection", (socket) => {
         "message",
         formatMessage("BOSS", `${user.username} is ready now`)
       );
-      getRoomUsers(room).then((users)=>{
-        allready(room).then((res)=>{
-          if (res) {
+      // getRoomUsers(room).then((users)=>{
+        allready(room).then((ans)=>{
+          if (ans) {
             room_props(room).then((data)=>{
               const problems = [];
+              let users=data.handles;
               let num=data.num;
               let max=data.max; 
               let min=data.min;
@@ -175,18 +176,18 @@ io.on("connection", (socket) => {
                   }
 
                 }
+                console.log(problems);
                 io.to(user.room).emit("start_contest", problems);
               }
               getFinal();
             })
           }
         });
-      });
+      // });
     });
   });
 
   socket.on("joinRoom", ({ username, room }) => {
-    console.log(username, room);
     userJoin(socket.id, username, room).then((user) => {
       socket.join(room);
       socket.emit(
@@ -207,7 +208,6 @@ io.on("connection", (socket) => {
           )
         );
       getRoomUsers(user.room).then((res) => {
-        console.log(res);
         io.to(user.room).emit("roomUsers", {
           room: user.room,
           users: res,

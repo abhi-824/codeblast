@@ -46,7 +46,6 @@ const Dashboard = () => {
             .then((data2) => {
               if (data2.status == 200) {
                 setLoader("Create a Blast!");
-                console.log(handle,id)
                 history.push("/readyroom/" + id + "/" + handle);
               } else {
                 setError("Error adding to database!");

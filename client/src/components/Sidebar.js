@@ -47,7 +47,6 @@ const Hero = (props) => {
     }
     checkRoomIdAndJoin();
     socket.on("roomUsers", ({room, users}) => {
-      console.log(room, users);
       let arr = [];
       for (let i = 0; i < users.length; i++) {
         arr.push(users[i].username);
