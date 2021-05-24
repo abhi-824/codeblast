@@ -15,12 +15,12 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
+[![Contributors][contributors-shield]](https://github.com/abhi-824/codeblast/graphs/contributors)
+[![Forks][forks-shield]](https://github.com/abhi-824/codeblast/network/members)
+[![Stargazers][stars-shield]](https://github.com/abhi-824/codeblast/stargazers)
+[![Issues][issues-shield]](https://github.com/abhi-824/codeblast/issues)
+[![MIT License][license-shield]](https://github.com/abhi-824/codeblast/blob/master/LICENSE.txt)
+[![LinkedIn][linkedin-shield]](https://www.linkedin.com/in/abhinandan-sharma-0a2633175/)
 
 
 
@@ -28,13 +28,13 @@
 <br />
 <p align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="https://github.com/abhi-824/codeblast/blob/master/client/src/resources/logo_dark.png" alt="Logo" width="180" height="180">
   </a>
 
-  <h3 align="center">Best-README-Template</h3>
+  <h3 align="center">Codeblast</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    BRING CODE TOGETHER
     <br />
     <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
     <br />
