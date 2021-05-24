@@ -58,6 +58,7 @@ io.on("connection", (socket) => {
         "message",
         formatMessage("BOSS", `${user.username} is ready now`)
       );
+
       // getRoomUsers(room).then((users)=>{
         allready(room).then((ans)=>{
           if (ans) {
@@ -71,6 +72,8 @@ io.on("connection", (socket) => {
               for(let i=0; i<num; i++){
                 diff[i]=min+((max-min)/(num-1))*i;
               }
+              diff.push(20000);
+              g(diff);
               io.to(user.room).emit("start_loader", problems);
               async function getFinal() {
                 let contests_given = new Set();
@@ -78,7 +81,7 @@ io.on("connection", (socket) => {
                 let user_contests = "https://codeforces.com/api/user.rating?handle=";
                 //for solved set
                 for (let i = 0; i < users.length; i++) {
-                  let handle_name1 = users[i].username;
+                  let handle_name1 = users[i];
                   // async function getSetGo() {
                   let modified_url = `https://codeforces.com/api/user.status?handle=${handle_name1}`;
                   const jsondata = await fetch(modified_url);
@@ -101,7 +104,7 @@ io.on("connection", (socket) => {
                 }
                 let modified_url2 = `https://codeforces.com/api/problemset.problems`;
                 const jsondata4 = await fetch(modified_url2);
-                jsdata4 = await jsondata4.json();
+                let jsdata4 = await jsondata4.json();
                 let jsdataP = jsdata4;
                 let upsolved = [];
                 function shuffle(array) {
@@ -149,7 +152,7 @@ io.on("connection", (socket) => {
                   for(let i=0; i<upsolved.length; i++){
                     if(upsolved[i][0]>=diff[I]&&upsolved[i][0]<=diff[I+1])
                     {
-                      problems.push(upsolved[i][0]);
+                      problems.push(upsolved[i]);
                       fl=1;
                       break;
                     }

@@ -19,7 +19,6 @@ async function userJoin(id, username, room) {
   let handles = daata.handles;
   if(!handles.includes(username))
     handles.push(username);
-  console.log(iad);
   try{
     await firestore.collection("rooms").doc(iad).update({ handles: handles });
   }catch(err){
@@ -80,18 +79,22 @@ async function getCurrentUser(id) {
 }
 
 async function userLeave(id) {
+  let user;
   await firestore
     .collection("users")
     .where("id", "==", id)
     .get()
-    .then((data) => {
-      if (data.docs.length > 0) deleteUser(id);
-
-      return data.docs[0];
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        deleteUser(doc.id)
+        user= doc.data();
+        console.log(user)
+      });
     });
+    return user;
 }
 async function deleteUser(id) {
-  await firestore.collection("users").where("id", "==", id).get().delete();
+  await firestore.collection("users").doc(id).delete();
 }
 
 async function getRoomUsers(room) {
