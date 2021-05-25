@@ -13,6 +13,7 @@ const Hero = () => {
     history.push("problems")
   }
   
+  
   function gotostands(){
     history.push("standings")
   }
