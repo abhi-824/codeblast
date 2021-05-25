@@ -51,12 +51,44 @@ const Hero = (props) => {
     checkRoomIdAndJoin();
     socket.on("roomUsers", ({ room, users }) => {
       let arr = [];
+      let handles=JSON.parse(localStorage.getItem('handles'));
+      if(handles==undefined)handles=[];
+      console.log(handles)
       for (let i = 0; i < users.length; i++) {
         arr.push(users[i].username);
       }
+      let fl=0;
+      for(let i=0;i<handles.length;i++){
+        if(handles[i].room==room){
+          fl=1;
+          handles[i]={room:room, users:arr};
+          break;
+        }
+      }
+      if(!fl){
+        handles.push({room:room, users:arr});
+      }
+      localStorage.setItem('handles', JSON.stringify(handles));
       sethandles(arr);
     });
-    socket.on("start_contest", (problems) => {
+    socket.on("start_contest", ({problems,room}) => {
+      console.log("dcsjcwod")
+      let handles=JSON.parse(localStorage.getItem('handles'));
+      let time = new Date().getTime();
+      if(handles==undefined)handles=[];
+      let fl=0;
+      for(let i=0;i<handles.length;i++){
+        if(handles[i].room==room){
+          fl=1;
+          handles[i]={room:room, questions:problems,users:handles[i].users,start_time:time};
+          break;
+        }
+      }
+      if(!fl){
+        handles.push({room:room, questions:problems,start_time:time});
+      }
+      localStorage.setItem('handles', JSON.stringify(handles));
+      
       history.push({
         pathname: "/contest/" + contest_id + "/problems",
         state:{detail:problems}

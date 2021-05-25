@@ -136,7 +136,7 @@ const Dashboard = () => {
                   action="/"
                   onSubmit={(e) => {
                     e.preventDefault();
-                    history.push("/readyroom/" + room + "/" + handle);
+                    history.push("/readyroom/" + room);
                   }}
                 >
                   <div class="input-field roomID">

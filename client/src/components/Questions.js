@@ -6,12 +6,12 @@ const Questions = () => {
   const {contest_id}=useParams();
   const [problems, setProbs] = useState(["Nothing Yet"]);
   useEffect(() => {
-    fetch("/api/getProblems/"+contest_id).then((res) => {
-      return res.json();
-    }).then((data)=>{
-      console.log(data);
-      setProbs(data);
-    })
+    const handles=JSON.parse(localStorage.getItem('handles'));
+    for(let i=0;i<handles.length;i++) {
+      if(handles[i].room=contest_id){
+        setProbs(handles[i].questions)
+      }
+    }
   }, []);
   function getLink(str){
     let p = "";
@@ -39,8 +39,8 @@ const Questions = () => {
                   {/* <img src={wrA} alt /> */}
                 </div>
                 <div className="details">
-                  <h3>{item}</h3>
-                  <a href={getLink(item)} target="_blank" className="button-do-it">Do It</a>
+                  <h3>{item[1]}</h3>
+                  <a href={getLink(item[1])} target="_blank" className="button-do-it">Do It</a>
                 </div>
             </div>
             </div>;

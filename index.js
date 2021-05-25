@@ -200,7 +200,7 @@ io.on("connection", (socket) => {
 
               addProblems(user.room, problems).then((data) => {
                 console.log("problems to firebase done");
-                io.to(user.room).emit("start_contest", problems);
+                io.to(user.room).emit("start_contest", {problems:problems,room:user.room});
               });
             }
             getFinal();
