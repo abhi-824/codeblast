@@ -7,11 +7,13 @@ const {
   createRoom,
   getRoom,
   checkRoom,
-  deleteStudent,
+  deleteStudent, 
+  getProblems
 } = require("../controllers/studentController");
 
 const router = express.Router();
 router.get("/getRoom", getRoom);
+router.get("/getProblems/:contest_id", getProblems);
 router.get("/checkRoom/:id", checkRoom);
 router.post("/createRoom", createRoom);
 router.post("/room", addStudent);

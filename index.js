@@ -16,7 +16,8 @@ const {
   getRoomUsers,
   make_ready,
   allready,
-  room_props
+  room_props,
+  addProblems
 } = require("./utils/users");
 const app = express();
 const server = http.createServer(app);
@@ -178,8 +179,9 @@ io.on("connection", (socket) => {
                   }
 
                 }
-                console.log(problems);
-                io.to(user.room).emit("start_contest", problems);
+                addProblems(user.room,problems).then((data)=>{
+                  io.to(user.room).emit("start_contest", problems);
+                });
               }
               getFinal();
             })

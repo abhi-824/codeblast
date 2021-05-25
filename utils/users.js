@@ -17,14 +17,34 @@ async function userJoin(id, username, room) {
     });
 
   let handles = daata.handles;
-  if(!handles.includes(username))
-    handles.push(username);
-  try{
+  if (!handles.includes(username)) handles.push(username);
+  try {
     await firestore.collection("rooms").doc(iad).update({ handles: handles });
-  }catch(err){
+  } catch (err) {
     console.log(err);
   }
   return user;
+}
+
+async function addProblems(id, problems) {
+  let iad, daata;
+  await firestore
+    .collection("rooms")
+    .where("id", "==", id)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        iad = doc.id;
+        daata = doc.data();
+      });
+    });
+  let probs = [];
+  for (let i = 0; i < problems.length; i++) {
+    probs.push(problems[i][1]);
+  }
+  daata.questions = probs;
+  await firestore.collection("rooms").doc(iad).update({ questions: probs });
+  return daata;
 }
 async function make_ready(id, username, room, state) {
   let iad, daata;
@@ -86,12 +106,11 @@ async function userLeave(id) {
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-        deleteUser(doc.id)
-        user= doc.data();
-        console.log(user)
+        deleteUser(doc.id);
+        user = doc.data();
       });
     });
-    return user;
+  return user;
 }
 async function deleteUser(id) {
   await firestore.collection("users").doc(id).delete();
@@ -119,4 +138,5 @@ module.exports = {
   make_ready,
   allready,
   room_props,
+  addProblems,
 };

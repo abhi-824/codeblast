@@ -1,71 +1,53 @@
 import React from "react";
 import "../css/Questions.css";
-import wrA from "../resources/a.jpg"
-import wrB from "../resources/b.jpg"
-import wrC from "../resources/c.jpg"
-import wrD from "../resources/d.jpg"
-
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 const Questions = () => {
-  
-  const location = useLocation();
+  const {contest_id,handle}=useParams();
+  const [problems, setProbs] = useState(["Nothing Yet"]);
   useEffect(() => {
-    console.log(location.state.detail); // result: 'some_value'
- }, [location]);
+    fetch("/api/getProblems/"+contest_id).then((res) => {
+      return res.json();
+    }).then((data)=>{
+      console.log(data);
+      setProbs(data);
+    })
+  }, []);
+  function getLink(str){
+    let p = "";
+    let q = "";
+    for (let i = 0; i < str.length; i++) {
+      if (str[i] === "-") {
+        for (let j = i + 1; j < str.length; j++) {
+          q += str[j];
+        }
+        break;
+      }
+      p += str[i];
+    }
+    let link = `https://codeforces.com/problemset/problem/${p}/${q}`;
+    return link;
+  } 
   return (
     <div>
       <div class="questions">
         <div className="cards">
-          <div className="card card1">
-            <div className="container">
-              <img src={wrA} alt />
+          {problems.map((item) => {
+            return <div>
+              <div className="card card1">
+                <div className="container">
+                  {/* <img src={wrA} alt /> */}
+                </div>
+                <div className="details">
+                  <h3>{item}</h3>
+                  <a href={getLink(item)} target="_blank" className="button-do-it">Do It</a>
+                </div>
             </div>
-            <div className="details">
-              <h3>1525A</h3>
-              <div className="button-do-it">Do It</div>
-            </div>
-          </div>
-          <div className="card card2">
-            <div className="container">
-              <img src={wrB} alt />
-            </div>
-            <div className="details">
-              <h3>1525B</h3>
-              <div className="button-do-it">Do It</div>
-            </div>
-          </div>
-          <div className="card card3">
-            <div className="container">
-              <img src={wrC} alt />
-            </div>
-            <div className="details">
-              <h3>1525C</h3>
-              <div className="button-do-it">Do It</div>
-            </div>
-          </div>
-          <div className="card card4">
-            <div className="container">
-              <img src={wrD} alt />
-            </div>
-            <div className="details">
-              <h3>1525D</h3>
-              <div className="button-do-it">Do It</div>
-            </div>
-          </div>
-          <div className="card card4">
-            <div className="container">
-              <img src={wrA} alt />
-            </div>
-            <div className="details">
-              <h3>1525D</h3>
-              <div className="button-do-it">Do It</div>
-            </div>
-          </div>
+            </div>;
+          })}
         
         </div>
       </div>
-   
     </div>
   );
 };

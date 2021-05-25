@@ -54,7 +54,6 @@ const Hero = (props) => {
       sethandles(arr);
     });
     socket.on("start_contest", (problems) => {
-      console.log(problems);
       history.push({
         pathname: "/contest/" + contest_id + "/" + handle + "/problems",
         state:{detail:problems}
