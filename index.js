@@ -212,6 +212,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("joinRoom", ({ username, room }) => {
+    console.log(username,room)
     userJoin(socket.id, username, room).then((user) => {
       socket.join(room);
       socket.emit(

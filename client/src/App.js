@@ -12,7 +12,9 @@ import socketIOClient from "socket.io-client";
 import Questions from "./components/Questions";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 const handles = ["lord"];
-const ENDPOINT = window.location.href;
+const link="http://"+window.location.href.split("/")[2];
+console.log(link)
+const ENDPOINT = link;
 export default function App() {
   useEffect(() => {
     const socket = socketIOClient(ENDPOINT);

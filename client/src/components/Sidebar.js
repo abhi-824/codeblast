@@ -11,8 +11,9 @@ import M from "materialize-css";
 import { Link } from "react-router-dom";
 
 import socketIOClient from "socket.io-client";
-
-const ENDPOINT = window.location.href;
+const link="http://"+window.location.href.split("/")[2];
+console.log(link)
+const ENDPOINT = link;
 const socket = socketIOClient(ENDPOINT);
 const Hero = (props) => {
   const history = useHistory();
@@ -40,6 +41,7 @@ const Hero = (props) => {
               );
               history.push("/dashboard/" + handle);
             } else {
+              console.log(handle);
               socket.emit("joinRoom", { username: handle, room: contest_id });
               sethandles(data.handles);
             }
