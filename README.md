@@ -15,12 +15,7 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-[![Contributors][contributors-shield]](https://github.com/abhi-824/codeblast/graphs/contributors)
-[![Forks][forks-shield]](https://github.com/abhi-824/codeblast/network/members)
-[![Stargazers][stars-shield]](https://github.com/abhi-824/codeblast/stargazers)
-[![Issues][issues-shield]](https://github.com/abhi-824/codeblast/issues)
-[![MIT License][license-shield]](https://github.com/abhi-824/codeblast/blob/master/LICENSE.txt)
-[![LinkedIn][linkedin-shield]](https://www.linkedin.com/in/abhinandan-sharma-0a2633175/)
+[![GitHub PRs](https://img.shields.io/github/issues-pr/abhi-824/codeblast?style=flat&logo=github)](https://github.com/abhi-824/codeblast/pulls)  | [![GitHub Commits](https://img.shields.io/github/commit-activity/y/abhi-824/codeblast?style=flat&color=critical&logo=github)](https://github.com/abhi-824/codeblast/commits/master)  |[![GitHub Stars](https://img.shields.io/github/stars/abhi-824/codeblast?style=social)](https://github.com/abhi-824/codeblast/stargazers) | [![MIT License][license-shield]](https://github.com/abhi-824/codeblast/blob/master/LICENSE.txt) | [![LinkedIn][linkedin-shield]](https://www.linkedin.com/in/abhinandan-sharma-0a2633175/)
 
 
 
@@ -175,7 +170,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: [https://github.com/abhi-/repo_name](https://github.com/your_username/repo_name)
 
 
 
@@ -183,15 +178,6 @@ Project Link: [https://github.com/your_username/repo_name](https://github.com/yo
 ## Acknowledgements
 * [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
 * [Img Shields](https://shields.io)
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Pages](https://pages.github.com)
-* [Animate.css](https://daneden.github.io/animate.css)
-* [Loaders.css](https://connoratherton.com/loaders)
-* [Slick Carousel](https://kenwheeler.github.io/slick)
-* [Smooth Scroll](https://github.com/cferdinandi/smooth-scroll)
-* [Sticky Kit](http://leafo.net/sticky-kit)
-* [JVectorMap](http://jvectormap.com)
-* [Font Awesome](https://fontawesome.com)
 
 
 
