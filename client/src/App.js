@@ -29,22 +29,22 @@ export default function App() {
             <Dashboard />
             <Footer />
           </Route>
-          <Route path="/readyroom/:contest_id/:handle">
+          <Route path="/readyroom/:contest_id">
             <Navbar />
             <div className="ready-page">
               <Chatbox />
               <Sidebar handles={handles} />
             </div>
           </Route>
-          <Route path="/contest/:contest_id/:handle">
+          <Route path="/contest/:contest_id">
             <Navbar />
             <div className="contest-page">
               <div className="problem-standing">
                 <ChoosingBar />
-                <Route path="/contest/:contest_id/:handle/standings">
+                <Route path="/contest/:contest_id/standings">
                   <Contest />
                 </Route>
-                <Route path="/contest/:contest_id/:handle/problems">
+                <Route path="/contest/:contest_id/problems">
                   <Questions />
                 </Route>
               </div>

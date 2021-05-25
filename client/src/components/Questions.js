@@ -3,7 +3,7 @@ import "../css/Questions.css";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 const Questions = () => {
-  const {contest_id,handle}=useParams();
+  const {contest_id}=useParams();
   const [problems, setProbs] = useState(["Nothing Yet"]);
   useEffect(() => {
     fetch("/api/getProblems/"+contest_id).then((res) => {

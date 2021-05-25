@@ -16,7 +16,8 @@ const ENDPOINT = "http://localhost:3000";
 const socket = socketIOClient(ENDPOINT);
 const Hero = (props) => {
   const history = useHistory();
-  const { contest_id, handle } = useParams();
+  const { contest_id } = useParams();
+  const handle=localStorage.getItem('handle');
   const [handles, sethandles] = useState([]);
   const [isDisabled, setDisable] = useState(false);
   function makeReady(e) {
@@ -55,7 +56,7 @@ const Hero = (props) => {
     });
     socket.on("start_contest", (problems) => {
       history.push({
-        pathname: "/contest/" + contest_id + "/" + handle + "/problems",
+        pathname: "/contest/" + contest_id + "/problems",
         state:{detail:problems}
       });
     });
