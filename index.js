@@ -22,9 +22,21 @@ const app = express();
 const server = http.createServer(app);
 const socketio = require("socket.io");
 
-const io = socketio(server);
+const io = require("socket.io")(server, {
+  cors: {
+    origin: "https://codeblast.herokuapp.com",
+    methods: ["GET", "POST"]
+  }
+});
 app.use(express.json());
 app.use(cors());
+app.use(function (req, res, next) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Access-Control-Allow-Credentials", true);
+  next();
+});
 app.use(bodyParser.json());
 app.use("/api", studentRoutes.routes);
 

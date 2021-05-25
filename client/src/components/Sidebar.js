@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 
 import socketIOClient from "socket.io-client";
 
-const ENDPOINT = "http://localhost:3000";
+const ENDPOINT = window.location.href;
 const socket = socketIOClient(ENDPOINT);
 const Hero = (props) => {
   const history = useHistory();
