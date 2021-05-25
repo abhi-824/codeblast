@@ -12,7 +12,7 @@ import socketIOClient from "socket.io-client";
 import Questions from "./components/Questions";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 const handles = ["lord"];
-const ENDPOINT = "http://localhost:3000";
+const ENDPOINT = window.location.href;
 export default function App() {
   useEffect(() => {
     const socket = socketIOClient(ENDPOINT);
