@@ -51,6 +51,27 @@ const getProblems = async (req, res, next) => {
   }
 };
 
+const getRoomProps = async (req, res, next) => {
+  try {
+    const id = req.params.contest_id;
+    console.log(id);
+    await firestore
+      .collection("rooms")
+      .where("id", "==", id)
+      .get()
+      .then((data) => {
+        if (data.docs.length > 0) {
+          console.log(data.docs[0].data())
+          res.json(data.docs[0].data());
+        } else {
+          res.json({ status: 400 });
+        }
+      });
+  } catch (err) {
+    res.json({ status: 400 });
+  }
+};
+
 const createRoom = async (req, res, next) => {
   try {
     const data = req.body;
@@ -147,5 +168,6 @@ module.exports = {
   getRoom,
   checkRoom,
   deleteStudent,
-  getProblems
+  getProblems,
+  getRoomProps
 };

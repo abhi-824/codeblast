@@ -2,15 +2,49 @@ import React from "react";
 import "../css/Questions.css";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 const Questions = () => {
+  const history = useHistory();
   const {contest_id}=useParams();
+  
+  const handle = localStorage.getItem("handle");
   const [problems, setProbs] = useState(["Nothing Yet"]);
   useEffect(() => {
-    const handles=JSON.parse(localStorage.getItem('handles'));
-    for(let i=0;i<handles.length;i++) {
-      if(handles[i].room=contest_id){
-        setProbs(handles[i].questions)
+    if(handle==null)history.push('/');
+    else
+    {
+      const handles=JSON.parse(localStorage.getItem('handles'));
+      async function fetchProblems(){
+        await fetch("/api/getProblems/"+contest_id).then((res) => {
+          return res.json();
+        }).then((data)=>{
+          let arr=[];
+          for(let i=0;i<data.length;i++){
+            arr.push([0,data[i]]);
+          }
+          console.log(arr);
+          setProbs(arr);
+        })
       }
+      if(handles==null){
+        fetchProblems();
+      }
+      else{
+        let fl=0;
+        for(let i=0;i<handles.length;i++) {
+          if(handles[i].room==contest_id){
+            fl=1;
+            if(handles[i].questions==null){
+              fetchProblems();
+            }
+            setProbs(handles[i].questions)
+          }
+        }
+        if(!fl){
+          fetchProblems();
+        }
+      }
+
     }
   }, []);
   function getLink(str){

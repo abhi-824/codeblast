@@ -33,7 +33,7 @@ const Dashboard = () => {
               num: numberOfQuestions,
               min: min,
               max: max,
-              handles: [handle],
+              handles: [],
               isCompleted: true,
               questions: [],
               id: data.id,
@@ -107,7 +107,9 @@ const Dashboard = () => {
                         type="number"
                         name="min"
                         onChange={(e) => {
-                          setMin(e.target.value);
+                          let val=Math.max(e.target.value,800)
+                          val=Math.min(e.target.value,3500)
+                          setMin(val);
                         }}
                       />{" "}
                       to
@@ -115,7 +117,9 @@ const Dashboard = () => {
                         type="number"
                         name="max"
                         onChange={(e) => {
-                          setMax(e.target.value);
+                          let val=Math.max(e.target.value,800)
+                          val=Math.min(e.target.value,3500)
+                          setMax(val);
                         }}
                       />
                     </div>

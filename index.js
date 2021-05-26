@@ -56,9 +56,12 @@ io.on("connection", (socket) => {
           "message",
           formatMessage("BOSS", `${user.username} has left the chat`)
         );
-        io.to(user.room).emit("roomUsers", {
-          room: user.room,
-          users: getRoomUsers(user.room),
+        console.log(user.room)
+        getRoomUsers(user.room).then((res) => {
+          io.to(user.room).emit("roomUsers", {
+            room: user.room,
+            users: res,
+          });
         });
       }
     });

@@ -3,7 +3,6 @@ const firestore = firebase.firestore();
 
 async function userJoin(id, username, room) {
   const user = { id: id, username: username, room: room, isready: false };
-  await firestore.collection("users").doc().set(user);
   let iad, daata;
   await firestore
     .collection("rooms")
@@ -17,7 +16,10 @@ async function userJoin(id, username, room) {
     });
 
   let handles = daata.handles;
-  if (!handles.includes(username)) handles.push(username);
+  if (!handles.includes(username)){
+    handles.push(username);
+    await firestore.collection("users").doc().set(user);
+  } 
   try {
     await firestore.collection("rooms").doc(iad).update({ handles: handles });
   } catch (err) {
@@ -106,7 +108,9 @@ async function userLeave(id) {
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-        deleteUser(doc.id);
+        if(doc.data().isready==false){
+          deleteUser(doc.id);
+        }
         user = doc.data();
       });
     });
