@@ -67,15 +67,15 @@ io.on("connection", (socket) => {
   socket.on("ready", ({ username, room }) => {
     make_ready(socket.id, username, room, 1).then((user) => {
       io.to(user.room).emit(
-        "message",
-        formatMessage("BOSS", `${user.username} is ready now`)
+        "msg_ready",
+        `${user.username} is ready now`
       );
       console.log("make ready done");
       // getRoomUsers(room).then((users)=>{
       allready(room).then((ans) => {
-        io.to(user.room).emit("start_loader","1122");
         console.log("all ready done");
         if (ans) {
+          io.to(user.room).emit("start_loader","1122");
           room_props(room).then((data) => {
             console.log("room props done");
             const problems = [];
