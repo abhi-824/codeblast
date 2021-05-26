@@ -73,6 +73,7 @@ io.on("connection", (socket) => {
       console.log("make ready done");
       // getRoomUsers(room).then((users)=>{
       allready(room).then((ans) => {
+        io.to(user.room).emit("start_loader","1122");
         console.log("all ready done");
         if (ans) {
           room_props(room).then((data) => {
@@ -87,7 +88,6 @@ io.on("connection", (socket) => {
               diff[i] = min + ((max - min) / (num - 1)) * i;
             }
             diff.push(20000);
-            io.to(user.room).emit("start_loader", problems);
             async function getFinal() {
               let contests_given = new Set();
               let solved = new Set();

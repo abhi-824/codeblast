@@ -6,6 +6,9 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 const Hero = () => {
   const { contest_id } = useParams();
+  const [nums,setnums]=useState([]);
+  const [standings,setStandings]=useState([]);
+  
   let users=[]
   let problems=[];
   let start_time;
@@ -15,6 +18,9 @@ const Hero = () => {
       if(handles[i].room==contest_id){
         users=Object.values(handles[i].users)
         problems=handles[i].questions
+        let arr=[];for(let j=0;j<problems.length;j++){arr.push(String.fromCharCode(65 + j))};
+        console.log(arr)
+        setnums(arr);
         start_time=handles[i].start_time;
       }
     }
@@ -115,9 +121,47 @@ const Hero = () => {
         arr.sort(compare);
         re_map.set(users[j], arr);
       }
-      console.log(re_map);
+     return re_map;
     }
-    getPoints();
+    
+    getPoints().then((map)=>{
+      let objArray=[]
+      // {
+      //   rank:1,
+      //   name:"Abhinandan",
+      //   solved:0,
+      //   totalPoints:0,
+      //   indiPoints:[0,0,0,0]
+      // }
+      let rn=1;
+      for (const entry of map.entries()) {
+        console.log(entry);
+        let sol=0;
+        let totPoints=0;
+        let indiPoints=[];
+        for(let i=0;i<entry[1].length;i++){
+          if(entry[1][i].result===true){
+            totPoints+=entry[1][i].points;
+            sol++;
+            indiPoints.push(entry[1][i].points);
+          }
+          else{
+            indiPoints.push(0);
+          }
+        }
+        let obj={
+          rank:rn,
+          name:entry[0],
+          solved:sol,
+          totalPoints:totPoints,
+          indiPoints:indiPoints
+        }
+        objArray.push(obj);
+        rn++;
+      }
+      objArray.sort((c1, c2) => (c1.totPoints < c2.totPoints) ? 1 : (c1.totPoints > c2.totPoints) ? -1 : 0);
+      setStandings(objArray)
+    });
     
   },[])
   return (
@@ -130,48 +174,27 @@ const Hero = () => {
             <th>Contestant</th>
             <th>Solved</th>
             <th>points</th>
-            <th>A</th>
-            <th>B</th>
-            <th>C</th>
-            <th>D</th>
-            <th>E</th>
+            {nums.map((item) => {
+              return <th>{item}</th>
+            })}
           </tr>
         </thead>
         <tbody className="table-body">
-          <tr>
-            <td>1</td>
-            <td>Lord_Invincible</td>
-            <td>5</td>
-            <td>8799</td>
-            <td>494</td>
-            <td>972</td>
-            <td>1250</td>
-            <td>1540</td>
-            <td>1878</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>abdude824</td>
-            <td>3</td>
-            <td>6756</td>
-            <td>498</td>
-            <td>856</td>
-            <td>1088</td>
-            <td>-3</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>naman114</td>
-            <td>4</td>
-            <td>345</td>
-            <td>+</td>
-            <td>+2</td>
-            <td>+</td>
-            <td>+11</td>
-            <td>-4</td>
-          </tr>
+            {standings.map((item)=>{
+              return (
+                <tr>
+                  <td>{item.rank}</td>
+                  <td>{item.name}</td>
+                  <td>{item.solved}</td>
+                  <td>{item.totalPoints}</td>
+                  {item.indiPoints.map((item2)=>{
+                    return(<td>{item2}</td>)
+                  })}
+                </tr>
+              )
+            })}
         </tbody>
+     
       </table>
     </div>
     // </div>

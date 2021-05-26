@@ -11,17 +11,12 @@ import { useEffect, useState } from "react";
 import socketIOClient from "socket.io-client";
 import Questions from "./components/Questions";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import loaderImage from "./resources/logo_animation.mp4"
 const handles = ["lord"];
-const link="http://"+window.location.href.split("/")[2];
-console.log(link)
+const link = "http://" + window.location.href.split("/")[2];
+console.log(link);
 const ENDPOINT = link;
 export default function App() {
-  useEffect(() => {
-    const socket = socketIOClient(ENDPOINT);
-    socket.on("FromAPI", data => {
-      // setResponse(data);
-    });
-  }, []);
   return (
     <div className="App">
       <BrowserRouter>
@@ -33,10 +28,10 @@ export default function App() {
           </Route>
           <Route path="/readyroom/:contest_id">
             <Navbar />
-            <div className="ready-page">
-              <Chatbox />
-              <Sidebar handles={handles} />
-            </div>
+              <div className="ready-page">
+                <Chatbox />
+                <Sidebar handles={handles} />
+              </div>
           </Route>
           <Route path="/contest/:contest_id">
             <Navbar />
