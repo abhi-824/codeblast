@@ -26,12 +26,16 @@ const Hero = () => {
           if(handles[i].room==contest_id){
             users=Object.values(handles[i].users)
             fl=1;
-  
-            problems=handles[i].questions
-            let arr=[];for(let j=0;j<problems.length;j++){arr.push(String.fromCharCode(65 + j))};
-            console.log(arr)
-            setnums(arr);
-            start_time=handles[i].start_time;
+            if(handles[i].questions==undefined){
+              getData();
+            }
+            else{
+              problems=handles[i].questions
+              let arr=[];for(let j=0;j<problems.length;j++){arr.push(String.fromCharCode(65 + j))};
+              console.log(arr)
+              setnums(arr);
+              start_time=handles[i].start_time;
+            }
           }
         }
         if(!fl){
