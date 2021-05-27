@@ -18,36 +18,7 @@ const Hero = () => {
     let problems=[];
     if(handle==null)history.push('/');
     else{
-
-      const handles=JSON.parse(localStorage.getItem('handles'));
-      if(handles!=null){
-        let fl=0;
-        for(let i=0;i<handles.length;i++) {
-          if(handles[i].room==contest_id){
-            users=Object.values(handles[i].users)
-            fl=1;
-            if(handles[i].questions==undefined||handles[i].users==undefined||handles[i].start_time==undefined){
-              getData();
-            }
-            else{
-              problems=handles[i].questions
-              let arr=[];for(let j=0;j<problems.length;j++){arr.push(String.fromCharCode(65 + j))};
-              console.log(arr)
-              setnums(arr);
-              start_time=handles[i].start_time;
-            }
-          }
-        }
-        if(!fl){
-          getData();
-        }
-        else{
-          getStands();
-        }
-      }
-      else{
         getData();
-      }
       async function getData(){
         await fetch("/api/getRoomProps/"+contest_id).then((res) => {
           return res.json();

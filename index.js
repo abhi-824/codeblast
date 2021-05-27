@@ -103,6 +103,11 @@ io.on("connection", (socket) => {
                 let modified_url = `https://codeforces.com/api/user.status?handle=${handle_name1}`;
                 const jsondata = await fetch(modified_url);
                 const jsdata = await jsondata.json();
+                console.log(jsdata.status);
+                if(jsdata.status!=200)
+                { 
+                  continue;
+                }
                 for (let i = 0; i < jsdata.result.length; i++) {
                   if (jsdata.result[i].verdict == "OK") {
                     let str =
