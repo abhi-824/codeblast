@@ -26,7 +26,7 @@ const Hero = () => {
           if(handles[i].room==contest_id){
             users=Object.values(handles[i].users)
             fl=1;
-            if(handles[i].questions==undefined){
+            if(handles[i].questions==undefined||handles[i].users==undefined||handles[i].start_time==undefined){
               getData();
             }
             else{
