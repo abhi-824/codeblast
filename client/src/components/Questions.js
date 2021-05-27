@@ -34,10 +34,12 @@ const Questions = () => {
         for(let i=0;i<handles.length;i++) {
           if(handles[i].room==contest_id){
             fl=1;
-            if(handles[i].questions==null){
+            
+            if(handles[i].questions==undefined){
               fetchProblems();
             }
-            setProbs(handles[i].questions)
+            else
+              setProbs(handles[i].questions)
           }
         }
         if(!fl){
