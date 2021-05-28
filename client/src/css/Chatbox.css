@@ -1,1 +1,59 @@
 /* No CSS *//*# sourceMappingURL=Chatbox.css.map */
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Dosis", sans-serif;
+}
+
+.ready-page {
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+    margin: 50px auto;
+    justify-content: space-between;
+}
+
+.add-handles {
+    height: 600px;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+
+.people-sidebar {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+}
+
+.ready-start {
+    width: 200px;
+    height: 50px;
+    font-size: 2rem;
+    font-family: "Dosis", sans-serif;
+    font-weight: 500;
+    background: #03c9a9 !important;
+    border-radius: 10px;
+}
+
+.questions-button {
+    width: 200px;
+    height: 50px;
+    font-size: 1.5rem;
+    font-family: "Dosis", sans-serif;
+    font-weight: 500;
+    background: #03c9a9 !important;
+    border-radius: 10px;
+}
+
+.people-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.list-heading, .info-heading {
+    text-decoration: underline;
+    margin-bottom: 0;
+} 

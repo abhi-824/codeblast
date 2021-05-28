@@ -135,6 +135,16 @@ const Hero = (props) => {
         </button>
         {/* </Link> */}
       </div>
+      <div className="contest-info">
+  <h4 className="info-heading">Contest Info</h4>
+  <div className="info-list">
+    <h5>Problems: 5</h5>
+    <h5>Min Difficulty: 1200</h5>
+    <h5>Max Difficulty: 2000</h5>
+    <h5>Time: 2hrs</h5>
+  </div>
+</div>
+
       <div className="people-list">
         <h3 className="list-heading">Contestants</h3>
         <div className="contestant-list">
