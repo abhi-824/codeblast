@@ -42,8 +42,9 @@ async function addProblems(id, problems) {
     });
   let probs = [];
   for (let i = 0; i < problems.length; i++) {
-    probs.push(problems[i][1]);
+    probs.push(problems[i][0]+"/"+problems[i][1]);
   }
+  console.log(probs);
   daata.questions = probs;
   await firestore.collection("rooms").doc(iad).update({ questions: probs });
   return daata;

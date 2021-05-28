@@ -26,6 +26,13 @@ const Hero = () => {
           console.log(data);
           users=data.handles;
           problems=data.questions;
+          let probs=[]
+          for(let i=0;i<problems.length;i++){
+            let arr=problems[i].split("/");
+            probs.push([parseInt(arr[0]),arr[1]]);
+          }
+          problems=probs;
+          console.log(problems);
           let arr=[];for(let j=0;j<problems.length;j++){arr.push(String.fromCharCode(65 + j))};
             console.log(arr)
             setnums(arr);
