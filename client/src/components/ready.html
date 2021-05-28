@@ -6,8 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link rel="stylesheet" href="../css/Chatbox.css" />
 </head>
 
@@ -27,30 +30,43 @@
 
     <div class="ready-page">
         <div class="chat-box">
-
+            <div class="chips">
+                <input class="custom-class">
+              </div>
         </div>
 
         <div class="people-sidebar">
             <div class="ready-button">
-                <button class="waves-effect waves-light btn ready-start">Ready!</button>
+                <button class="waves-effect waves-light btn ready-start">Register</button>
+            </div>
+            <div class="contest-info">
+                <h4 class="info-heading">Contest Info</h4>
+                <div class="info-list">
+                    <h5>Problems: 5</h5>
+                    <h5>Min Difficulty: 1200</h5>
+                    <h5>Max Difficulty: 2000</h5>
+                    <h5>Time: 2hrs</h5>
+                </div>
             </div>
             <div class="people-list">
-                <h3 class="list-heading">Contestants</h3>
+                <h4 class="list-heading">Contestants</h4>
                 <div class="contestant-list">
-                    <h4 class="contestant-name">Lord_Invincible</h4>
-                    <h4 class="contestant-name">abdude824</h4>
-                    <h4 class="contestant-name">naman114</h4>
-                    <h4 class="contestant-name">mexomerf</h4>
-                    <h4 class="contestant-name">Marcos0901</h4>
+                    <h5>Lord_Invincible</h5>
+                    <h5>abdude824</h5>
+                    <h5>naman114</h5>
+                    <h5>mexomerf</h5>
+                    <h5>Marcos0901</h5>
                 </div>
             </div>
         </div>
 
     </div>
-    
 
-    <script src="https://code.jquery.com/jquery-3.5.1.js"
-        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+    <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
+        <script src="chip.js"></script>
+
 
 </body>
 
