@@ -11,7 +11,9 @@ import M from "materialize-css";
 import { Link } from "react-router-dom";
 
 import socketIOClient from "socket.io-client";
-const link = "http://" + window.location.href.split("/")[2];
+let prefixx = "http://";
+if (window.location.href.split("/")[2][0] == "c") prefixx = "https://";
+const link = prefixx + window.location.href.split("/")[2];
 console.log(link);
 const ENDPOINT = link;
 const socket = socketIOClient(ENDPOINT);

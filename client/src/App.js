@@ -7,14 +7,11 @@ import Sidebar from "./components/Sidebar";
 import Dashboard from "./components/Dashboard";
 import ChoosingBar from "./components/ChoosingBar";
 import { useEffect, useState } from "react";
-import socketIOClient from "socket.io-client";
 import Questions from "./components/Questions";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import loaderImage from "./resources/logo_animation.mp4"
 const handles = ["lord"];
-const link = "http://" + window.location.href.split("/")[2];
-console.log(link);
-const ENDPOINT = link;
+if(window.location.href[4]!='s'&&window.location.href[8]=='c')window.location.href="https://codeblast.herokuapp.com"
 export default function App() {
   return (
     <div className="App">
