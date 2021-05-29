@@ -166,6 +166,16 @@ nav img {
   margin-left: 1rem;
 }
 
+.formForDash {
+  position: relative;
+}
+
+.formToJoinViaInp {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
 .logo_container {
   min-height: 100vh;
   max-width: 100vw;

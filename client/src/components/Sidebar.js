@@ -23,6 +23,10 @@ const Hero = (props) => {
   const [loader, setLoder] = useState("");
   const [msg, setmsg] = useState([]);
   const [isDisabled, setDisable] = useState(false);
+  const [num,setNum]=useState(0);
+  const [min,setMin]=useState(0);
+  const [time,setTime]=useState(0);
+  const [max,setMax]=useState(0);
   function makeReady(e) {
     socket.emit("ready", { username: handle, room: contest_id });
     setDisable(true);
@@ -31,6 +35,20 @@ const Hero = (props) => {
     if(handle==null)
       history.push('/');
     else{
+      async function getData() {
+        await fetch("/api/getRoomProps/" + contest_id)
+          .then((res) => {
+            return res.json();
+          })
+          .then((data) => {
+            console.log(data);
+            setMax(data.max)
+            setMin(data.min)
+            setTime(data.duration)
+            setNum(data.num)
+          });
+      }
+      getData()
       function checkRoomIdAndJoin() {
         if (contest_id == "") {
           alert("Please enter a valid Room ID!");
@@ -131,17 +149,17 @@ const Hero = (props) => {
             makeReady(e);
           }}
         >
-          Register
+          Ready
         </button>
         {/* </Link> */}
       </div>
       <div className="contest-info">
   <h4 className="info-heading">Contest Info</h4>
   <div className="info-list">
-    <h5>Problems: 5</h5>
-    <h5>Min Difficulty: 1200</h5>
-    <h5>Max Difficulty: 2000</h5>
-    <h5>Time: 2hrs</h5>
+    <h5>Problems: {num}</h5>
+    <h5>Min Difficulty: {min}</h5>
+    <h5>Max Difficulty: {max}</h5>
+    <h5>Time: {time} minutes</h5>
   </div>
 </div>
 

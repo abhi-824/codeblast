@@ -25,8 +25,8 @@ const socketio = require("socket.io");
 const io = require("socket.io")(server, {
   cors: {
     origin: "https://codeblast.herokuapp.com",
-    methods: ["GET", "POST"]
-  }
+    methods: ["GET", "POST"],
+  },
 });
 app.use(express.json());
 app.use(cors());
@@ -56,7 +56,7 @@ io.on("connection", (socket) => {
           "message",
           formatMessage("BOSS", `${user.username} has left the chat`)
         );
-        console.log(user.room)
+        console.log(user.room);
         getRoomUsers(user.room).then((res) => {
           io.to(user.room).emit("roomUsers", {
             room: user.room,
@@ -69,19 +69,17 @@ io.on("connection", (socket) => {
 
   socket.on("ready", ({ username, room }) => {
     make_ready(socket.id, username, room, 1).then((user) => {
-      io.to(user.room).emit(
-        "msg_ready",
-        `${user.username} is ready now`
-      );
+      io.to(user.room).emit("msg_ready", `${user.username} is ready now`);
       console.log("make ready done");
       // getRoomUsers(room).then((users)=>{
       allready(room).then((ans) => {
         console.log("all ready done");
         if (ans) {
-          io.to(user.room).emit("start_loader","1122");
+          io.to(user.room).emit("start_loader", "1122");
           room_props(room).then((data) => {
             console.log("room props done");
             const problems = [];
+            let names=[];
             let users = data.handles;
             let num = data.num;
             let max = data.max;
@@ -97,17 +95,13 @@ io.on("connection", (socket) => {
               let user_contests =
                 "https://codeforces.com/api/user.rating?handle=";
               //for solved set
+              console.log(users)
               for (let i = 0; i < users.length; i++) {
                 let handle_name1 = users[i];
                 // async function getSetGo() {
                 let modified_url = `https://codeforces.com/api/user.status?handle=${handle_name1}`;
                 const jsondata = await fetch(modified_url);
                 const jsdata = await jsondata.json();
-                console.log(jsdata.status);
-                if(jsdata.status!=200)
-                { 
-                  continue;
-                }
                 for (let i = 0; i < jsdata.result.length; i++) {
                   if (jsdata.result[i].verdict == "OK") {
                     let str =
@@ -132,6 +126,7 @@ io.on("connection", (socket) => {
               console.log("problems done");
               let jsdataP = jsdata4;
               let upsolved = [];
+              let upsolved2 = [];
               function shuffle(array) {
                 var currentIndex = array.length,
                   temporaryValue,
@@ -166,20 +161,31 @@ io.on("connection", (socket) => {
                   upsolved.push([
                     rating,
                     `${jsdataP.result.problems[i].contestId}-${jsdataP.result.problems[i].index}`,
+                    jsdataP.result.problems[i].name
+                  ]);
+                  upsolved2.push([
+                    rating,
+                    `${jsdataP.result.problems[i].contestId}-${jsdataP.result.problems[i].index}`,
+                    jsdataP.result.problems[i].name
                   ]);
                 }
               }
               upsolved.sort();
+              upsolved2.sort();
               let j = 0;
-              shuffle(jsdata4.result.problems);
+              // shuffle(jsdata4.result.problems);
               for (let I = 0; I < num; I++) {
                 let fl = false;
                 for (let i = 0; i < upsolved.length; i++) {
                   if (
                     upsolved[i][0] >= diff[I] &&
-                    upsolved[i][0] <= diff[I + 1]
+                    upsolved[i][0] <= diff[I + 1] &&
+                    problems.includes(upsolved[i]) == false&&
+                    names.includes(upsolved2[i][2])==false&&
+                    solved.has(upsolved[i][1]) === false
                   ) {
                     problems.push(upsolved[i]);
+                    names.push(upsolved2[i][2])
                     fl = 1;
                     break;
                   }
@@ -198,17 +204,23 @@ io.on("connection", (socket) => {
                     solved.has(str) === false &&
                     jsdata4.result.problemStatistics[i].solvedCount >= 900 &&
                     jsdata4.result.problems[i].tags.includes("*special") ===
-                      false
+                      false &&
+                    problems.includes([jsdata4.result.problems[i].rating, str]) == false&&
+                    names.includes(jsdata4.result.problems[i].name)==false
                   ) {
                     problems.push([jsdata4.result.problems[i].rating, str]);
+                    names.push(jsdata4.result.problems[i].name)
                     break;
                   }
                 }
               }
-
+              console.log(names)
               addProblems(user.room, problems).then((data) => {
                 console.log("problems to firebase done");
-                io.to(user.room).emit("start_contest", {problems:problems,room:user.room});
+                io.to(user.room).emit("start_contest", {
+                  problems: problems,
+                  room: user.room,
+                });
               });
             }
             getFinal();
@@ -220,7 +232,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("joinRoom", ({ username, room }) => {
-    console.log(username,room)
+    console.log(username, room);
     userJoin(socket.id, username, room).then((user) => {
       socket.join(room);
       socket.emit(

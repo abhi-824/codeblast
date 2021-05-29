@@ -17,7 +17,7 @@ button {
 }
 
 .problem-standing {
-  width: 70%;
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -67,7 +67,9 @@ label:hover {
   color: rgb(37, 135, 180);
   cursor: pointer;
 }
-
+.contest{
+  display: flex;
+}
 input:checked + label {
   color: #555;
   border-bottom: 2px solid orange;

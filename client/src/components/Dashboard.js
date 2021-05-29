@@ -16,6 +16,7 @@ const Dashboard = () => {
   const [numberOfQuestions, setNum] = useState(4);
   const [err, setError] = useState("Some Error Occured!");
   const [min, setMin] = useState(1000);
+  const [time, setTime] = useState(90);
   const [max, setMax] = useState(1900);
   function getRoomId() {
     setLoader("Loading...");
@@ -37,6 +38,8 @@ const Dashboard = () => {
               isCompleted: true,
               questions: [],
               id: data.id,
+              start_time: new Date().getTime(),
+              duration:time
             }),
           };
           fetch("/api/createRoom", options)
@@ -58,6 +61,7 @@ const Dashboard = () => {
   }
   useEffect(() => {
     setIsLoading(true);
+
     setTimeout(() => {
       setIsLoading(false);
     }, 1500);
@@ -76,86 +80,114 @@ const Dashboard = () => {
 
               <div className="content">
                 <h1 className="heading">CODEBLAST</h1>
-                <form
-                  action="/dashboard"
-                  id="joinOrCreateRoom"
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    getRoomId();
-                  }}
-                >
-                  <div>
-                    <div className="num">
-                      <label for="numberOfQuestions">
-                        Number of questions:{" "}
-                      </label>
-                      <p class="range-field">
+                <div className="formForDash">
+                  <form
+                    action="/dashboard"
+                    id="joinOrCreateRoom"
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      getRoomId();
+                    }}
+                  >
+                    <div>
+                      <div className="num">
+                        <label for="numberOfQuestions">
+                          Number of questions:{" "}
+                        </label>
+                        <p class="range-field">
+                          <input
+                            type="number"
+                            name="numberOfQuestions"
+                            defaultValue="5"
+                            min="3"
+                            max="10"
+                            step={1}
+                            area-labelledby="input-slider"
+                            onChange={(e) => {
+                              setNum(e.target.value);
+                            }}
+                          />
+                        </p>
+                      </div>
+                      <div className="minMaxRange">
+                        <label for="min">Difficulty: </label>
                         <input
-                          type="range"
-                          name="numberOfQuestions"
-                          min="3"
-                          max="10"
+                          type="number"
+                          name="min"
+                          min={800}
+                          max={3500}
+                          defaultValue={1000}
+                          step={100}
                           onChange={(e) => {
-                            setNum(e.target.value);
+                            let val = Math.max(e.target.value, 800);
+                            val = Math.min(e.target.value, 3500);
+                            setMin(val);
+                          }}
+                        />{" "}
+                        to
+                        <input
+                          type="number"
+                          name="max"
+                          min={800}
+                          max={3500}
+                          defaultValue={2000}
+                          step={100}
+                          onChange={(e) => {
+                            let val = Math.max(e.target.value, 800);
+                            val = Math.min(e.target.value, 3500);
+                            setMax(val);
                           }}
                         />
-                      </p>
+                      </div>
+                      <div className="minMaxRange">
+                        <label for="time">Duration(In Minutes): </label>
+                        <input
+                          type="number"
+                          name="time"
+                          min={10}
+                          defaultValue={90}
+                          step={5}
+                          onChange={(e) => {
+                            setTime(e.target.value);
+                          }}
+                        />{" "}
+                      </div>
+                   
                     </div>
-                    <div className="minMaxRange">
-                      <label for="min">Difficulty: </label>
-                      <input
-                        type="number"
-                        name="min"
-                        onChange={(e) => {
-                          let val=Math.max(e.target.value,800)
-                          val=Math.min(e.target.value,3500)
-                          setMin(val);
+                    <div className="buttonsBlast">
+                      <button
+                        type="submit"
+                        onClick={(e) => {
+                          // e.preventDefault();
                         }}
-                      />{" "}
-                      to
+                      >
+                        {loader}
+                        <i class="material-icons">arrow_forward</i>
+                      </button>
+                    </div>
+                  </form>
+                  <form
+                    action="/"
+                    className="formToJoinViaInp"
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      history.push("/readyroom/" + room);
+                    }}
+                  >
+                    <div class="input-field roomID">
                       <input
-                        type="number"
-                        name="max"
+                        id="last_name"
+                        type="text"
+                        class="validate"
                         onChange={(e) => {
-                          let val=Math.max(e.target.value,800)
-                          val=Math.min(e.target.value,3500)
-                          setMax(val);
+                          setRoom(e.target.value);
                         }}
                       />
+                      <label for="last_name">Room ID</label>
                     </div>
-                  </div>
-                  <div className="buttonsBlast">
-                    <button
-                      type="submit"
-                      onClick={(e) => {
-                        // e.preventDefault();
-                      }}
-                    >
-                      {loader}
-                      <i class="material-icons">arrow_forward</i>
-                    </button>
-                  </div>
-                </form>
-                <form
-                  action="/"
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    history.push("/readyroom/" + room);
-                  }}
-                >
-                  <div class="input-field roomID">
-                    <input
-                      id="last_name"
-                      type="text"
-                      class="validate"
-                      onChange={(e) => {
-                        setRoom(e.target.value);
-                      }}
-                    />
-                    <label for="last_name">Room ID</label>
-                  </div>
-                </form>
-                {/* //Join room buttons */}
+                  </form>
+                  {/* //Join room buttons */}
+                </div>
               </div>
             </div>
           </div>

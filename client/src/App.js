@@ -4,7 +4,6 @@ import Chatbox from "./components/Chatbox";
 import Footer from "./components/Footer";
 import Contest from "./components/Contest";
 import Sidebar from "./components/Sidebar";
-import Winner from "./components/Winner";
 import Dashboard from "./components/Dashboard";
 import ChoosingBar from "./components/ChoosingBar";
 import { useEffect, useState } from "react";
@@ -45,7 +44,6 @@ export default function App() {
                   <Questions />
                 </Route>
               </div>
-              <Winner />
             </div>
             <Footer />
           </Route>

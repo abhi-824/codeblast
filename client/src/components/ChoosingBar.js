@@ -31,10 +31,6 @@ const Hero = () => {
             <label htmlFor="tab2" style={{ paddingLeft: 0 }}>
             Standings
             </label>
-        {/* </Link> */}
-        <button className="waves-effect waves-light btn update-table">
-          Update
-        </button>
       </div>
     
   );

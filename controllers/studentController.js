@@ -81,6 +81,41 @@ const createRoom = async (req, res, next) => {
     res.status(400).send(err.message);
   }
 };
+
+const updateHandles = async (req, res, next) => {
+  try {
+    const data = req.body;
+    let iad,daata;
+    await firestore
+    .collection("rooms")
+    .where("id", "==", data.room)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        iad = doc.id;
+        daata = doc.data();
+      });
+    });
+
+  let handles = daata.handles;
+  for(let i=0; i<data.handles.length; i++)
+  {
+    if (!handles.includes(data.handles[i])){
+      handles.push(data.handles[i]);
+    } 
+  }
+  try {
+    await firestore.collection("rooms").doc(iad).update({ handles: handles });
+    res.status(200).send("Saved!");
+  } catch (err) {
+    console.log(err);
+  }
+
+
+  } catch (err) {
+    res.status(400).send(err.message);
+  }
+};
 const addStudent = async (req, res, next) => {
   try {
     const data = req.body;
@@ -169,5 +204,6 @@ module.exports = {
   checkRoom,
   deleteStudent,
   getProblems,
-  getRoomProps
+  getRoomProps,
+  updateHandles
 };
