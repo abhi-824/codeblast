@@ -23,18 +23,17 @@ const Hero = (props) => {
   const [loader, setLoder] = useState("");
   const [msg, setmsg] = useState([]);
   const [isDisabled, setDisable] = useState(false);
-  const [num,setNum]=useState(0);
-  const [min,setMin]=useState(0);
-  const [time,setTime]=useState(0);
-  const [max,setMax]=useState(0);
+  const [num, setNum] = useState(0);
+  const [min, setMin] = useState(0);
+  const [time, setTime] = useState(0);
+  const [max, setMax] = useState(0);
   function makeReady(e) {
     socket.emit("ready", { username: handle, room: contest_id });
     setDisable(true);
   }
   useEffect(() => {
-    if(handle==null)
-      history.push('/');
-    else{
+    if (handle == null) history.push("/");
+    else {
       async function getData() {
         await fetch("/api/getRoomProps/" + contest_id)
           .then((res) => {
@@ -42,13 +41,18 @@ const Hero = (props) => {
           })
           .then((data) => {
             console.log(data);
-            setMax(data.max)
-            setMin(data.min)
-            setTime(data.duration)
-            setNum(data.num)
+            if (data.isStarted == true) {
+              history.push({
+                pathname: "/contest/" + contest_id + "/problems",
+              });
+            }
+            setMax(data.max);
+            setMin(data.min);
+            setTime(data.duration);
+            setNum(data.num);
           });
       }
-      getData()
+      getData();
       function checkRoomIdAndJoin() {
         if (contest_id == "") {
           alert("Please enter a valid Room ID!");
@@ -116,25 +120,26 @@ const Hero = (props) => {
           handles.push({ room: room, questions: problems, start_time: time });
         }
         localStorage.setItem("handles", JSON.stringify(handles));
-  
+
         history.push({
           pathname: "/contest/" + contest_id + "/problems",
           state: { detail: problems },
         });
       });
       socket.on("start_loader", (data) => {
-        setLoder("Fetching Bugaboos... Quick, Get a coffee!!");
+        setLoder(data);
         // setIsLoading(true);
       });
-      socket.on("msg_ready",data=>{
-        console.log(data)
+      socket.on("msg_ready", (data) => {
+        console.log(data);
         // let arr=msg;
         // arr.push(data);
-        let div=document.createElement("div");
-        div.innerHTML=data;document.querySelector(".msgs").appendChild(div)
-        console.log(msg)
+        let div = document.createElement("div");
+        div.innerHTML = data;
+        document.querySelector(".msgs").appendChild(div);
+        console.log(msg);
         // setmsg(arr)
-      })
+      });
     }
   }, []);
   return (
@@ -154,14 +159,14 @@ const Hero = (props) => {
         {/* </Link> */}
       </div>
       <div className="contest-info">
-  <h4 className="info-heading">Contest Info</h4>
-  <div className="info-list">
-    <h5>Bugaboos: {num}</h5>
-    <h5>Min Difficulty: {min}</h5>
-    <h5>Max Difficulty: {max}</h5>
-    <h5>Time: {time} minutes</h5>
-  </div>
-</div>
+        <h4 className="info-heading">Contest Info</h4>
+        <div className="info-list">
+          <h5>Bugaboos: {num}</h5>
+          <h5>Min Difficulty: {min}</h5>
+          <h5>Max Difficulty: {max}</h5>
+          <h5>Time: {time} minutes</h5>
+        </div>
+      </div>
 
       <div className="people-list">
         <h3 className="list-heading">Contestants</h3>

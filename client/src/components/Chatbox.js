@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import { useParams } from "react-router-dom";
 import "../css/Chatbox.css";
 import "../css/hero.css";
@@ -6,6 +6,7 @@ import M from "materialize-css";
 
 const Hero = () => {
   const { contest_id } = useParams();
+  const [loader,setLoader]=useState("Add Handles")
   useEffect(() => {
     elem = document.querySelector(".chips");
     var elems = document.querySelectorAll(".chips");
@@ -17,9 +18,18 @@ const Hero = () => {
     M.AutoInit();
   }, []);
   var elem = document.querySelector(".chips");
+  function displayAlert(str){
+    alert(str);
+  }
   function checkhandles() {
+    setLoader("Validating Handles...")
     var instance = M.Chips.getInstance(elem).chipsData;
     console.log(instance);
+    if(instance.length>10)
+    {
+      displayAlert("Limit is Upto 10 handles!");
+      return;
+    }
     let fl = 0;
     // for(let i = 0; i<instance.length; i++){
     checkhandle(instance);
@@ -36,6 +46,7 @@ const Hero = () => {
           }
         });
       }
+      setLoader("Adding to Database!")
 
       if (fl == 0) {
         let arr = [];
@@ -50,12 +61,11 @@ const Hero = () => {
             handles: arr,
           }),
         };
-        fetch("/api/updateHandles", options).then((data2) => {
-          if (data2.status == 200) {
-            alert("Saved Successfully!");
-          } else {
-            alert("Some Error Occured!");
-          }
+        fetch("/api/updateHandles", options).then((res) => {
+          return res.json();
+        }).then((data2) => {
+          setLoader("Add Handles")
+          alert(data2.message);
         });
       }
     }
@@ -74,7 +84,7 @@ const Hero = () => {
             checkhandles();
           }}
         >
-          Add Handles
+          {loader}
         </button>
       </div>
     </div>

@@ -75,11 +75,11 @@ io.on("connection", (socket) => {
       allready(room).then((ans) => {
         console.log("all ready done");
         if (ans) {
-          io.to(user.room).emit("start_loader", "1122");
+          io.to(user.room).emit("start_loader", "Getting Users...Done");
           room_props(room).then((data) => {
             console.log("room props done");
             const problems = [];
-            let names=[];
+            let names = [];
             let users = data.handles;
             let num = data.num;
             let max = data.max;
@@ -89,13 +89,17 @@ io.on("connection", (socket) => {
               diff[i] = min + ((max - min) / (num - 1)) * i;
             }
             diff.push(20000);
+            io.to(user.room).emit(
+              "start_loader",
+              "Getting Room Properties...Done"
+            );
             async function getFinal() {
               let contests_given = new Set();
               let solved = new Set();
               let user_contests =
                 "https://codeforces.com/api/user.rating?handle=";
               //for solved set
-              console.log(users)
+              console.log(users);
               for (let i = 0; i < users.length; i++) {
                 let handle_name1 = users[i];
                 // async function getSetGo() {
@@ -122,6 +126,11 @@ io.on("connection", (socket) => {
                   contests_given.add(jsdata2.result[i].contestId);
                 }
               }
+              io.to(user.room).emit(
+                "start_loader",
+                "Getting User Solved Submissions...Done"
+              );
+
               console.log("all users fetched");
 
               let modified_url2 = `https://codeforces.com/api/problemset.problems`;
@@ -150,6 +159,10 @@ io.on("connection", (socket) => {
 
                 return array;
               }
+              io.to(user.room).emit(
+                "start_loader",
+                "Retreiving Upsolving Questions...Done"
+              );
               //Upsolving Retreival
               for (let i = 0; i < jsdataP.result.problems.length; i++) {
                 if (
@@ -165,12 +178,12 @@ io.on("connection", (socket) => {
                   upsolved.push([
                     rating,
                     `${jsdataP.result.problems[i].contestId}-${jsdataP.result.problems[i].index}`,
-                    jsdataP.result.problems[i].name
+                    jsdataP.result.problems[i].name,
                   ]);
                   upsolved2.push([
                     rating,
                     `${jsdataP.result.problems[i].contestId}-${jsdataP.result.problems[i].index}`,
-                    jsdataP.result.problems[i].name
+                    jsdataP.result.problems[i].name,
                   ]);
                 }
               }
@@ -184,12 +197,12 @@ io.on("connection", (socket) => {
                   if (
                     upsolved[i][0] >= diff[I] &&
                     upsolved[i][0] <= diff[I + 1] &&
-                    problems.includes(upsolved[i]) == false&&
-                    names.includes(upsolved2[i][2])==false&&
+                    problems.includes(upsolved[i]) == false &&
+                    names.includes(upsolved2[i][2]) == false &&
                     solved.has(upsolved[i][1]) === false
                   ) {
                     problems.push(upsolved[i]);
-                    names.push(upsolved2[i][2])
+                    names.push(upsolved2[i][2]);
                     fl = 1;
                     break;
                   }
@@ -209,17 +222,24 @@ io.on("connection", (socket) => {
                     jsdata4.result.problemStatistics[i].solvedCount >= 900 &&
                     jsdata4.result.problems[i].tags.includes("*special") ===
                       false &&
-                    problems.includes([jsdata4.result.problems[i].rating, str]) == false&&
-                    names.includes(jsdata4.result.problems[i].name)==false
+                    problems.includes([
+                      jsdata4.result.problems[i].rating,
+                      str,
+                    ]) == false &&
+                    names.includes(jsdata4.result.problems[i].name) == false
                   ) {
                     problems.push([jsdata4.result.problems[i].rating, str]);
-                    names.push(jsdata4.result.problems[i].name)
+                    names.push(jsdata4.result.problems[i].name);
                     break;
                   }
                 }
               }
-              console.log(names)
+              console.log(names);
               addProblems(user.room, problems).then((data) => {
+                io.to(user.room).emit(
+                  "start_loader",
+                  "Adding Problems to database...Done"
+                );
                 console.log("problems to firebase done");
                 io.to(user.room).emit("start_contest", {
                   problems: problems,

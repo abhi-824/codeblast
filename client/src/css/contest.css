@@ -15,7 +15,11 @@ button {
   margin: 50px auto;
   justify-content: space-between;
 }
-
+.loadingState{
+  position:absolute;
+  top:50vh;
+  left:40vw;
+}
 .problem-standing {
   width: 100%;
   display: flex;

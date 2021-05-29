@@ -98,15 +98,20 @@ const updateHandles = async (req, res, next) => {
     });
 
   let handles = daata.handles;
+  
   for(let i=0; i<data.handles.length; i++)
   {
     if (!handles.includes(data.handles[i])){
       handles.push(data.handles[i]);
     } 
   }
+  if(handles.length>10)
+  {
+    res.json({ message: "Limit of 10 handles Reached!", status: 400 });
+  }
   try {
     await firestore.collection("rooms").doc(iad).update({ handles: handles });
-    res.status(200).send("Saved!");
+    res.json({ message: "Saved Successfully!", status: 200 });
   } catch (err) {
     console.log(err);
   }

@@ -8,6 +8,7 @@ import { useHistory } from "react-router-dom";
 import winner from "../resources/winner.gif";
 const Hero = () => {
   const history = useHistory();
+  const [loader,setloader]=useState("Fetching Users...");
   const { contest_id } = useParams();
   const [nums, setnums] = useState([]);
   const [standings, setStandings] = useState([]);
@@ -52,7 +53,7 @@ const Hero = () => {
       }
       async function getPoints() {
         let re_map = new Map();
-
+        setloader("Fetching All users submissions and Getting Scores");
         for (let j = 0; j < users.length; j++) {
           let handle_name = users[j];
           // async function getSetGo() {
@@ -152,7 +153,8 @@ const Hero = () => {
       }
       function getStands() {
         getPoints().then((map) => {
-          let objArray = [];
+        setloader("");
+        let objArray = [];
           let rn = 1;
           for (const entry of map.entries()) {
             console.log(entry);
@@ -245,9 +247,9 @@ const Hero = () => {
             })}
           </tbody>
         </table>
-        
         {/* <Winner ></Winner> */}
       </div>
+      <div className="loadingState">{loader}</div>
       <div className="winner">
         <img src={winner} alt="" />
         <h4>Current Winner:</h4>

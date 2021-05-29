@@ -46,7 +46,7 @@ async function addProblems(id, problems) {
   }
   console.log(probs);
   daata.questions = probs;
-  await firestore.collection("rooms").doc(iad).update({ questions: probs,start_time:new Date().getTime()});
+  await firestore.collection("rooms").doc(iad).update({ questions: probs,start_time:new Date().getTime(),isStarted:true});
   return daata;
 }
 async function make_ready(id, username, room, state) {
