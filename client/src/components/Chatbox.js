@@ -10,7 +10,7 @@ const Hero = () => {
     elem = document.querySelector(".chips");
     var elems = document.querySelectorAll(".chips");
     const options = {
-      placeholder: "Enter User Handlee",
+      placeholder: "Enter Handle",
       secondaryPlaceholder: "More Handles?",
     };
     var instances = M.Chips.init(elems, options);
@@ -74,7 +74,7 @@ const Hero = () => {
             checkhandles();
           }}
         >
-          Get Questions
+          Add Handles
         </button>
       </div>
     </div>

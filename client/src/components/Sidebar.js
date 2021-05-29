@@ -123,7 +123,7 @@ const Hero = (props) => {
         });
       });
       socket.on("start_loader", (data) => {
-        setLoder("Fetching Problems... Quick, Get a coffee!!");
+        setLoder("Fetching Bugaboos... Quick, Get a coffee!!");
         // setIsLoading(true);
       });
       socket.on("msg_ready",data=>{
@@ -156,7 +156,7 @@ const Hero = (props) => {
       <div className="contest-info">
   <h4 className="info-heading">Contest Info</h4>
   <div className="info-list">
-    <h5>Problems: {num}</h5>
+    <h5>Bugaboos: {num}</h5>
     <h5>Min Difficulty: {min}</h5>
     <h5>Max Difficulty: {max}</h5>
     <h5>Time: {time} minutes</h5>

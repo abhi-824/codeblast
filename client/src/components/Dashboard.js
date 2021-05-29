@@ -89,12 +89,12 @@ const Dashboard = () => {
                       getRoomId();
                     }}
                   >
-                    <div>
+                    <div style={{width: "100%"}}>
                       <div className="num">
                         <label for="numberOfQuestions">
-                          Number of questions:{" "}
+                          Number of Bugaboos:{" "}
                         </label>
-                        <p class="range-field">
+                        <p class="range-field" style={{width: "120px"}}>
                           <input
                             type="number"
                             name="numberOfQuestions"
@@ -114,6 +114,7 @@ const Dashboard = () => {
                         <input
                           type="number"
                           name="min"
+                          style={{width: "80px", marginRight: "20px"}}
                           min={800}
                           max={3500}
                           defaultValue={1000}
@@ -128,6 +129,7 @@ const Dashboard = () => {
                         <input
                           type="number"
                           name="max"
+                          style={{width: "100px", marginLeft: "40px"}}
                           min={800}
                           max={3500}
                           defaultValue={2000}
@@ -144,6 +146,7 @@ const Dashboard = () => {
                         <input
                           type="number"
                           name="time"
+                          style={{width: "60px"}}
                           min={10}
                           defaultValue={90}
                           step={5}
@@ -211,7 +214,7 @@ const Dashboard = () => {
                   button and ask all others to do the same.
                 </li>
                 <li>
-                  Questions would be visible to all of you, so All the best👍🤞
+                  Bugaboos would be visible to all of you, so All the best👍🤞
                 </li>
               </ol>
             </div>

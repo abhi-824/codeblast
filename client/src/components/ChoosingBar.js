@@ -23,7 +23,7 @@ const Hero = () => {
             <input id="tab1" type="radio" name="tabs" defaultChecked onClick={(e)=>{gotoprobs()}} />
         {/* <Link to="problems"> */}
             <label htmlFor="tab1" style={{ paddingLeft: 0 }}>
-            Problems
+            Bugaboos
             </label>
         {/* </Link> */}
             <input id="tab2" type="radio" name="tabs" onClick={(e)=>{gotostands()}}/>
