@@ -76,7 +76,7 @@ const Hero = () => {
             checkhandles();
           }}
         >
-          Get Questions
+          Add Handles
         </button>
       </div>
     </div>
