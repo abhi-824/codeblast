@@ -1,207 +1,307 @@
-@import "App";
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@300;400;500&display=swap");
 * {
   padding: 0;
   margin: 0;
 }
+
 nav {
-  background: $primary-color;
+  background: #000000;
   height: 80px;
-  .brand-logo {
-    width: 100px;
-    height: 90px;
-  }
-  img {
-    position: inherit;
-    z-index: 1;
-    max-width: 100%;
-    max-height: 100%;
+}
+
+nav .brand-logo {
+  width: 100px;
+  height: 90px;
+}
+#editHandle{
+  color:#fff;
+  
+}
+.editHandleForm{
+  position:absolute;
+  right:0;
+  label{
+    padding:0;
   }
 }
+nav img {
+  position: inherit;
+  z-index: 1;
+  max-width: 100%;
+  max-height: 100%;
+}
+
 .fullscreen {
   font-family: "Dosis", sans-serif;
   min-height: 100vh;
   max-width: 100vw;
   position: relative;
   overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  .content {
-    position: inherit;
-    z-index: 100;
-    margin-top: 5rem;
-    h1 {
-      font-size: 3.5vw;
-      margin: 0;
-    }
-    p {
-      float: right;
-      font-size: 1.5vw;
-    }
-    .heading {
-      color: $secondary-color;
-      font-size: 8vw;
-      font-weight: 500;
-    }
-    button {
-      display: inline-block;
-      text-decoration: none !important;
-      font-size: 1em;
-      border: none;
-      cursor: pointer;
-      font-weight: 400;
-      background-color: #03c9a9;
-      color: #fff;
-      overflow: hidden;
-      margin-top: 1.5em;
-      padding: 1rem 2rem;
-      font-size: 1.5rem;
-      font-weight: 500;
-      border-radius: 6em;
-      transition: 0.5s;
-      &:hover {
-        background: #03b094;
-      }
-      width: max-content;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    padding: 2rem;
-  }
-  video {
-    position: absolute;
-    top: 0rem;
-    right: 0;
-    // bottom: 0;
-    width: 80vw;
-    // height: 100%;
-    z-index: 0;
-  }
 }
-.hidden{
+
+.fullscreen .content {
+  position: inherit;
+  z-index: 100;
+  margin-top: 5rem;
+  padding: 2rem;
+}
+
+.fullscreen .content h1 {
+  font-size: 3.5vw;
+  margin: 0;
+}
+
+.fullscreen .content p {
+  float: right;
+  font-size: 1.5vw;
+}
+
+.fullscreen .content .heading {
+  color: #03c9a9;
+  font-size: 8vw;
+  font-weight: 500;
+}
+
+.fullscreen .content button {
+  display: inline-block;
+  text-decoration: none !important;
+  font-size: 1em;
+  border: none;
+  cursor: pointer;
+  font-weight: 400;
+  background-color: #03c9a9;
+  color: #fff;
+  overflow: hidden;
+  margin-top: 1.5em;
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  border-radius: 6em;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.fullscreen .content button:hover {
+  background: #03b094;
+}
+
+.fullscreen video {
+  position: absolute;
+  top: 0rem;
+  right: 0;
+  width: 80vw;
+  z-index: 0;
+}
+
+.hidden {
   display: none !important;
 }
-.roomID{
-  input{
-    width: 160px !important;
-  }
-  label{
-    padding:0;
-    margin-left:1rem;
-  }
+
+.roomID input {
+  width: 160px !important;
 }
+
+.roomID label {
+  padding: 0;
+  margin-left: 1rem;
+}
+
 #joinOrCreateRoom {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-transition: 0.5s;
   transition: 0.5s;
-  padding-left:1rem;
-  label{
-    font-size:1rem;
-    padding-left:0;
-  }
-  .num{
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-  }
-  .buttonsBlast {
-    display: flex;
-
-    justify-content: flex-start;
-    align-items: flex-end;
-  }
-  input {
-    font-family: "Dosis", sans-serif;
-    font-weight: 500;
-    width: 30%;
-
-    margin-left: 1rem;
-  }
-
-  justify-content: flex-start;
-  align-items: flex-start;
+  padding-left: 1rem;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
-.formForDash{
-  position:relative;
+
+#joinOrCreateRoom label {
+  font-size: 1rem;
+  padding-left: 0;
 }
-.formToJoinViaInp{
-  position:absolute;
-  right:0;
-  bottom:0;
-}
-.logo_container{
-  min-height:100vh;
-  max-width:100vw;
+
+#joinOrCreateRoom .num {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  .logo_animation{
-    width:20%;
-  }
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
-@mixin rings($duration, $delay) {
-  opacity: 0;
+
+#joinOrCreateRoom .buttonsBlast {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+#joinOrCreateRoom input {
+  font-family: "Dosis", sans-serif;
+  font-weight: 500;
+  width: 30%;
+  margin-left: 1rem;
+}
+.formForDash {
+  position: relative;
+}
+
+.formToJoinViaInp {
   position: absolute;
-  top: -8px;
-  left: -8px;
   right: 0;
   bottom: 0;
-  content: "";
-  height: 100%;
-  width: 100%;
-  border: 8px solid rgba(0, 0, 0, 0.2);
-  border-radius: 100%;
-  animation-name: ripple;
-  animation-duration: $duration;
-  animation-delay: $delay;
-  animation-iteration-count: infinite;
-  animation-timing-function: cubic-bezier(0.65, 0, 0.34, 1);
-  z-index: -1;
+  /* margin: 30px 0 0 20px; */
 }
+
+.logo_container {
+  min-height: 100vh;
+  max-width: 100vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.logo_container .logo_animation {
+  width: 20%;
+}
+
 .instructions {
   padding: 2rem;
   font-family: "Dosis", sans-serif;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  .content {
-    padding: 2rem;
-    font-size: 1.4rem;
-  }
-  .image {
-    padding: 2rem;
-  }
-}
-footer {
-  background: $primary-color;
-  font-family: "Dosis", sans-serif;
-  color: $tertiary-color;
-  display: flex;
-  padding: 2rem;
-  justify-content: space-between;
-  align-items: flex-start;
-  height: 25rem;
-  img {
-    max-width: 110%;
-    max-height: 110%;
-  }
-  h1 {
-    font-size: 3.5rem;
-  }
-  div {
-    margin-right: 3rem;
-  }
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-@mixin rings($duration, $delay) {
-  opacity: 0;
+.instructions .content {
+  padding: 2rem;
+  font-size: 1.4rem;
+}
+
+.instructions .image {
+  padding: 2rem;
+}
+
+footer {
+  background: #000000;
+  font-family: "Dosis", sans-serif;
+  color: #ffffff;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  padding: 2rem;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  height: 25rem;
+}
+
+footer img {
+  max-width: 110%;
+  max-height: 110%;
+}
+
+footer h1 {
+  font-size: 3.5rem;
+}
+
+footer div {
+  margin-right: 3rem;
+}
+
+.request-loader {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 300px;
+  width: 300px;
+  border-radius: 100%;
+  background: #ffffff;
+  -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.25);
+          box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.25);
+}
+
+.request-loader span {
+  position: relative;
+  font-size: 72px;
+  top: 5px;
+  left: -5px;
+}
+
+.request-loader::after {
+  opacity: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   position: absolute;
   top: 0px;
   left: 0px;
@@ -212,50 +312,80 @@ footer {
   width: 100%;
   border: 8px solid rgba(0, 0, 0, 0.2);
   border-radius: 100%;
-  animation-name: ripple;
-  animation-duration: $duration;
-  animation-delay: $delay;
-  animation-iteration-count: infinite;
-  animation-timing-function: cubic-bezier(0.65, 0, 0.34, 1);
+  -webkit-animation-name: ripple;
+          animation-name: ripple;
+  -webkit-animation-duration: 3s;
+          animation-duration: 3s;
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-timing-function: cubic-bezier(0.65, 0, 0.34, 1);
+          animation-timing-function: cubic-bezier(0.65, 0, 0.34, 1);
   z-index: -1;
 }
 
-.request-loader {
-  position: relative;
+.request-loader::before {
+  opacity: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  height: 300px;
-  width: 300px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0;
+  bottom: 0;
+  content: "";
+  height: 100%;
+  width: 100%;
+  border: 8px solid rgba(0, 0, 0, 0.2);
   border-radius: 100%;
-  background: #ffffff;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.25);
+  -webkit-animation-name: ripple;
+          animation-name: ripple;
+  -webkit-animation-duration: 3s;
+          animation-duration: 3s;
+  -webkit-animation-delay: 0.5s;
+          animation-delay: 0.5s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-timing-function: cubic-bezier(0.65, 0, 0.34, 1);
+          animation-timing-function: cubic-bezier(0.65, 0, 0.34, 1);
+  z-index: -1;
+}
 
-  span {
-    position: relative;
-    font-size: 72px;
-    top: 5px;
-    left: -5px;
+@-webkit-keyframes ripple {
+  from {
+    opacity: 1;
+    -webkit-transform: scale3d(0.75, 0.75, 1);
+            transform: scale3d(0.75, 0.75, 1);
   }
-
-  &::after {
-    @include rings(3s, 0s);
-  }
-
-  &::before {
-    @include rings(3s, 0.5s);
+  to {
+    opacity: 0;
+    -webkit-transform: scale3d(1.3, 1.3, 1);
+            transform: scale3d(1.3, 1.3, 1);
   }
 }
 
 @keyframes ripple {
   from {
     opacity: 1;
-    transform: scale3d(0.75, 0.75, 1);
+    -webkit-transform: scale3d(0.75, 0.75, 1);
+            transform: scale3d(0.75, 0.75, 1);
   }
-
   to {
     opacity: 0;
-    transform: scale3d(1.3, 1.3, 1);
+    -webkit-transform: scale3d(1.3, 1.3, 1);
+            transform: scale3d(1.3, 1.3, 1);
   }
 }
+/*# sourceMappingURL=hero.css.map */

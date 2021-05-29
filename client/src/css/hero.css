@@ -14,6 +14,19 @@ nav .brand-logo {
   height: 90px;
 }
 
+#editHandle {
+  color: #fff;
+}
+
+.editHandleForm {
+  position: absolute;
+  right: 0;
+}
+
+.editHandleForm label {
+  padding: 0;
+}
+
 nav img {
   position: inherit;
   z-index: 1;
@@ -79,11 +92,11 @@ nav img {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .fullscreen .content button:hover {
@@ -117,17 +130,17 @@ nav img {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-transition: 0.5s;
   transition: 0.5s;
   padding-left: 1rem;
   -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
   -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
 }
 
 #joinOrCreateRoom label {
@@ -140,11 +153,11 @@ nav img {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
   -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
 }
 
 #joinOrCreateRoom .buttonsBlast {
@@ -152,11 +165,11 @@ nav img {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
   -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
+  -ms-flex-align: end;
+  align-items: flex-end;
 }
 
 #joinOrCreateRoom input {
@@ -184,11 +197,11 @@ nav img {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .logo_container .logo_animation {
@@ -202,11 +215,11 @@ nav img {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .instructions .content {
@@ -227,11 +240,11 @@ footer {
   display: flex;
   padding: 2rem;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
   height: 25rem;
 }
 
@@ -255,20 +268,20 @@ footer div {
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   height: 300px;
   width: 300px;
   border-radius: 100%;
   background: #ffffff;
   -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.25);
-          box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.25);
 }
 
 .request-loader span {
@@ -285,14 +298,14 @@ footer div {
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   position: absolute;
   top: 0px;
   left: 0px;
@@ -304,15 +317,15 @@ footer div {
   border: 8px solid rgba(0, 0, 0, 0.2);
   border-radius: 100%;
   -webkit-animation-name: ripple;
-          animation-name: ripple;
+  animation-name: ripple;
   -webkit-animation-duration: 3s;
-          animation-duration: 3s;
+  animation-duration: 3s;
   -webkit-animation-delay: 0s;
-          animation-delay: 0s;
+  animation-delay: 0s;
   -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
   -webkit-animation-timing-function: cubic-bezier(0.65, 0, 0.34, 1);
-          animation-timing-function: cubic-bezier(0.65, 0, 0.34, 1);
+  animation-timing-function: cubic-bezier(0.65, 0, 0.34, 1);
   z-index: -1;
 }
 
@@ -323,14 +336,14 @@ footer div {
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   position: absolute;
   top: 0px;
   left: 0px;
@@ -342,15 +355,15 @@ footer div {
   border: 8px solid rgba(0, 0, 0, 0.2);
   border-radius: 100%;
   -webkit-animation-name: ripple;
-          animation-name: ripple;
+  animation-name: ripple;
   -webkit-animation-duration: 3s;
-          animation-duration: 3s;
+  animation-duration: 3s;
   -webkit-animation-delay: 0.5s;
-          animation-delay: 0.5s;
+  animation-delay: 0.5s;
   -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
   -webkit-animation-timing-function: cubic-bezier(0.65, 0, 0.34, 1);
-          animation-timing-function: cubic-bezier(0.65, 0, 0.34, 1);
+  animation-timing-function: cubic-bezier(0.65, 0, 0.34, 1);
   z-index: -1;
 }
 
@@ -358,12 +371,12 @@ footer div {
   from {
     opacity: 1;
     -webkit-transform: scale3d(0.75, 0.75, 1);
-            transform: scale3d(0.75, 0.75, 1);
+    transform: scale3d(0.75, 0.75, 1);
   }
   to {
     opacity: 0;
     -webkit-transform: scale3d(1.3, 1.3, 1);
-            transform: scale3d(1.3, 1.3, 1);
+    transform: scale3d(1.3, 1.3, 1);
   }
 }
 
@@ -371,12 +384,12 @@ footer div {
   from {
     opacity: 1;
     -webkit-transform: scale3d(0.75, 0.75, 1);
-            transform: scale3d(0.75, 0.75, 1);
+    transform: scale3d(0.75, 0.75, 1);
   }
   to {
     opacity: 0;
     -webkit-transform: scale3d(1.3, 1.3, 1);
-            transform: scale3d(1.3, 1.3, 1);
+    transform: scale3d(1.3, 1.3, 1);
   }
 }
 /*# sourceMappingURL=hero.css.map */
