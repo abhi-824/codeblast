@@ -20,47 +20,45 @@ const Hero = () => {
   function checkhandles() {
     var instance = M.Chips.getInstance(elem).chipsData;
     console.log(instance);
-    let fl=0;
-    for(let i = 0; i<instance.length; i++){
-      checkhandle(instance[i].tag);
-    }
-    async function checkhandle(handle){
-      
-      const fetchURL = "https://codeforces.com/api/user.info?handles=";
-      await fetch(`${fetchURL}${handle}`).then((res) => {
-        res.json();
-        if (res.status == 400) {
-          // elem.innerHTML=""
-          fl=1;
-          alert("Invalid Handle");
-        }
-      });
-      
-      if(fl==0){
-        let arr=[];
-        for(let i=0;i<instance.length; i++){
-          arr.push(instance[i].tag)
+    let fl = 0;
+    // for(let i = 0; i<instance.length; i++){
+    checkhandle(instance);
+    // }
+    async function checkhandle(handle) {
+      for (let i = 0; i < handle.length; i++) {
+        const fetchURL = "https://codeforces.com/api/user.info?handles=";
+        await fetch(`${fetchURL}${handle[i].tag}`).then((res) => {
+          res.json();
+          if (res.status == 400) {
+            // elem.innerHTML=""
+            fl = 1;
+            alert("Invalid Handle");
+          }
+        });
+      }
+
+      if (fl == 0) {
+        let arr = [];
+        for (let i = 0; i < instance.length; i++) {
+          arr.push(instance[i].tag);
         }
         const options = {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            room:contest_id,
+            room: contest_id,
             handles: arr,
           }),
         };
-        fetch("/api/updateHandles", options)
-            .then((data2) => {
-              if (data2.status == 200) {
-                alert("Saved Successfully!")
-              } else {
-                alert("Some Error Occured!")
-              }
-            });
+        fetch("/api/updateHandles", options).then((data2) => {
+          if (data2.status == 200) {
+            alert("Saved Successfully!");
+          } else {
+            alert("Some Error Occured!");
+          }
+        });
       }
-
     }
-
   }
 
   return (
