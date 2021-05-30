@@ -30,6 +30,7 @@ const Hero = () => {
             console.log(data);
             users = data.handles;
             problems = data.questions;
+            start_time=data.start_time;
             let probs = [];
             for (let i = 0; i < problems.length; i++) {
               let arr = problems[i].split("/");
@@ -111,6 +112,8 @@ const Hero = () => {
                   res.time = formattedTime;
                   res.result = true;
                   res.points = jsdata.result[i].problem.rating;
+                  console.log(start_time)
+                  console.log(date-start_time)
                   res.points = Math.floor(
                     Math.max(
                       res.points -

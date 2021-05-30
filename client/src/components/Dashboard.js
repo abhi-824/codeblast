@@ -157,6 +157,7 @@ const Dashboard = () => {
                       </div>
                    
                     </div>
+                    
                     <div className="buttonsBlast">
                       <button
                         type="submit"
@@ -191,6 +192,7 @@ const Dashboard = () => {
                   </form>
                   {/* //Join room buttons */}
                 </div>
+              
               </div>
             </div>
           </div>
