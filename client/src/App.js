@@ -16,7 +16,8 @@ console.log(window.location.href[7])
 if(window.location.href[4]!='s'&&window.location.href[7]=='c')window.location.href="https://codeblast.herokuapp.com"
 export default function App() {
   useEffect(() => {
-    ReactGa.initialize('G-9TGCGENR2L')
+    console.log(process.env.REACT_APP_GOOGLE_ANALYTICS_ID)
+    ReactGa.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_ID)
     ReactGa.pageview('/')
   },[])
   return (
