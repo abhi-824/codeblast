@@ -4,6 +4,7 @@ import "../css/hero.css";
 import M from "materialize-css";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import ReactGa from 'react-ga'
 
 import { useHistory } from "react-router-dom";
 
@@ -18,8 +19,13 @@ const Hero = () => {
     history.push("standings")
   }
   const [isChecked,setCheck]=useState(false);
+  useEffect(() => {
+    console.log(process.env.REACT_APP_GOOGLE_ANALYTICS_ID)
+    ReactGa.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_ID)
+    ReactGa.pageview('/contest')
+  },[])
   return (
-      <div className="prob-stand-nav">
+    <div className="prob-stand-nav">
             <input id="tab1" type="radio" name="tabs" defaultChecked onClick={(e)=>{gotoprobs()}} />
         {/* <Link to="problems"> */}
             <label htmlFor="tab1" style={{ paddingLeft: 0 }}>
@@ -33,7 +39,7 @@ const Hero = () => {
             </label>
       </div>
     
-  );
+    );
 };
 
 export default Hero;

@@ -6,6 +6,7 @@ import girlDream from "../resources/girl-dream.gif";
 import loaderImage from "../resources/logo_animation.mp4";
 import { useHistory } from "react-router-dom";
 import "../css/hero.css";
+import ReactGa from 'react-ga'
 import M from "materialize-css";
 const Dashboard = () => {
   const history = useHistory();
@@ -62,6 +63,9 @@ const Dashboard = () => {
   useEffect(() => {
     setIsLoading(true);
 
+    console.log(process.env.REACT_APP_GOOGLE_ANALYTICS_ID)
+    ReactGa.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_ID)
+    ReactGa.pageview('/dashboard')
     setTimeout(() => {
       setIsLoading(false);
     }, 1500);

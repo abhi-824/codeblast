@@ -3,11 +3,15 @@ import { useParams } from "react-router-dom";
 import "../css/Chatbox.css";
 import "../css/hero.css";
 import M from "materialize-css";
+import ReactGa from 'react-ga'
 
 const Hero = () => {
   const { contest_id } = useParams();
   const [loader,setLoader]=useState("Add Handles")
   useEffect(() => {
+    console.log(process.env.REACT_APP_GOOGLE_ANALYTICS_ID)
+    ReactGa.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_ID)
+    ReactGa.pageview('/readyroom')
     elem = document.querySelector(".chips");
     var elems = document.querySelectorAll(".chips");
     const options = {
