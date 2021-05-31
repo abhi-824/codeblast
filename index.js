@@ -104,27 +104,35 @@ io.on("connection", (socket) => {
                 let handle_name1 = users[i];
                 // async function getSetGo() {
                 let modified_url = `https://codeforces.com/api/user.status?handle=${handle_name1}`;
-                const jsondata = await fetch(modified_url);
-                const jsdata = await jsondata.json();
-                console.log(jsdata.status);
-                if (jsdata.status != "OK") {
-                  continue;
-                }
-                for (let i = 0; i < jsdata.result.length; i++) {
-                  if (jsdata.result[i].verdict == "OK") {
-                    let str =
-                      jsdata.result[i].problem.contestId +
-                      "-" +
-                      jsdata.result[i].problem.index;
-                    solved.add(str);
+                
+                try{
+                  const jsondata = await fetch(modified_url);
+                  const jsdata = await jsondata.json();
+                  console.log(jsdata.status);
+                  if (jsdata.status != "OK") {
+                    continue;
                   }
-                }
-                let modified_url2 = user_contests + handle_name1;
-                const jsondata1 = await fetch(modified_url2);
-                const jsdata2 = await jsondata1.json();
-                for (let i = 0; i < jsdata2.result.length; i++) {
-                  contests_given.add(jsdata2.result[i].contestId);
-                }
+                  for (let i = 0; i < jsdata.result.length; i++) {
+                    if (jsdata.result[i].verdict == "OK") {
+                      let str =
+                        jsdata.result[i].problem.contestId +
+                        "-" +
+                        jsdata.result[i].problem.index;
+                      solved.add(str);
+                    }
+                  }
+                  let modified_url2 = user_contests + handle_name1;
+                  const jsondata1 = await fetch(modified_url2);
+                  const jsdata2 = await jsondata1.json();
+                  for (let i = 0; i < jsdata2.result.length; i++) {
+                    contests_given.add(jsdata2.result[i].contestId);
+                  }
+                }catch{(err)=>{
+                  io.to(user.room).emit(
+                    "start_loader",
+                    "Error getting user submissions for"+handle_name1
+                  );
+                }}
               }
               io.to(user.room).emit(
                 "start_loader",
