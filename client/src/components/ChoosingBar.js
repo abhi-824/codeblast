@@ -20,7 +20,6 @@ const Hero = () => {
   }
   const [isChecked,setCheck]=useState(false);
   useEffect(() => {
-    console.log(process.env.REACT_APP_GOOGLE_ANALYTICS_ID)
     ReactGa.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_ID)
     ReactGa.pageview('/contest')
   },[])

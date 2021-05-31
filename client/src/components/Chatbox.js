@@ -9,7 +9,6 @@ const Hero = () => {
   const { contest_id } = useParams();
   const [loader,setLoader]=useState("Add Handles")
   useEffect(() => {
-    console.log(process.env.REACT_APP_GOOGLE_ANALYTICS_ID)
     ReactGa.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_ID)
     ReactGa.pageview('/readyroom')
     elem = document.querySelector(".chips");
