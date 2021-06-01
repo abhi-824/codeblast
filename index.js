@@ -56,7 +56,6 @@ io.on("connection", (socket) => {
           "message",
           formatMessage("BOSS", `${user.username} has left the chat`)
         );
-        console.log(user.room);
         getRoomUsers(user.room).then((res) => {
           io.to(user.room).emit("roomUsers", {
             room: user.room,
@@ -70,14 +69,11 @@ io.on("connection", (socket) => {
   socket.on("ready", ({ username, room }) => {
     make_ready(socket.id, username, room, 1).then((user) => {
       io.to(user.room).emit("msg_ready", `${user.username} is ready now`);
-      console.log("make ready done");
       // getRoomUsers(room).then((users)=>{
       allready(room).then((ans) => {
-        console.log("all ready done");
         if (ans) {
           io.to(user.room).emit("start_loader", "Getting Users...Done");
           room_props(room).then((data) => {
-            console.log("room props done");
             const problems = [];
             let names = [];
             let users = data.handles;
@@ -99,17 +95,14 @@ io.on("connection", (socket) => {
               let user_contests =
                 "https://codeforces.com/api/user.rating?handle=";
               //for solved set
-              console.log(users);
               for (let i = 0; i < users.length; i++) {
                 let handle_name1 = users[i];
                 // async function getSetGo() {
                 let modified_url = `https://codeforces.com/api/user.status?handle=${handle_name1}`;
 
                 try {
-                  console.log("hey")
                   const jsondata = await fetch(modified_url);
                   const jsdata = await jsondata.json();
-                  console.log(jsdata.status);
                   if (jsdata.status != "OK") {
                     continue;
                   }
@@ -119,7 +112,7 @@ io.on("connection", (socket) => {
                         jsdata.result[i].problem.contestId +
                         "-" +
                         jsdata.result[i].problem.index;
-                        names.push(jsdata.result[i].problem.name);
+                      names.push(jsdata.result[i].problem.name);
                       solved.add(str);
                     }
                   }
@@ -142,132 +135,127 @@ io.on("connection", (socket) => {
                 "start_loader",
                 "Getting User Solved Submissions...Done"
               );
+              let modified_url2 = `https://codeforces.com/api/problemset.problems`;
+              const jsondata4 = await fetch(modified_url2);
+              let jsdata4 = await jsondata4.json();
+              let jsdataP = jsdata4;
+              let upsolved = [];
+              let upsolved2 = [];
+              function shuffle(array) {
+                var currentIndex = array.length,
+                  temporaryValue,
+                  randomIndex;
 
-              console.log("all users fetched");
-              try {
-                let modified_url2 = `https://codeforces.com/api/problemset.problems`;
-                const jsondata4 = await fetch(modified_url2);
-                console.log(jsdata4)
-                let jsdata4 = await jsondata4.json();
-                console.log("problems done");
-                let jsdataP = jsdata4;
-                let upsolved = [];
-                let upsolved2 = [];
-                function shuffle(array) {
-                  var currentIndex = array.length,
-                    temporaryValue,
-                    randomIndex;
+                // While there remain elements to shuffle...
+                while (0 !== currentIndex) {
+                  // Pick a remaining element...
+                  randomIndex = Math.floor(Math.random() * currentIndex);
+                  currentIndex -= 1;
 
-                  // While there remain elements to shuffle...
-                  while (0 !== currentIndex) {
-                    // Pick a remaining element...
-                    randomIndex = Math.floor(Math.random() * currentIndex);
-                    currentIndex -= 1;
-
-                    // And swap it with the current element.
-                    temporaryValue = array[currentIndex];
-                    array[currentIndex] = array[randomIndex];
-                    array[randomIndex] = temporaryValue;
-                  }
-
-                  return array;
+                  // And swap it with the current element.
+                  temporaryValue = array[currentIndex];
+                  array[currentIndex] = array[randomIndex];
+                  array[randomIndex] = temporaryValue;
                 }
+
+                return array;
+              }
+              io.to(user.room).emit(
+                "start_loader",
+                "Retreiving Upsolving Questions...Done"
+              );
+              //Upsolving Retreival
+              for (let i = 0; i < jsdataP.result.problems.length; i++) {
+                if (
+                  contests_given.has(jsdataP.result.problems[i].contestId) &&
+                  solved.has(
+                    `${jsdataP.result.problems[i].contestId}-${jsdataP.result.problems[i].index}`
+                  ) == false
+                ) {
+                  let rating =
+                    jsdataP.result.problems[i].rating != undefined
+                      ? jsdataP.result.problems[i].rating
+                      : 9999999999;
+                  upsolved.push([
+                    rating,
+                    `${jsdataP.result.problems[i].contestId}-${jsdataP.result.problems[i].index}`,
+                    jsdataP.result.problems[i].name,
+                  ]);
+                  upsolved2.push([
+                    rating,
+                    `${jsdataP.result.problems[i].contestId}-${jsdataP.result.problems[i].index}`,
+                    jsdataP.result.problems[i].name,
+                  ]);
+                }
+              }
+              upsolved.sort();
+              upsolved2.sort();
+              let j = 0;
+              // shuffle(jsdata4.result.problems);
+              for (let I = 0; I < num; I++) {
+                let fl = false;
+                for (let i = 0; i < upsolved.length; i++) {
+                  if (
+                    upsolved[i][0] >= diff[I] &&
+                    upsolved[i][0] <= diff[I + 1] &&
+                    problems.includes(upsolved[i]) == false &&
+                    names.includes(upsolved2[i][2]) == false &&
+                    solved.has(upsolved[i][1]) === false
+                  ) {
+                    problems.push(upsolved[i]);
+                    names.push(upsolved2[i][2]);
+                    fl = 1;
+                    break;
+                  }
+                }
+                if (fl) {
+                  continue;
+                }
+                for (let i = 0; i < jsdata4.result.problems.length; i++) {
+                  let str =
+                    jsdata4.result.problems[i].contestId +
+                    "-" +
+                    jsdata4.result.problems[i].index;
+                  if (
+                    jsdata4.result.problems[i].rating >= diff[I] &&
+                    jsdata4.result.problems[i].rating <= diff[I + 1] &&
+                    solved.has(str) === false &&
+                    jsdata4.result.problemStatistics[i].solvedCount >= 900 &&
+                    jsdata4.result.problems[i].tags.includes("*special") ===
+                      false &&
+                    problems.includes([
+                      jsdata4.result.problems[i].rating,
+                      str,
+                    ]) == false &&
+                    names.includes(jsdata4.result.problems[i].name) == false
+                  ) {
+                    problems.push([jsdata4.result.problems[i].rating, str]);
+                    names.push(jsdata4.result.problems[i].name);
+                    break;
+                  }
+                }
+              }
+              
+              addProblems(user.room, problems).then((data) => {
                 io.to(user.room).emit(
                   "start_loader",
-                  "Retreiving Upsolving Questions...Done"
+                  "Adding Problems to database...Done"
                 );
-                //Upsolving Retreival
-                for (let i = 0; i < jsdataP.result.problems.length; i++) {
-                  if (
-                    contests_given.has(jsdataP.result.problems[i].contestId) &&
-                    solved.has(
-                      `${jsdataP.result.problems[i].contestId}-${jsdataP.result.problems[i].index}`
-                    ) == false
-                  ) {
-                    let rating =
-                      jsdataP.result.problems[i].rating != undefined
-                        ? jsdataP.result.problems[i].rating
-                        : 9999999999;
-                    upsolved.push([
-                      rating,
-                      `${jsdataP.result.problems[i].contestId}-${jsdataP.result.problems[i].index}`,
-                      jsdataP.result.problems[i].name,
-                    ]);
-                    upsolved2.push([
-                      rating,
-                      `${jsdataP.result.problems[i].contestId}-${jsdataP.result.problems[i].index}`,
-                      jsdataP.result.problems[i].name,
-                    ]);
-                  }
-                }
-                upsolved.sort();
-                upsolved2.sort();
-                let j = 0;
-                // shuffle(jsdata4.result.problems);
-                for (let I = 0; I < num; I++) {
-                  let fl = false;
-                  for (let i = 0; i < upsolved.length; i++) {
-                    if (
-                      upsolved[i][0] >= diff[I] &&
-                      upsolved[i][0] <= diff[I + 1] &&
-                      problems.includes(upsolved[i]) == false &&
-                      names.includes(upsolved2[i][2]) == false &&
-                      solved.has(upsolved[i][1]) === false
-                    ) {
-                      problems.push(upsolved[i]);
-                      names.push(upsolved2[i][2]);
-                      fl = 1;
-                      break;
-                    }
-                  }
-                  if (fl) {
-                    continue;
-                  }
-                  for (let i = 0; i < jsdata4.result.problems.length; i++) {
-                    let str =
-                      jsdata4.result.problems[i].contestId +
-                      "-" +
-                      jsdata4.result.problems[i].index;
-                    if (
-                      jsdata4.result.problems[i].rating >= diff[I] &&
-                      jsdata4.result.problems[i].rating <= diff[I + 1] &&
-                      solved.has(str) === false &&
-                      jsdata4.result.problemStatistics[i].solvedCount >= 900 &&
-                      jsdata4.result.problems[i].tags.includes("*special") ===
-                        false &&
-                      problems.includes([
-                        jsdata4.result.problems[i].rating,
-                        str,
-                      ]) == false &&
-                      names.includes(jsdata4.result.problems[i].name) == false
-                    ) {
-                      problems.push([jsdata4.result.problems[i].rating, str]);
-                      names.push(jsdata4.result.problems[i].name);
-                      break;
-                    }
-                  }
-                }
-                console.log(names);
-                addProblems(user.room, problems).then((data) => {
-                  io.to(user.room).emit(
-                    "start_loader",
-                    "Adding Problems to database...Done"
-                  );
-                  console.log("problems to firebase done");
-                  io.to(user.room).emit("start_contest", {
-                    problems: problems,
-                    room: user.room,
-                  });
+                
+                io.to(user.room).emit("start_contest", {
+                  problems: problems,
+                  room: user.room,
                 });
-              } catch {
-                (err) => {
-                  io.to(user.room).emit(
-                    "start_loader",
-                    "Error getting problems from codeforces"
-                  );
-                  console.log(err);
-                };
-              }
+              });
+              // } catch {
+              //   (err) => {
+              //     io.to(user.room).emit(
+              //       "start_loader",
+              //       "Error getting problems from codeforces"
+              //     );
+              //     
+              //   };
+              // }
             }
             getFinal();
           });
@@ -278,7 +266,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("joinRoom", ({ username, room }) => {
-    console.log(username, room);
+    
     userJoin(socket.id, username, room).then((user) => {
       socket.join(room);
       socket.emit(
@@ -313,5 +301,5 @@ io.on("connection", (socket) => {
 });
 
 server.listen(config.port, host, () =>
-  console.log("App is listening on url http://localhost:" + config.port)
+  console.log("App Started")
 );

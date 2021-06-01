@@ -23,7 +23,7 @@ async function userJoin(id, username, room) {
   try {
     await firestore.collection("rooms").doc(iad).update({ handles: handles });
   } catch (err) {
-    console.log(err);
+    
   }
   return user;
 }
@@ -44,7 +44,7 @@ async function addProblems(id, problems) {
   for (let i = 0; i < problems.length; i++) {
     probs.push(problems[i][0]+"/"+problems[i][1]);
   }
-  console.log(probs);
+  
   daata.questions = probs;
   await firestore.collection("rooms").doc(iad).update({ questions: probs,start_time:new Date().getTime(),isStarted:true});
   return daata;
@@ -61,7 +61,7 @@ async function make_ready(id, username, room, state) {
         daata = doc.data();
       });
     });
-    console.log(iad)
+    
   await firestore.collection("users").doc(iad).update({ isready: true });
   return daata;
 }
