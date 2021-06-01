@@ -118,11 +118,11 @@ const Dashboard = () => {
                         </p>
                         {/* <label> */}
                         <a
-                          className="btn tooltipped"
-                          data-position="bottom"
-                          data-tooltip="I am a tooltip"
+                          className="tooltipped"
+                          data-position="right"
+                          data-tooltip="Enter the number of problems you wish to solve"
                         >
-                          <i class="material-icons">help</i>
+                          <i class="material-icons">info_outline</i>
                         </a>
 
                         {/* </label> */}
@@ -158,6 +158,13 @@ const Dashboard = () => {
                             setMax(val);
                           }}
                         />
+                        <a
+                          className="tooltipped"
+                          data-position="right"
+                          data-tooltip="Enter the difficulty range"
+                        >
+                          <i class="material-icons">info_outline</i>
+                        </a>
                       </div>
                       <div className="minMaxRange">
                         <label for="time">Duration(In Minutes): </label>
@@ -172,6 +179,13 @@ const Dashboard = () => {
                             setTime(e.target.value);
                           }}
                         />{" "}
+                        <a
+                          className="tooltipped"
+                          data-position="right"
+                          data-tooltip="Enter the duration of your codeblast"
+                        >
+                          <i class="material-icons">info_outline</i>
+                        </a>
                       </div>
                     </div>
 
@@ -205,6 +219,13 @@ const Dashboard = () => {
                         }}
                       />
                       <label for="last_name">Room ID</label>
+                      <a
+                        className="tooltipped"
+                        data-position="right"
+                        data-tooltip="Already have an ID? Enter it here"
+                      >
+                        <i class="material-icons">info_outline</i>
+                      </a>
                     </div>
                   </form>
                   {/* //Join room buttons */}

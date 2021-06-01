@@ -1,35 +1,34 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "../css/Chatbox.css";
 import "../css/hero.css";
 import M from "materialize-css";
-import ReactGa from 'react-ga'
+import ReactGa from "react-ga";
 
 const Hero = () => {
   const { contest_id } = useParams();
-  const [loader,setLoader]=useState("Add Handles")
+  const [loader, setLoader] = useState("Add Handles");
   useEffect(() => {
-    ReactGa.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_ID)
-    ReactGa.pageview('/readyroom')
+    ReactGa.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_ID);
+    ReactGa.pageview("/readyroom");
     elem = document.querySelector(".chips");
     var elems = document.querySelectorAll(".chips");
     const options = {
       placeholder: "Enter Handle",
       secondaryPlaceholder: "More Handles?",
     };
-    var instances = M.Chips.init(elems, options); 
+    var instances = M.Chips.init(elems, options);
     M.AutoInit();
   }, []);
   var elem = document.querySelector(".chips");
-  function displayAlert(str){
+  function displayAlert(str) {
     alert(str);
   }
   function checkhandles() {
-    setLoader("Validating Handles...")
+    setLoader("Validating Handles...");
     var instance = M.Chips.getInstance(elem).chipsData;
-    
-    if(instance.length>10)
-    {
+
+    if (instance.length > 10) {
       displayAlert("Limit is Upto 10 handles!");
       return;
     }
@@ -49,7 +48,7 @@ const Hero = () => {
           }
         });
       }
-      setLoader("Adding to Database!")
+      setLoader("Adding to Database!");
 
       if (fl == 0) {
         let arr = [];
@@ -64,12 +63,14 @@ const Hero = () => {
             handles: arr,
           }),
         };
-        fetch("/api/updateHandles", options).then((res) => {
-          return res.json();
-        }).then((data2) => {
-          setLoader("Add Handles")
-          alert(data2.message);
-        });
+        fetch("/api/updateHandles", options)
+          .then((res) => {
+            return res.json();
+          })
+          .then((data2) => {
+            setLoader("Add Handles");
+            alert(data2.message);
+          });
       }
     }
   }
@@ -77,8 +78,16 @@ const Hero = () => {
   return (
     <div className="add-handles">
       <div className="manual-handle">
-        <h4>Add User Handles</h4>
+        <h4 className="manual-handle">Add User Handles</h4>
+        <a
+          className="tooltipped"
+          data-position="right"
+          data-tooltip="Enter the Codeforces handles of users you want to create a room with. Don't forget to hit enter after each handle!"
+        >
+          <i class="material-icons">info_outline</i>
+        </a>
       </div>
+
       <div className="chips chips-placeholder" />
       <div className="get-questions">
         <button

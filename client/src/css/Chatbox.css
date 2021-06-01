@@ -78,3 +78,11 @@
   margin-bottom: 0;
 }
 /*# sourceMappingURL=Chatbox.css.map */
+
+.manual-handle{
+  display: inline-block;
+}
+
+.manual-handle .tooltipped{
+  margin: 0 15px;
+}
