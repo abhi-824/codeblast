@@ -6,8 +6,9 @@ import girlDream from "../resources/girl-dream.gif";
 import loaderImage from "../resources/logo_animation.mp4";
 import { useHistory } from "react-router-dom";
 import "../css/hero.css";
-import ReactGa from 'react-ga'
+import ReactGa from "react-ga";
 import M from "materialize-css";
+import ReactTooltip from "react-tooltip";
 const Dashboard = () => {
   const history = useHistory();
   const { handle } = useParams();
@@ -19,6 +20,7 @@ const Dashboard = () => {
   const [min, setMin] = useState(1000);
   const [time, setTime] = useState(90);
   const [max, setMax] = useState(1900);
+
   function getRoomId() {
     setLoader("Loading...");
     fetch("/api/getRoom")
@@ -40,7 +42,7 @@ const Dashboard = () => {
               questions: [],
               id: data.id,
               start_time: new Date().getTime(),
-              duration:time
+              duration: time,
             }),
           };
           fetch("/api/createRoom", options)
@@ -62,8 +64,8 @@ const Dashboard = () => {
   }
   useEffect(() => {
     setIsLoading(true);
-    ReactGa.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_ID)
-    ReactGa.pageview('/dashboard')
+    ReactGa.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_ID);
+    ReactGa.pageview("/dashboard");
     setTimeout(() => {
       setIsLoading(false);
     }, 1500);
@@ -91,12 +93,12 @@ const Dashboard = () => {
                       getRoomId();
                     }}
                   >
-                    <div style={{width: "100%"}}>
+                    <div style={{ width: "100%" }}>
                       <div className="num">
                         <label for="numberOfQuestions">
                           Number of Bugaboos:{" "}
                         </label>
-                        <p class="range-field" style={{width: "120px"}}>
+                        <p class="range-field" style={{ width: "120px" }}>
                           <input
                             type="number"
                             name="numberOfQuestions"
@@ -110,13 +112,25 @@ const Dashboard = () => {
                             }}
                           />
                         </p>
+                        <label>
+                          <a
+                            class="info"
+                            data-toggle="popover"
+                            data-placement="right"
+                            data-content="This is the helpful information that will appear to help users along their way. They'll love it."
+                            title=""
+                            data-original-title="Help here"
+                          >
+                            Info
+                          </a>
+                        </label>
                       </div>
                       <div className="minMaxRange">
                         <label for="min">Difficulty: </label>
                         <input
                           type="number"
                           name="min"
-                          style={{width: "80px", marginRight: "20px"}}
+                          style={{ width: "80px", marginRight: "20px" }}
                           min={800}
                           max={3500}
                           defaultValue={1000}
@@ -131,7 +145,7 @@ const Dashboard = () => {
                         <input
                           type="number"
                           name="max"
-                          style={{width: "100px", marginLeft: "40px"}}
+                          style={{ width: "100px", marginLeft: "40px" }}
                           min={800}
                           max={3500}
                           defaultValue={2000}
@@ -148,7 +162,7 @@ const Dashboard = () => {
                         <input
                           type="number"
                           name="time"
-                          style={{width: "60px"}}
+                          style={{ width: "60px" }}
                           min={10}
                           defaultValue={90}
                           step={5}
@@ -157,9 +171,8 @@ const Dashboard = () => {
                           }}
                         />{" "}
                       </div>
-                   
                     </div>
-                    
+
                     <div className="buttonsBlast">
                       <button
                         type="submit"
@@ -194,7 +207,6 @@ const Dashboard = () => {
                   </form>
                   {/* //Join room buttons */}
                 </div>
-              
               </div>
             </div>
           </div>
