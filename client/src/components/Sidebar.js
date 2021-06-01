@@ -14,7 +14,7 @@ import socketIOClient from "socket.io-client";
 let prefixx = "http://";
 if (window.location.href.split("/")[2][0] == "c") prefixx = "https://";
 const link = prefixx + window.location.href.split("/")[2];
-console.log(link);
+
 const ENDPOINT = link;
 const socket = socketIOClient(ENDPOINT);
 const Hero = (props) => {
@@ -42,7 +42,7 @@ const Hero = (props) => {
             return res.json();
           })
           .then((data) => {
-            console.log(data);
+            
             if (data.isStarted == true) {
               history.push({
                 pathname: "/contest/" + contest_id + "/problems",
@@ -70,7 +70,7 @@ const Hero = (props) => {
                 );
                 history.push("/dashboard/" + handle);
               } else {
-                console.log(handle);
+                
                 socket.emit("joinRoom", { username: handle, room: contest_id });
                 sethandles(data.handles);
               }
@@ -82,7 +82,7 @@ const Hero = (props) => {
         let arr = [];
         let handles = JSON.parse(localStorage.getItem("handles"));
         if (handles == null) handles = [];
-        console.log(handles);
+        
         for (let i = 0; i < users.length; i++) {
           arr.push(users[i].username);
         }
@@ -101,7 +101,7 @@ const Hero = (props) => {
         sethandles(arr);
       });
       socket.on("start_contest", ({ problems, room }) => {
-        console.log("dcsjcwod");
+        
         let handles = JSON.parse(localStorage.getItem("handles"));
         let time = new Date().getTime();
         if (handles == undefined) handles = [];
@@ -133,13 +133,13 @@ const Hero = (props) => {
         // setIsLoading(true);
       });
       socket.on("msg_ready", (data) => {
-        console.log(data);
+        
         // let arr=msg;
         // arr.push(data);
         let div = document.createElement("div");
         div.innerHTML = data;
         document.querySelector(".msgs").appendChild(div);
-        console.log(msg);
+        
         // setmsg(arr)
       });
     }

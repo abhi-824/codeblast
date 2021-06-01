@@ -17,7 +17,7 @@ const Hero = () => {
       placeholder: "Enter Handle",
       secondaryPlaceholder: "More Handles?",
     };
-    var instances = M.Chips.init(elems, options);
+    var instances = M.Chips.init(elems, options); 
     M.AutoInit();
   }, []);
   var elem = document.querySelector(".chips");
@@ -27,7 +27,7 @@ const Hero = () => {
   function checkhandles() {
     setLoader("Validating Handles...")
     var instance = M.Chips.getInstance(elem).chipsData;
-    console.log(instance);
+    
     if(instance.length>10)
     {
       displayAlert("Limit is Upto 10 handles!");

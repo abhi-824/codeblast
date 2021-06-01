@@ -12,7 +12,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import ReactGa from 'react-ga'
 import loaderImage from "./resources/logo_animation.mp4"
 const handles = ["lord"];
-console.log(window.location.href[7])
+
 if(window.location.href[4]!='s'&&window.location.href[7]=='c')window.location.href="https://codeblast.herokuapp.com"
 export default function App() {
   useEffect(() => {

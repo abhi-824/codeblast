@@ -27,7 +27,7 @@ const Hero = () => {
             return res.json();
           })
           .then((data) => {
-            console.log(data);
+            
             users = data.handles;
             problems = data.questions;
             start_time=data.start_time;
@@ -37,12 +37,12 @@ const Hero = () => {
               probs.push([parseInt(arr[0]), arr[1]]);
             }
             problems = probs;
-            console.log(problems);
+            
             let arr = [];
             for (let j = 0; j < problems.length; j++) {
               arr.push(String.fromCharCode(65 + j));
             }
-            console.log(arr);
+            
             setnums(arr);
             let d=new Date(data.start_time);
             d.setSeconds(d.getSeconds()+data.duration*60)
@@ -112,8 +112,8 @@ const Hero = () => {
                   res.time = formattedTime;
                   res.result = true;
                   res.points = jsdata.result[i].problem.rating;
-                  console.log(start_time)
-                  console.log(date-start_time)
+                  
+                  
                   res.points = Math.floor(
                     Math.max(
                       res.points -
@@ -127,8 +127,8 @@ const Hero = () => {
                   for (let l = 0; l < arr.length; l++) {
                     if (arr[l].qno == ll && arr[l].result == false) {
                       arr[l] = res;
-                      console.log(arr);
-                      console.log(res);
+                      
+                      
                       break;
                     }
                   }
@@ -160,7 +160,7 @@ const Hero = () => {
         let objArray = [];
           let rn = 1;
           for (const entry of map.entries()) {
-            console.log(entry);
+            
             let sol = 0;
             let totPoints = 0;
             let indiPoints = [];

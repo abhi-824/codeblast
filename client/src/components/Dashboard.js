@@ -8,7 +8,6 @@ import { useHistory } from "react-router-dom";
 import "../css/hero.css";
 import ReactGa from "react-ga";
 import M from "materialize-css";
-import ReactTooltip from "react-tooltip";
 const Dashboard = () => {
   const history = useHistory();
   const { handle } = useParams();
@@ -66,8 +65,13 @@ const Dashboard = () => {
     setIsLoading(true);
     ReactGa.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_ID);
     ReactGa.pageview("/dashboard");
+
     setTimeout(() => {
       setIsLoading(false);
+      var elems = document.querySelectorAll(".tooltipped");
+      const options = {};
+      var instances = M.Tooltip.init(elems, options);
+      M.AutoInit();
     }, 1500);
   }, []);
   return (
@@ -112,18 +116,16 @@ const Dashboard = () => {
                             }}
                           />
                         </p>
-                        <label>
-                          <a
-                            class="info"
-                            data-toggle="popover"
-                            data-placement="right"
-                            data-content="This is the helpful information that will appear to help users along their way. They'll love it."
-                            title=""
-                            data-original-title="Help here"
-                          >
-                            Info
-                          </a>
-                        </label>
+                        {/* <label> */}
+                        <a
+                          className="btn tooltipped"
+                          data-position="bottom"
+                          data-tooltip="I am a tooltip"
+                        >
+                          <i class="material-icons">help</i>
+                        </a>
+
+                        {/* </label> */}
                       </div>
                       <div className="minMaxRange">
                         <label for="min">Difficulty: </label>
