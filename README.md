@@ -102,7 +102,7 @@ If you practice on Codeforces, here's why you need this:
    ```sh
    npm install
    ```
-4. Start the project (Navigate to /client and run the following command) 
+4. Start the project (Run the following command both in the root and /client for server and client respectively) 
    ```sh
    npm start
    ```
