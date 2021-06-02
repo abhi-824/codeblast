@@ -58,7 +58,7 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#roadmap">Roadmap</a></li>
+    <!--<li><a href="#roadmap">Roadmap</a></li>-->
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#license">License</a></li>
@@ -109,10 +109,10 @@ If you practice on Codeforces, here's why you need this:
 
 
 <!-- ROADMAP -->
-## Roadmap
+<!--## Roadmap
 
 See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a list of proposed features (and known issues).
-
+-->
 
 
 <!-- CONTRIBUTING -->
