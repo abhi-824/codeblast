@@ -132,7 +132,7 @@ Contributions are what make the open source community such an amazing place to b
 
 Abhinandan Sharma - [Linkedin](https://www.linkedin.com/in/abhinandan-sharma-0a2633175/) - abhi.moudgil15@gmail.com
 <br/>
-Shubhang Jyotirmay - [Linkedin](https://www.linkedin.com/in/shubhang-jyotirmay-dtu/) - shubhangjyotirmay_2k19se123@dtu.ac.in
+Shubhang Jyotirmay - [Linkedin](https://www.linkedin.com/in/shubhang-jyotirmay-dtu/) - shubhjyot28@gmail.com
 <br/>
 Naman Gogia - [Linkedin](https://www.linkedin.com/in/namangogia/) - namangogia2001@gmail.com
 
