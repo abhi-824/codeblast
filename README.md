@@ -31,14 +31,12 @@
   <p align="center">
     BRING CODE TOGETHER
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
     <br />
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    <a href="https://codeblast.herokuapp.com/">View Demo</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
+    <a href="https://github.com/abhi-824/codeblast/issues">Report Bug</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+    <a href="https://github.com/abhi-824/codeblast/issues">Request Feature</a>
   </p>
 </p>
 
@@ -57,16 +55,13 @@
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
+    <li><a href="#license">License</a></li>
   </ol>
 </details>
 
@@ -75,67 +70,42 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+A website for Codeforces users to create their own contests and participate with friends. 
 
-There are many great README templates available on GitHub, however, I didn't find one that really suit my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+If you practice on Codeforces, here's why you need this:
+* You can start a contest anytime you wish to. The wait is over!
+* Problems are from Codeforces problemset itself and are generated from the submissions and contest history of the participants.
+* You can decide the duration of your codeblast and difficulty range of problems you wish to solve, giving you total control.
+* View the standings and compete with your friends in real time
 
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should element DRY principles to the rest of your life :smile:
-
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have have contributed to expanding this template!
-
-A list of commonly used resources that I find helpful are listed in the acknowledgements.
 
 ### Built With
 
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-* [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
-* [Laravel](https://laravel.com)
+* [React.js](https://reactjs.org/)
+* [Materialize](https://materializecss.com/)
+* [Socket.IO](https://socket.io/)
+* [Firebase](https://firebase.google.com/)
+* [Heroku](https://www.heroku.com/)
 
 
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/abhi-824/codeblast.git
    ```
-3. Install NPM packages
+3. Install NPM packages (Run the following command both in the root and /client for server and client respectively) 
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```JS
-   const API_KEY = 'ENTER YOUR API';
+4. Start the project (Navigate to /client and run the following command) 
+   ```sh
+   npm start
    ```
-
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
 
 
 <!-- ROADMAP -->
@@ -157,28 +127,21 @@ Contributions are what make the open source community such an amazing place to b
 5. Open a Pull Request
 
 
+<!-- CONTACT -->
+## Contact
+
+Abhinandan Sharma - [Linkedin](https://www.linkedin.com/in/abhinandan-sharma-0a2633175/) - abhi.moudgil15@gmail.com
+<br/>
+Shubhang Jyotirmay - [Linkedin](https://www.linkedin.com/in/shubhang-jyotirmay-dtu/) - shubhangjyotirmay_2k19se123@dtu.ac.in
+<br/>
+Naman Gogia - [Linkedin](https://www.linkedin.com/in/namangogia/) - namangogia2001@gmail.com
+
+Project Link: [https://github.com/abhi-824/codeblast](https://github.com/abhi-824/codeblast)
 
 <!-- LICENSE -->
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
-
-
-
-<!-- CONTACT -->
-## Contact
-
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
-
-Project Link: [https://github.com/abhi-/repo_name](https://github.com/your_username/repo_name)
-
-
-
-<!-- ACKNOWLEDGEMENTS -->
-## Acknowledgements
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Img Shields](https://shields.io)
-
 
 
 
