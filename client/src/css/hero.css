@@ -149,6 +149,7 @@ nav img {
 }
 
 #joinOrCreateRoom .num {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -398,7 +399,19 @@ span.title {
   font-size: 16px;
 }
 
-.tooltipped {
+.fullscreen .tooltipped {
   color: #26a69a;
+  position: absolute;
+  right: 0;
+  bottom: 15px;
+}
+
+.listItemsHandles {
+  list-style: circle;
+}
+
+.listItemsHandles li {
+  font-size: 1.5rem;
+  margin-left: 1rem;
 }
 /*# sourceMappingURL=hero.css.map */

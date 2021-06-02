@@ -158,13 +158,6 @@ const Dashboard = () => {
                             setMax(val);
                           }}
                         />
-                        <a
-                          className="tooltipped"
-                          data-position="right"
-                          data-tooltip="Enter the difficulty range"
-                        >
-                          <i class="material-icons">info_outline</i>
-                        </a>
                       </div>
                       <div className="minMaxRange">
                         <label for="time">Duration(In Minutes): </label>
@@ -179,13 +172,7 @@ const Dashboard = () => {
                             setTime(e.target.value);
                           }}
                         />{" "}
-                        <a
-                          className="tooltipped"
-                          data-position="right"
-                          data-tooltip="Enter the duration of your codeblast"
-                        >
-                          <i class="material-icons">info_outline</i>
-                        </a>
+                        
                       </div>
                     </div>
 

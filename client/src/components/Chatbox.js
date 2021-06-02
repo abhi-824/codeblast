@@ -69,6 +69,13 @@ const Hero = () => {
           })
           .then((data2) => {
             setLoader("Add Handles");
+            let ul=document.querySelector(".listItemsHandles")
+            for(let i=0; i < handle.length; i++)
+            {
+              let li=document.createElement("li");
+              li.innerHTML="> "+handle[i].tag;
+              ul.appendChild(li);
+            }
             alert(data2.message);
           });
       }
@@ -98,6 +105,12 @@ const Hero = () => {
         >
           {loader}
         </button>
+      </div>
+      <div>
+        <h4>Added Handles</h4>
+        <ul className="listItemsHandles">
+
+        </ul>
       </div>
     </div>
   );
