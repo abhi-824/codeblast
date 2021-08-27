@@ -1,0 +1,102 @@
+﻿[
+    {
+        "Problem Name": "Unstable String",
+        "Rated": "1400",
+        "URL": "https://codeforces.com/problemset/problem/1535/C"
+    },
+    {
+        "Problem Name": "Berland Regional",
+        "Rated": "1400",
+        "URL": "https://codeforces.com/problemset/problem/1519/C"
+    },
+    {
+        "Problem Name": "Potions (Both Versions)",
+        "Rated": "1600",
+        "URL": "https://codeforces.com/problemset/problem/1526/C2"
+    },
+    {
+        "Problem Name": "Compression and Expansion",
+        "Rated": "1600",
+        "URL": "https://codeforces.com/problemset/problem/1523/C"
+    },
+    {
+        "Problem Name": "Arranging The Sheep",
+        "Rated": "1400",
+        "URL": "https://codeforces.com/problemset/problem/1520/E"
+    },
+    {
+        "Problem Name": "AGAGA XOOORRR",
+        "Rated": "1500",
+        "URL": "https://codeforces.com/problemset/problem/1516/B"
+    },
+    {
+        "Problem Name": "Phoenix and Towers",
+        "Rated": "1400",
+        "URL": "https://codeforces.com/problemset/problem/1515/C"
+    },
+    {
+        "Problem Name": "Maximum Sum of Products",
+        "Rated": "1600",
+        "URL": "https://codeforces.com/problemset/problem/1519/D"
+    },
+    {
+        "Problem Name": "Playoff Tournament",
+        "Rated": "1800",
+        "URL": "https://codeforces.com/problemset/problem/1535/D"
+    },
+    {
+        "Problem Name": "Eastern Exhibition",
+        "Rated": "1500",
+        "URL": "https://codeforces.com/problemset/problem/1486/B"
+    },
+    {
+        "Problem Name": "AND Sequences",
+        "Rated": "1400",
+        "URL": "https://codeforces.com/problemset/problem/1513/B"
+    },
+    {
+        "Problem Name": "Minimum Ties",
+        "Rated": "1500",
+        "URL": "https://codeforces.com/problemset/problem/1487/C"
+    },
+    {
+        "Problem Name": "Fence Painting",
+        "Rated": "1600",
+        "URL": "https://codeforces.com/problemset/problem/1481/C"
+    },
+    {
+        "Problem Name": "Maximum width",
+        "Rated": "1500",
+        "URL": "https://codeforces.com/problemset/problem/1492/C"
+    },
+    {
+        "Problem Name": "Minimum Grid Path",
+        "Rated": "1500",
+        "URL": "https://codeforces.com/problemset/problem/1499/C"
+    },
+    {
+        "Problem Name": "PriceFixed",
+        "Rated": "1600",
+        "URL": "https://codeforces.com/problemset/problem/1539/D"
+    },
+    {
+        "Problem Name": "Baby Ehab Partitions Again",
+        "Rated": "1700",
+        "URL": "https://codeforces.com/problemset/problem/1516/C"
+    },
+    {
+        "Problem Name": "Interesting Function",
+        "Rated": "1500",
+        "URL": "https://codeforces.com/problemset/problem/1538/F"
+    },
+    {
+        "Problem Name": "Good Subarrays",
+        "Rated": "1600",
+        "URL": "https://codeforces.com/problemset/problem/1398/C"
+    },
+    {
+        "Problem Name": "Longest Simple Cycle",
+        "Rated": "1600",
+        "URL": "https://codeforces.com/problemset/problem/1476/C"
+    }
+]

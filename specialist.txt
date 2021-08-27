@@ -1,0 +1,102 @@
+﻿[
+    {
+        "Problem Name": "Challenging Cliffs",
+        "Rated": "1200",
+        "URL": "https://codeforces.com/problemset/problem/1537/C"
+    },
+    {
+        "Problem Name": "Pleasant Pairs",
+        "Rated": "1200",
+        "URL": "https://codeforces.com/problemset/problem/1541/B"
+    },
+    {
+        "Problem Name": "Same Differences",
+        "Rated": "1200",
+        "URL": "https://codeforces.com/problemset/problem/1520/D"
+    },
+    {
+        "Problem Name": "Nastia and a Good Array",
+        "Rated": "1300",
+        "URL": "https://codeforces.com/problemset/problem/1521/B"
+    },
+    {
+        "Problem Name": "I Hate 1111",
+        "Rated": "1400",
+        "URL": "https://codeforces.com/problemset/problem/1526/B"
+    },
+    {
+        "Problem Name": "Corrupted Array",
+        "Rated": "1200",
+        "URL": "https://codeforces.com/problemset/problem/1512/D"
+    },
+    {
+        "Problem Name": "Inflation",
+        "Rated": "1300",
+        "URL": "https://codeforces.com/problemset/problem/1476/B"
+    },
+    {
+        "Problem Name": "Accidental Victory",
+        "Rated": "1400",
+        "URL": "https://codeforces.com/problemset/problem/1490/E"
+    },
+    {
+        "Problem Name": "Districts Connection",
+        "Rated": "1200",
+        "URL": "https://codeforces.com/problemset/problem/1433/D"
+    },
+    {
+        "Problem Name": "Fillomino 2",
+        "Rated": "1400",
+        "URL": "https://codeforces.com/problemset/problem/1517/C"
+    },
+    {
+        "Problem Name": "Replace and Keep Sorted",
+        "Rated": "1200",
+        "URL": "https://codeforces.com/problemset/problem/1485/B"
+    },
+    {
+        "Problem Name": "Strange Birthday Party",
+        "Rated": "1300",
+        "URL": "https://codeforces.com/problemset/problem/1470/A"
+    },
+    {
+        "Problem Name": "Box Fitting",
+        "Rated": "1300",
+        "URL": "https://codeforces.com/problemset/problem/1498/B"
+    },
+    {
+        "Problem Name": "Add One",
+        "Rated": "1600",
+        "URL": "https://codeforces.com/problemset/problem/1513/C"
+    },
+    {
+        "Problem Name": "Find The Array",
+        "Rated": "1400",
+        "URL": "https://codeforces.com/problemset/problem/1463/B"
+    },
+    {
+        "Problem Name": "Buying Shovels",
+        "Rated": "1300",
+        "URL": "https://codeforces.com/problemset/problem/1360/D"
+    },
+    {
+        "Problem Name": "Min Cost String",
+        "Rated": "1600",
+        "URL": "https://codeforces.com/problemset/problem/1511/D"
+    },
+    {
+        "Problem Name": "Zero Remainder Array",
+        "Rated": "1400",
+        "URL": "https://codeforces.com/problemset/problem/1374/D"
+    },
+    {
+        "Problem Name": "Binary String To Subsequences",
+        "Rated": "1500",
+        "URL": "https://codeforces.com/contest/1399/problem/D"
+    },
+    {
+        "Problem Name": "a-Good String",
+        "Rated": "1300",
+        "URL": "https://codeforces.com/problemset/problem/1385/D"
+    }
+]
