@@ -20,7 +20,7 @@ const Dashboard = () => {
   const [time, setTime] = useState(90);
   const [max, setMax] = useState(1900);
 
-  function getRoomId() {
+  function getRoomId(iskartik) {
     setLoader("Loading...");
     fetch("/api/getRoom")
       .then((res) => {
@@ -42,6 +42,7 @@ const Dashboard = () => {
               id: data.id,
               start_time: new Date().getTime(),
               duration: time,
+              isKartik:iskartik
             }),
           };
           fetch("/api/createRoom", options)
@@ -60,6 +61,9 @@ const Dashboard = () => {
           setError("Error retreiving Room ID!");
         }
       });
+  }
+  function goToKartik() {
+    getRoomId(1);
   }
   useEffect(() => {
     setIsLoading(true);
@@ -94,7 +98,7 @@ const Dashboard = () => {
                     id="joinOrCreateRoom"
                     onSubmit={(e) => {
                       e.preventDefault();
-                      getRoomId();
+                      getRoomId(0);
                     }}
                   >
                     <div style={{ width: "100%" }}>
@@ -184,6 +188,18 @@ const Dashboard = () => {
                         }}
                       >
                         {loader}
+                        <i class="material-icons">arrow_forward</i>
+                      </button>
+                    </div>
+                    <div className="buttonsBlast-bordersOut">
+                      <button
+                        type="submit"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          goToKartik();
+                        }}
+                      >
+                        Kartik's CF Sheets
                         <i class="material-icons">arrow_forward</i>
                       </button>
                     </div>

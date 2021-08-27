@@ -99,6 +99,17 @@ nav img {
   align-items: center;
 }
 
+.fullscreen .content .buttonsBlast-bordersOut button {
+  border: 1px solid #03c9a9;
+  background-color: #fff !important;
+  color: #03c9a9;
+}
+
+.fullscreen .content .buttonsBlast-bordersOut button:hover {
+  background: #03b094 !important;
+  color: #fff;
+}
+
 .fullscreen .content button:hover {
   background: #03b094;
 }
@@ -186,8 +197,8 @@ nav img {
 
 .formToJoinViaInp {
   position: absolute;
-  right: 0;
-  bottom: 0;
+  right: 100px;
+  bottom: 80px;
   /* margin: 30px 0 0 20px; */
 }
 

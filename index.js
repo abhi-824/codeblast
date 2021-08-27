@@ -72,6 +72,7 @@ io.on("connection", (socket) => {
       // getRoomUsers(room).then((users)=>{
       allready(room).then((ans) => {
         if (ans) {
+        let kartik=0;
           io.to(user.room).emit("start_loader", "Getting Users...Done");
           room_props(room).then((data) => {
             const problems = [];
@@ -80,7 +81,9 @@ io.on("connection", (socket) => {
             let num = data.num;
             let max = data.max;
             let min = data.min;
+            kartik=data.isKartik;
             let diff = new Array(num);
+
             for (let i = 0; i < num; i++) {
               diff[i] = min + ((max - min) / (num - 1)) * i;
             }
@@ -192,6 +195,12 @@ io.on("connection", (socket) => {
               upsolved2.sort();
               let j = 0;
               // shuffle(jsdata4.result.problems);
+              if(kartik)
+              {
+                // To be continued. Just extract .xls file and convert it to json. And add problems from it.  
+                
+
+              }
               for (let I = 0; I < num; I++) {
                 let fl = false;
                 for (let i = 0; i < upsolved.length; i++) {
