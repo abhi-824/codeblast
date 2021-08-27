@@ -13,7 +13,7 @@ const Dashboard = () => {
   const { handle } = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const [room, setRoom] = useState("");
-  const [loader, setLoader] = useState("Create a Blast!");
+  const [loader, setLoader] = useState(["Create a Blast!","Kartik's CF Sheets"]);
   const [numberOfQuestions, setNum] = useState(4);
   const [err, setError] = useState("Some Error Occured!");
   const [min, setMin] = useState(1000);
@@ -21,7 +21,7 @@ const Dashboard = () => {
   const [max, setMax] = useState(1900);
 
   function getRoomId(iskartik) {
-    setLoader("Loading...");
+    setLoader(["Loading...","Loading..."]);
     fetch("/api/getRoom")
       .then((res) => {
         return res.json();
@@ -51,7 +51,7 @@ const Dashboard = () => {
             })
             .then((data2) => {
               if (data2.status == 200) {
-                setLoader("Create a Blast!");
+                setLoader("Create a Blast!","Loading...");
                 history.push("/readyroom/" + id);
               } else {
                 setError("Error adding to database!");
@@ -187,7 +187,7 @@ const Dashboard = () => {
                           // e.preventDefault();
                         }}
                       >
-                        {loader}
+                        {loader[0]}
                         <i class="material-icons">arrow_forward</i>
                       </button>
                     </div>
@@ -199,7 +199,7 @@ const Dashboard = () => {
                           goToKartik();
                         }}
                       >
-                        Kartik's CF Sheets
+                        {loader[1]}
                         <i class="material-icons">arrow_forward</i>
                       </button>
                     </div>
