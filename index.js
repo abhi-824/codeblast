@@ -1,4 +1,5 @@
 "use strict";
+const fs = require("fs");
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
@@ -8,6 +9,21 @@ const http = require("http");
 const host = "0.0.0.0";
 const fetch = require("node-fetch");
 const formatMessage = require("./utils/messages");
+let sheet = require("./sheets/experts");
+let spec = require("./sheets/specialist");
+sheet = sheet.probs;
+sheet = sheet.concat(spec.probs);
+sheet.sort((a, b) => {
+  return a.Rated - b.Rated;
+});
+function converttoID(str){
+  let arr=str.split("/");
+  return arr[arr.length-2]+"-"+arr[arr.length-1];
+}
+for(let i = 0; i < sheet.length; i++) {
+  sheet[i]=[sheet[i].Rated,converttoID(sheet[i].URL),sheet[i].ProblemName];
+}
+// console.log(sheet)
 const {
   userJoin,
   getCurrentUser,
@@ -72,7 +88,7 @@ io.on("connection", (socket) => {
       // getRoomUsers(room).then((users)=>{
       allready(room).then((ans) => {
         if (ans) {
-        let kartik=0;
+          let kartik = 0;
           io.to(user.room).emit("start_loader", "Getting Users...Done");
           room_props(room).then((data) => {
             const problems = [];
@@ -81,7 +97,7 @@ io.on("connection", (socket) => {
             let num = data.num;
             let max = data.max;
             let min = data.min;
-            kartik=data.isKartik;
+            kartik = data.isKartik;
             let diff = new Array(num);
 
             for (let i = 0; i < num; i++) {
@@ -195,14 +211,26 @@ io.on("connection", (socket) => {
               upsolved2.sort();
               let j = 0;
               // shuffle(jsdata4.result.problems);
-              if(kartik)
-              {
-                // To be continued. Just extract .xls file and convert it to json. And add problems from it.  
-                
-
-              }
               for (let I = 0; I < num; I++) {
                 let fl = false;
+                if (kartik) {
+                  // To be continued. Just extract .xls file and convert it to json. And add problems from it.
+                  for (let i = 0; i < sheet.length; i++) {
+                    if (
+                      sheet[i][0] >= diff[I] &&
+                      sheet[i][0] <= diff[I + 1] &&
+                      problems.includes(sheet[i]) == false &&
+                      solved.has(sheet[i][1]) === false
+                    ) {
+                      problems.push(sheet[i]);
+                      fl = 1;
+                      break;
+                    }
+                  }
+                }
+                if (fl) {
+                  continue;
+                }
                 for (let i = 0; i < upsolved.length; i++) {
                   if (
                     upsolved[i][0] >= diff[I] &&
@@ -244,13 +272,13 @@ io.on("connection", (socket) => {
                   }
                 }
               }
-              
+
               addProblems(user.room, problems).then((data) => {
                 io.to(user.room).emit(
                   "start_loader",
                   "Adding Problems to database...Done"
                 );
-                
+
                 io.to(user.room).emit("start_contest", {
                   problems: problems,
                   room: user.room,
@@ -262,7 +290,7 @@ io.on("connection", (socket) => {
               //       "start_loader",
               //       "Error getting problems from codeforces"
               //     );
-              //     
+              //
               //   };
               // }
             }
@@ -275,7 +303,6 @@ io.on("connection", (socket) => {
   });
 
   socket.on("joinRoom", ({ username, room }) => {
-    
     userJoin(socket.id, username, room).then((user) => {
       socket.join(room);
       socket.emit(
@@ -309,6 +336,4 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(config.port, host, () =>
-  console.log("App Started")
-);
+server.listen(config.port, host, () => console.log("App Started"));
