@@ -37,6 +37,7 @@ const Dashboard = () => {
               min: min,
               max: max,
               handles: [],
+              isScheduled:0,
               isStarted: false,
               questions: [],
               id: data.id,

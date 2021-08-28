@@ -12,6 +12,25 @@ const getRoom = async (req, res, next) => {
     res.status(400).send(err.message);
   }
 };
+const getScheduledRooms=async(req,res,next)=>{
+  try{
+    const handle = req.params.handle;
+    await firestore
+      .collection("profiles")
+      .where("handle", "==", handle)
+      .get()
+      .then((data) => {
+        if (data.docs.length > 0) {
+          res.json(data.docs[0].data());
+        } else {
+          res.json({ status: 400 });
+        }
+      });
+  }
+  catch(err){
+    res.status(400).send(err.message);
+  }
+}
 const checkRoom = async (req, res, next) => {
   try {
     const id = req.params.id;
@@ -127,5 +146,6 @@ module.exports = {
   checkRoom,
   getProblems,
   getRoomProps,
-  updateHandles
+  updateHandles,
+  getScheduledRooms
 };

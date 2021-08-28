@@ -33,6 +33,7 @@ const {
   allready,
   room_props,
   addProblems,
+  changeToScheduled  
 } = require("./utils/users");
 const app = express();
 const server = http.createServer(app);
@@ -81,8 +82,11 @@ io.on("connection", (socket) => {
       }
     });
   });
-
-  socket.on("ready", ({ username, room }) => {
+  socket.on("changeToScheduled",({room,time,handle})=>{
+    console.log("kakka");
+    changeToScheduled(room,time,handle);
+  })
+  socket.on("ready", ({ username, room,isScheduled }) => {
     make_ready(socket.id, username, room, 1).then((user) => {
       io.to(user.room).emit("msg_ready", `${user.username} is ready now`);
       // getRoomUsers(room).then((users)=>{

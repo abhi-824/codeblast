@@ -189,7 +189,9 @@ nav img {
 .formForDash {
   position: relative;
 }
-
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.5) sepia(1) saturate(5) hue-rotate(175deg)!important;
+}
 .formToJoinViaInp {
   position: absolute;
   right: 100px;

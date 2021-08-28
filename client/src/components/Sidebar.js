@@ -29,11 +29,26 @@ const Hero = (props) => {
   const [min, setMin] = useState(0);
   const [time, setTime] = useState(0);
   const [max, setMax] = useState(0);
+  const [schedule, setSchedule] =useState("");
   function makeReady(e) {
-    socket.emit("ready", { username: handle, room: contest_id });
-    setDisable(true);
+    socket.emit("ready", { username: handle, room: contest_id,isScheduled:0 });
+    setDisable(true); 
+  }
+  function changeDef(){
+    let t=new Date();
+    t.setHours(20);
+    t.setMinutes(5);
+    t.setSeconds(0);
+    setSchedule(Math.trunc(t.getTime()/1000));
+  }
+  function changeToScheduledAndLeave(){
+    socket.emit("changeToScheduled",{room: contest_id,time:schedule,handle:handle})
+    history.push("/scheduled/"+handle);  
+    setDisable(true); 
   }
   useEffect(() => {
+  changeDef()
+
     if (handle == null) history.push("/");
     else {
       async function getData() {
@@ -157,6 +172,24 @@ const Hero = (props) => {
           }}
         >
           Ready
+        </button>
+        <input type="time" value="20:05"  name="bday" onChange={(e) =>{
+          let str=e.target.value;
+          str=str.split(':');
+          let date = new Date();
+          date.setHours(parseInt(str[0]));
+          date.setMinutes(parseInt(str[1]));
+          date.setSeconds(0);
+          setSchedule(Math.trunc(date.getTime()/1000));
+        }}/>
+        <button
+          className="waves-effect waves-light btn schedule-event"
+          onClick={(e) => {
+            e.preventDefault();
+            changeToScheduledAndLeave();
+          }}
+        >
+          Schedule
         </button>
         {/* </Link> */}
       </div>

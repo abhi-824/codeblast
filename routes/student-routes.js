@@ -5,7 +5,8 @@ const {
   checkRoom,
   getProblems,
   getRoomProps,
-  updateHandles
+  updateHandles,
+  getScheduledRooms
 } = require("../controllers/studentController");
 
 const router = express.Router();
@@ -15,6 +16,7 @@ router.get("/getRoomProps/:contest_id", getRoomProps);
 router.get("/checkRoom/:id", checkRoom);
 router.post("/createRoom", createRoom);
 router.post("/updateHandles", updateHandles);
+router.get("/getScheduledRoom/:handle",getScheduledRooms)
 module.exports = {
   routes: router,
 };

@@ -4,21 +4,27 @@ import logo_light from "../resources/logo_light.png";
 import {useHistory} from "react-router-dom"
 import "../css/hero.css";
 import M from "materialize-css";
+import { useParams } from "react-router-dom";
 
 const Hero = () => {
-  const [handle, setHandle] = useState("");
+  const [handles, setHandle] = useState("");
+  const {handle}=useParams();
   const history=useHistory();
+  function redirectToScheduled()
+  {
+    history.push("/scheduled/"+handle);
+  }
   function setToStorageAndRedict() {
     const fetchURL = "https://codeforces.com/api/user.info?handles=";
-    fetch(`${fetchURL}${handle}`).then((res) => {
+    fetch(`${fetchURL}${handles}`).then((res) => {
       res.json();
 
       if (res.status == 400) {
         alert("Invalid Handle");
       } else {
         alert("Saved Successfully");
-        localStorage.setItem("handle", handle);
-        history.push("/dashboard/" + handle);  
+        localStorage.setItem("handle", handles);
+        history.push("/dashboard/" + handles);  
       }
     });
   }
@@ -31,6 +37,15 @@ const Hero = () => {
           </a>
           {/* <ul id="nav-mobile" class="right hide-on-med-and-down"> */}
           {/* <li> */}
+          <button
+          className="waves-effect waves-light btn"
+            onClick={(e) => {
+              e.preventDefault();
+              redirectToScheduled();
+            }}
+          >
+          Schedule
+        </button>
           <form
             action="/"
             className="editHandleForm"
@@ -39,6 +54,7 @@ const Hero = () => {
               setToStorageAndRedict();
             }}
           >
+
             <div class="input-field editHandle">
               <input
                 id="editHandle"

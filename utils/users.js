@@ -49,6 +49,41 @@ async function addProblems(id, problems) {
   await firestore.collection("rooms").doc(iad).update({ questions: probs,start_time:new Date().getTime(),isStarted:true});
   return daata;
 }
+async function changeToScheduled(id,time,handle){
+  let iad;
+  let daata="un";
+  await firestore
+    .collection("profiles")
+    .where("handle", "==", handle)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        iad = doc.id;
+        daata = doc.data();
+      });
+    });
+    console.log(daata)
+  if(daata!="un"){
+    let rooms=daata.rooms;
+    rooms.push({room:id,time:time});
+    await firestore.collection("profiles").doc(iad).update({ rooms:rooms});
+  }
+  else{
+    daata={handle:handle,rooms:[{room:id,time:time}]};
+    await firestore.collection("profiles").doc().set(daata);
+  }
+  await firestore
+    .collection("rooms")
+    .where("id", "==", id)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        iad = doc.id;
+      });
+    });
+  await firestore.collection("rooms").doc(iad).update({ isScheduled: true,start_time:time });
+  return;
+}
 async function make_ready(id, username, room, state) {
   let iad, daata;
   await firestore
@@ -145,4 +180,5 @@ module.exports = {
   allready,
   room_props,
   addProblems,
+  changeToScheduled
 };

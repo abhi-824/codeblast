@@ -6,6 +6,7 @@ import Contest from "./components/Contest";
 import Sidebar from "./components/Sidebar";
 import Dashboard from "./components/Dashboard";
 import ChoosingBar from "./components/ChoosingBar";
+import ScheduledEvents from "./components/ScheduledEvents";
 import { useEffect, useState } from "react";
 import Questions from "./components/Questions";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
@@ -26,6 +27,11 @@ export default function App() {
           <Route path="/dashboard/:handle">
             <Navbar />
             <Dashboard />
+            <Footer />
+          </Route>
+          <Route path="/scheduled/:handle">
+            <Navbar />
+            <ScheduledEvents />
             <Footer />
           </Route>
           <Route path="/readyroom/:contest_id">
