@@ -44,7 +44,7 @@ const Hero = () => {
               redirectToScheduled();
             }}
           >
-          Schedule
+          Scheduled
         </button>
           <form
             action="/"

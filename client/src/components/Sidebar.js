@@ -42,13 +42,26 @@ const Hero = (props) => {
     setSchedule(Math.trunc(t.getTime()/1000));
   }
   function changeToScheduledAndLeave(){
-    socket.emit("changeToScheduled",{room: contest_id,time:schedule,handle:handle})
+    
+    let res=document.querySelector(".listItemsHandles");
+    let handles2=[];
+    console.log(res.children)
+    for(let i=0;i<res.children.length;i++){
+      let a=res.children[i].innerHTML.split(' ');
+      
+      handles2.push(a[1])
+    }
+    for(let i=0;i<handles.length;i++){handles2.push(handles[i])}
+    // console.log(handles2)
+    socket.emit("changeToScheduled",{room: contest_id,time:schedule,username:handle,handles:handles2})
+    
     history.push("/scheduled/"+handle);  
+    
     setDisable(true); 
   }
   useEffect(() => {
-  changeDef()
-
+    changeDef()
+    
     if (handle == null) history.push("/");
     else {
       async function getData() {

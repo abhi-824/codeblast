@@ -55,11 +55,20 @@ const Hero = () => {
   useEffect(() => {
     getScheduledEvents().then((data) => {
       // console.log(data)
-      filterData(data.rooms).then((roomData) => {
-        setData(roomData);
-        setIsLoading(false);
-        console.log(roomData);
-      });
+      if(data.rooms!=undefined) {
+        filterData(data.rooms).then((roomData) => {
+          setData(roomData);
+          let list=document.querySelector(".schedule-list");
+          for(let i=0; i<list.children.length; i++) {
+            let roomID=list.children[i].firstChild.firstChild.innerHTML.split(' ')[2];
+            list.children[i].addEventListener("click",(e)=>{
+              history.push('/contest/'+roomID+'/problems')
+            })
+          }
+          console.log(roomData);
+        });
+      }
+      setIsLoading(false);
     });
   }, []);
   return (

@@ -42,7 +42,6 @@ const Hero = () => {
         await fetch(`${fetchURL}${handle[i].tag}`).then((res) => {
           res.json();
           if (res.status == 400) {
-            // elem.innerHTML=""
             fl = 1;
             alert("Invalid Handle");
           }

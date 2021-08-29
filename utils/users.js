@@ -16,15 +16,13 @@ async function userJoin(id, username, room) {
     });
 
   let handles = daata.handles;
-  if (!handles.includes(username)){
+  if (!handles.includes(username)) {
     handles.push(username);
     await firestore.collection("users").doc().set(user);
-  } 
+  }
   try {
     await firestore.collection("rooms").doc(iad).update({ handles: handles });
-  } catch (err) {
-    
-  }
+  } catch (err) {}
   return user;
 }
 
@@ -42,35 +40,44 @@ async function addProblems(id, problems) {
     });
   let probs = [];
   for (let i = 0; i < problems.length; i++) {
-    probs.push(problems[i][0]+"/"+problems[i][1]);
+    probs.push(problems[i][0] + "/" + problems[i][1]);
   }
-  
+
   daata.questions = probs;
-  await firestore.collection("rooms").doc(iad).update({ questions: probs,start_time:new Date().getTime(),isStarted:true});
+  await firestore
+    .collection("rooms")
+    .doc(iad)
+    .update({
+      questions: probs,
+      start_time: new Date().getTime(),
+      isStarted: true,
+    });
   return daata;
 }
-async function changeToScheduled(id,time,handle){
+async function changeToScheduled(id, time, handles) {
   let iad;
-  let daata="un";
-  await firestore
-    .collection("profiles")
-    .where("handle", "==", handle)
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        iad = doc.id;
-        daata = doc.data();
+  let daata = "un";
+  for (let i = 0; i < handles.length; i++) {
+    await firestore
+      .collection("profiles")
+      .where("handle", "==", handles[i])
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          iad = doc.id;
+          daata = doc.data();
+        });
       });
-    });
-    console.log(daata)
-  if(daata!="un"){
-    let rooms=daata.rooms;
-    rooms.push({room:id,time:time});
-    await firestore.collection("profiles").doc(iad).update({ rooms:rooms});
-  }
-  else{
-    daata={handle:handle,rooms:[{room:id,time:time}]};
-    await firestore.collection("profiles").doc().set(daata);
+    // console.log(daata);
+    if (daata != "un") {
+      let rooms = daata.rooms;
+      rooms.push({ room: id, time: time });
+      await firestore.collection("profiles").doc(iad).update({ rooms: rooms });
+    } else {
+      daata = { handle: handles[i], rooms: [{ room: id, time: time }] };
+      await firestore.collection("profiles").doc().set(daata);
+    }
+    daata="un";
   }
   await firestore
     .collection("rooms")
@@ -81,7 +88,10 @@ async function changeToScheduled(id,time,handle){
         iad = doc.id;
       });
     });
-  await firestore.collection("rooms").doc(iad).update({ isScheduled: true,start_time:time });
+  await firestore
+    .collection("rooms")
+    .doc(iad)
+    .update({ isScheduled: true, start_time: time });
   return;
 }
 async function make_ready(id, username, room, state) {
@@ -96,7 +106,7 @@ async function make_ready(id, username, room, state) {
         daata = doc.data();
       });
     });
-    
+
   await firestore.collection("users").doc(iad).update({ isready: true });
   return daata;
 }
@@ -145,7 +155,7 @@ async function userLeave(id) {
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-        if(doc.data().isready==false){
+        if (doc.data().isready == false) {
           deleteUser(doc.id);
         }
         user = doc.data();
@@ -180,5 +190,5 @@ module.exports = {
   allready,
   room_props,
   addProblems,
-  changeToScheduled
+  changeToScheduled,
 };
