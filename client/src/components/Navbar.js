@@ -38,7 +38,7 @@ const Hero = () => {
           {/* <ul id="nav-mobile" class="right hide-on-med-and-down"> */}
           {/* <li> */}
           <button
-          className="waves-effect waves-light btn"
+          className="waves-effect waves-light btn" style={{float: "right", marginTop: "25px", marginRight: "250px"}}
             onClick={(e) => {
               e.preventDefault();
               redirectToScheduled();

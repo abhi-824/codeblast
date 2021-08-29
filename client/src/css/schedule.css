@@ -1,0 +1,55 @@
+.schedule-cont {
+    margin: 20px auto;
+    display: flex;
+    min-height: 60vh;
+    max-width: 63rem;
+    flex-direction: column;
+}
+
+.schedule-head {
+    font-size: 3rem;
+}
+
+.schedule-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.schedule-card {
+    margin: 30px 0;
+    height: 12rem;
+    width: 100%;
+    background-color: #26a69a;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    color: white;
+    justify-content: space-between;
+    border-radius: 5px;
+}
+
+.schedule-card-left {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 20px;
+    max-width: 45rem;
+}
+
+.schedule-card-right {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 20px;
+    font-size: 1.5rem;
+}
+
+.schedule-roomid {
+    font-size: 3rem;
+}
+
+.schedule-members {
+    font-size: 1.5rem;
+}
+
+.schedule-card:hover {
+    background-color: #0a4e47;
+}
