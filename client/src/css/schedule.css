@@ -32,6 +32,7 @@
     color: white;
     justify-content: space-between;
     border-radius: 5px;
+    transition:0.5s;
 }
 
 .schedule-card-left {
