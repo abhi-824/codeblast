@@ -1,8 +1,14 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Dosis", sans-serif;
+}
+
 .schedule-cont {
     margin: 20px auto;
     display: flex;
     min-height: 60vh;
-    max-width: 63rem;
+    max-width: 65rem;
     flex-direction: column;
 }
 
