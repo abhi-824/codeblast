@@ -105,7 +105,7 @@ const Hero = () => {
         ""
       ) : (
         <div className="schedule-cont">
-          <div className="schedule-head">Your Scheduled Contests</div>
+          <div className="schedule-head">Your Scheduled Contests(Please reload if you can't see your recently added contest😅)</div>
           <div className="schedule-list">
             {data.map((item) => {
               return (
@@ -136,6 +136,7 @@ const Hero = () => {
 
          
           </div>
+          
           <div className="schedule-head">Your Previous Contests</div>
           <div className="schedule-list">
             {arch.map((item) => {
@@ -167,7 +168,7 @@ const Hero = () => {
 
          
           </div>
-        
+            
         </div>
       )}
       {isLoading ? (
