@@ -95,7 +95,7 @@ const Hero = () => {
         });
       }
       else{
-        alert("Please reload or tell us how to fix this issue😁!")
+        alert("Please reload or tell us how to fix this issue😁! It only happens when you have no scheduled contests.")
       }
     });
   }, []);
