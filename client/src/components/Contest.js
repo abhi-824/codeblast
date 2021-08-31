@@ -47,7 +47,13 @@ const Hero = () => {
             let d=new Date(data.start_time);
             d.setSeconds(d.getSeconds()+data.duration*60)
             let t=(d.getTime()-new Date().getTime())/1000;
-            startTimer(t,document.querySelector(".timer"))
+            let min=data.duration*60;
+            if(t<=min)
+            {
+              if(t>0)
+                startTimer(t,document.querySelector(".timer"))
+            }
+            // startTimer(t,document.querySelector(".timer"))
 
             getStands();
           });
