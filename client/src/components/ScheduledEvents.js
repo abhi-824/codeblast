@@ -95,7 +95,7 @@ const Hero = () => {
         });
       }
       else{
-        alert("There is some error!")
+        alert("Please reload or tell us how to fix this issue😁!")
       }
     });
   }, []);

@@ -8,7 +8,8 @@ import { useParams } from "react-router-dom";
 
 const Hero = () => {
   const [handles, setHandle] = useState("");
-  const {handle}=useParams();
+  let {handle}=useParams();
+  if(handle==undefined)handle=localStorage.getItem("handle");
   const history=useHistory();
   function redirectToScheduled()
   {
