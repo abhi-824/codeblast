@@ -35,6 +35,7 @@ const Hero = (props) => {
     setDisable(true); 
   }
   function changeDef(){
+    document.querySelector(".scheduledTime").value="20:05";
     let t=new Date();
     t.setHours(20);
     t.setMinutes(5);
@@ -42,22 +43,28 @@ const Hero = (props) => {
     setSchedule(Math.trunc(t.getTime()/1000));
   }
   function changeToScheduledAndLeave(){
-    
-    let res=document.querySelector(".listItemsHandles");
-    let handles2=[];
-    console.log(res.children)
-    for(let i=0;i<res.children.length;i++){
-      let a=res.children[i].innerHTML.split(' ');
+    if(schedule!="")
+    {
+
+      let res=document.querySelector(".listItemsHandles");
+      let handles2=[];
+      console.log(res.children)
+      for(let i=0;i<res.children.length;i++){
+        let a=res.children[i].innerHTML.split(' ');
+        
+        handles2.push(a[1])
+      }
+      for(let i=0;i<handles.length;i++){handles2.push(handles[i])}
+      // console.log(handles2)
+      socket.emit("changeToScheduled",{room: contest_id,time:schedule*1000,username:handle,handles:handles2})
       
-      handles2.push(a[1])
+      history.push("/scheduled/"+handle);  
+      
+      setDisable(true); 
     }
-    for(let i=0;i<handles.length;i++){handles2.push(handles[i])}
-    // console.log(handles2)
-    socket.emit("changeToScheduled",{room: contest_id,time:schedule,username:handle,handles:handles2})
-    
-    history.push("/scheduled/"+handle);  
-    
-    setDisable(true); 
+    else{
+      alert("Time not valid!")
+    }
   }
   useEffect(() => {
     changeDef()
@@ -186,9 +193,9 @@ const Hero = (props) => {
         >
           Ready
         </button>
-        <input type="time" value="20:05"  name="bday" onChange={(e) =>{
+        <input type="time" class="scheduledTime" name="bday" onChange={(e) =>{
           let str=e.target.value;
-          str=str.split(':');
+          str=str.split(':'); 
           let date = new Date();
           date.setHours(parseInt(str[0]));
           date.setMinutes(parseInt(str[1]));

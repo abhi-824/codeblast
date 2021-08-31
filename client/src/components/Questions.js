@@ -29,8 +29,18 @@ const Questions = () => {
             let d=new Date(data.start_time);
             d.setSeconds(d.getSeconds()+data.duration*60)
             let t=(d.getTime()-new Date().getTime())/1000;
-            startTimer(t,document.querySelector(".timer"))
-
+            console.log(d,d.getTime(),new Date().getTime(),t);
+            let min=data.duration*60;
+            if(t<=min)
+            {
+              if(t>0)
+                startTimer(t,document.querySelector(".timer"))
+            }
+            else{
+              probs=[];
+              setProbs(probs);
+              document.querySelector(".timer").innerHTML=""
+            }
           });
       }
       if (handles == null) {
@@ -94,25 +104,33 @@ const Questions = () => {
       <div className="timer"></div>
       <div class="questions">
         <div className="cards">
-          {problems.map((item) => {
-            return (
-              <div>
-                <div className="card card1">
-                  <div className="container">{/* <img src={wrA} alt /> */}</div>
-                  <div className="details">
-                    <h3>{item[1]}</h3>
-                    <a
-                      href={getLink(item[1])}
-                      target="_blank"
-                      className="button-do-it"
-                    >
-                      Do It
-                    </a>
+          {
+            problems.length>0?(
+              problems.map((item) => {
+              return (
+                <div>
+                  <div className="card card1">
+                    <div className="container">{/* <img src={wrA} alt /> */}</div>
+                    <div className="details">
+                      <h3>{item[1]}</h3>
+                      <a
+                        href={getLink(item[1])}
+                        target="_blank"
+                        className="button-do-it"
+                      >
+                        Do It
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })
+
+            ):(
+              "Contest Has not started Yet"   
+            )
+          
+          }
         </div>
       </div>
     </div>

@@ -28,6 +28,7 @@ async function userJoin(id, username, room) {
 
 async function addProblems(id, problems) {
   let iad, daata;
+  let isScheduled;
   await firestore
     .collection("rooms")
     .where("id", "==", id)
@@ -35,6 +36,7 @@ async function addProblems(id, problems) {
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         iad = doc.id;
+        isScheduled = doc.data().isScheduled;
         daata = doc.data();
       });
     });
@@ -44,14 +46,25 @@ async function addProblems(id, problems) {
   }
 
   daata.questions = probs;
-  await firestore
-    .collection("rooms")
-    .doc(iad)
-    .update({
-      questions: probs,
-      start_time: new Date().getTime(),
-      isStarted: true,
-    });
+  if(isScheduled)
+  {
+    await firestore
+      .collection("rooms")
+      .doc(iad)
+      .update({
+        questions: probs,
+      });
+  }
+  else{
+    await firestore
+      .collection("rooms")
+      .doc(iad)
+      .update({
+        questions: probs,
+        start_time: new Date().getTime(),
+        isStarted: true,
+      });
+  }
   return daata;
 }
 async function changeToScheduled(id, time, handles) {
