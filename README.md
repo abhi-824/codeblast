@@ -77,6 +77,7 @@ If you practice on Codeforces, here's why you need this:
 * Problems are from Codeforces problemset itself and are generated from the submissions and contest history of the participants.
 * You can decide the duration of your codeblast and difficulty range of problems you wish to solve, giving you total control.
 * View the standings and compete with your friends in real time
+* Schedule contests
 
 
 ### Built With
